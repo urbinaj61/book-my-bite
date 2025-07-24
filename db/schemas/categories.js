@@ -1,9 +1,10 @@
 import { Schema, model, models } from "mongoose";
 
-const CategoriesSchema = new Schema(
+const CategorySchema = new Schema(
   {
     type: {
       type: String,
+      cuisine: String,
       required: true,
     },
   },
@@ -12,6 +13,6 @@ const CategoriesSchema = new Schema(
   }
 );
 
-const Categories = models.Categories || model("Categories", CategoriesSchema);
+const Category = models.Category || model("Category", CategorySchema);
 
-export default Categories;
+export default Category;

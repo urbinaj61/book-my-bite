@@ -11,7 +11,19 @@ const TimeSlotSchema = new Schema(
 
 const OpeningTimeSchema = new Schema(
   {
-    day: { type: String, required: true },
+    day: {
+      type: String,
+      required: true,
+      enum: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+    },
     available: { type: Boolean, default: false },
     open: { type: String, required: true },
     close: { type: String, required: true },
@@ -22,6 +34,7 @@ const OpeningTimeSchema = new Schema(
 
 const TableTypeSchema = new Schema(
   {
+    cuisine: { type: String, required: true },
     type: { type: String, required: true },
     seats: { type: Number, required: true },
   },
@@ -36,7 +49,14 @@ const MenuLinkSchema = new Schema(
   { _id: false }
 );
 
-const RestaurantsSchema = new Schema(
+const ImageSchema = new Schema(
+  {
+    imageUrl: { type: String },
+  },
+  { _id: false }
+);
+
+const RestaurantSchema = new Schema(
   {
     name: { type: String, required: true },
     address1: { type: String, required: true },
@@ -48,6 +68,7 @@ const RestaurantsSchema = new Schema(
     type: { type: String, required: true },
     description: { type: String, required: true },
 
+    Images: [ImageSchema],
     tableTypes: [TableTypeSchema],
     menuLinks: [MenuLinkSchema],
     openingTimes: [OpeningTimeSchema],
@@ -55,7 +76,6 @@ const RestaurantsSchema = new Schema(
   { timestamps: true }
 );
 
-const Restaurants =
-  models.Restaurants || model("Restaurants", RestaurantsSchema);
+const Restaurant = models.Restaurant || model("Restaurant", RestaurantSchema);
 
-export default Restaurants;
+export default Restaurant;
