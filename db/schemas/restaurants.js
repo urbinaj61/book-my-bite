@@ -4,7 +4,6 @@ const TimeSlotSchema = new Schema(
   {
     start: { type: String, required: true },
     end: { type: String, required: true },
-    booked: { type: Boolean, default: false },
   },
   { _id: false }
 );
@@ -24,7 +23,6 @@ const OpeningTimeSchema = new Schema(
         "Sunday",
       ],
     },
-    available: { type: Boolean, default: false },
     open: { type: String, required: true },
     close: { type: String, required: true },
     timeSlots: [TimeSlotSchema],
