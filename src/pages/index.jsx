@@ -8,10 +8,10 @@ const arimo = Arimo({
   subsets: ["latin"],
 });
 
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
+
 const Home = () => {
-  const { data, error, isLoading } = useSWR(
-    "http://localhost:3000/api/restaurants"
-  );
+  const { data, error, isLoading } = useSWR(`${baseURL}/api/restaurants`);
 
   if (error) console.error(error);
   if (!data) return;
