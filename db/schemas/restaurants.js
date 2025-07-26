@@ -32,8 +32,7 @@ const OpeningTimeSchema = new Schema(
 
 const TableTypeSchema = new Schema(
   {
-    cuisine: { type: String, required: true },
-    type: { type: String, required: true },
+    name: { type: String, required: true },
     seats: { type: Number, required: true },
   },
   { _id: false }
@@ -63,9 +62,9 @@ const RestaurantSchema = new Schema(
     city: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, required: true },
-    type: { type: String, required: true },
     description: { type: String, required: true },
-
+    cuisine: { type: String, required: true },
+    type: { type: String, required: true },
     Images: [ImageSchema],
     tableTypes: [TableTypeSchema],
     menuLinks: [MenuLinkSchema],
