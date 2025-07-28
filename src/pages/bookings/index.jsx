@@ -7,7 +7,7 @@ const Bookings = () => {
   const [email, setEmail] = useState("");
   const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-  const swrPath = email ? `${baseURL}api/bookings/${email}` : null;
+  const swrPath = email ? `${baseURL}/api/bookings/${email}` : null;
 
   const { data, error, isLoading } = useSWR(swrPath);
 
