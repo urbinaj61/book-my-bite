@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Link from "next/link";
 import RestaurantMainDetails from "./restaurantMainDetails/RestaurantMainDetails";
 import RestaurantImages from "./restaurantImages/RestaurantImages";
 import RestauranrtMenuLinks from "./restaurantMenuLinks/RestaurantMenuLinks";
@@ -38,6 +39,9 @@ const RestaurantDetail = ({ restaurant }) => {
       <div>
         <RestaurantMainDetails restaurantMainDetails={restaurantMainDetails} />
         <RestaurantImages images={images} />
+        <Link href={`/createBooking/${restaurant._id}`}>
+          <button>Book your table</button>
+        </Link>
         <RestauranrtMenuLinks menuLinks={menuLinks} />
         <RestaurantOpeningTimes openingTimes={openingTimes} />
       </div>
