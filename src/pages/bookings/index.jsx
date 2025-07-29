@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useSWR from "swr";
+import Link from "next/link";
 import ShowMyBookings from "@/components/showMyBookings/ShowMyBookings";
 import ShowMyBookingsContent from "@/components/showMyBookingsContent/ShowMyBookingsContent";
 
@@ -25,6 +26,9 @@ const Bookings = () => {
           isLoading={isLoading}
         />
       </div>
+      <Link href={"/"}>
+        <button>Return</button>
+      </Link>
     </>
   );
 };

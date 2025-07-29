@@ -18,6 +18,9 @@ const RestaurantCard = ({ restaurant }) => {
           <DummyImage />
         )}
       </Link>
+      <Link href={`/createBooking/${restaurant._id}`}>
+        <button>Book your table</button>
+      </Link>
     </div>
   );
 };
