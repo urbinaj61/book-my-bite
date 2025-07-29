@@ -9,7 +9,7 @@ const Bookings = () => {
 
   console.log(baseURL);
 
-  const swrPath = email ? `${baseURL}/api/bookings/${email}` : null;
+  const swrPath = email ? `${baseURL}api/bookings/${email}` : null;
 
   const { data, error, isLoading } = useSWR(swrPath);
 
