@@ -11,9 +11,7 @@ const arimo = Arimo({
 const Home = () => {
   //const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-  const { data, error, isLoading } = useSWR(
-    `http://localhost:3000/api/restaurants`
-  );
+  const { data, error, isLoading } = useSWR(`/api/restaurants`);
 
   if (error) console.error(error);
   if (!data) return;
