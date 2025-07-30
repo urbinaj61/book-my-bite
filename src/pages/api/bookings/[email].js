@@ -5,10 +5,12 @@ const handler = async (req, res) => {
   await dbConnect();
   const { email } = req.query;
 
+  const normalizedEmail = email.trim().toLowerCase();
+
   if (req.method === "GET") {
-    const booking = await Booking.find({ customerEmail: email }).populate(
-      "restaurantId"
-    );
+    const booking = await Booking.find({
+      customerEmail: normalizedEmail,
+    }).populate("restaurantId");
 
     if (!booking) {
       res.status(404).json({ status: "Not Found" });

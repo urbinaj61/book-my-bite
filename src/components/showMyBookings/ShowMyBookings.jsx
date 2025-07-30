@@ -1,7 +1,8 @@
 const ShowMyBookings = ({ setEmail }) => {
   const handleEmailSuvbmit = (e) => {
     e.preventDefault();
-    setEmail(e.target.elements.email.value);
+    const normalizedEmail = e.target.elements.email.value.trim().toLowerCase();
+    setEmail(normalizedEmail);
   };
 
   return (
