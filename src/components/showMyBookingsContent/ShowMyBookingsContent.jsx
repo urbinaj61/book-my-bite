@@ -5,7 +5,7 @@ const ShowMyBookingsContent = ({ email, data, error, isLoading }) => {
   if (error)
     return (
       <p>
-        Error loading bookings for {email} {error}. Please try again.
+        Error loading bookings for {email} {error.message}. Please try again.
       </p>
     );
 
