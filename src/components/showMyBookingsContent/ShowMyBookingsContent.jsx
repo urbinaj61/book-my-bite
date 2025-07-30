@@ -3,7 +3,11 @@ const ShowMyBookingsContent = ({ email, data, error, isLoading }) => {
   if (isLoading) return <p>Loading bookings for {email}...</p>;
   console.error(error);
   if (error)
-    return <p>Error loading bookings for {email}. Please try again.</p>;
+    return (
+      <p>
+        Error loading bookings for {email} {error}. Please try again.
+      </p>
+    );
 
   if (data) {
     if (data.length === 0) {
