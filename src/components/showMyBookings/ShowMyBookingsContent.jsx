@@ -8,10 +8,13 @@ const ShowMyBookingsContent = ({ email }) => {
 
   const { data, error, isLoading } = useSWR(swrPath);
 
+  console.log(data);
+
   if (!data || data.length === 0) {
     return <p>No bookings found for {email} </p>;
   }
 
+  if (data === undefined) return <p>For now there is no data</p>;
   if (isLoading) return <p>Loading bookings for {normalizedEmail}...</p>;
   if (error)
     return (
