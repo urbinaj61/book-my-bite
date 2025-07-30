@@ -1,12 +1,12 @@
 const ShowMyBookings = ({ setEmail }) => {
-  const handleEmailSuvbmit = (e) => {
+  const handleEmailSubmit = (e) => {
     e.preventDefault();
     const normalizedEmail = e.target.elements.email.value.trim().toLowerCase();
     setEmail(normalizedEmail);
   };
 
   return (
-    <form onSubmit={handleEmailSuvbmit}>
+    <form onSubmit={handleEmailSubmit}>
       <input
         type="email"
         id="show_my_bookings"
