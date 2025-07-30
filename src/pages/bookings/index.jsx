@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ShowMyBookings from "@/components/showMyBookings/ShowMyBookings";
-import ShowBookingsPage from "../bookings/[email]";
+import ShowBookingsPage from "../../components/showMyBookings/ShowBookingsPage";
 
 const Bookings = () => {
   const [email, setEmail] = useState("");
