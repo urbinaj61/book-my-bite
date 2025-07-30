@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ShowMyBookings from "@/components/showMyBookings/ShowMyBookings";
-import ShowBookingsPage from "../../components/showMyBookings/ShowBookingsPage";
+import ShowMyBookingsContent from "../../components/showMyBookings/ShowMyBookingsContent";
 
 const Bookings = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const Bookings = () => {
       <div>
         <h1>Bookings page</h1>
         <ShowMyBookings setEmail={setEmail} />
-        {email && <ShowBookingsPage email={email} />}
+        {email && <ShowMyBookingsContent email={email} />}
       </div>
       <Link href={"/"}>
         <button>Return</button>

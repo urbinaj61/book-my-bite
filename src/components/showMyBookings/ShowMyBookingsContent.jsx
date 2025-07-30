@@ -1,7 +1,20 @@
-const ShowMyBookingsContent = ({ data, email }) => {
+import useSWR from "swr";
+
+const ShowMyBookingsContent = ({ email }) => {
+  const normalizedEmail = email?.trim().toLowerCase();
+  const swrPath = email ? `/api/bookings/${normalizedEmail}` : null;
+
+  const { data, error, isLoading } = useSWR(swrPath);
+
   if (!data || data.length === 0) {
     return <p>No bookings found for {email} </p>;
   }
+
+  if (isLoading) return <p>Loading bookings for {normalizedEmail}...</p>;
+  if (error)
+    return (
+      <p>Error loading bookings for {normalizedEmail}. Please try again.</p>
+    );
 
   return (
     <>
