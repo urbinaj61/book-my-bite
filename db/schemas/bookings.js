@@ -2,11 +2,6 @@ import { Schema, model, models } from "mongoose";
 
 const BookingSchema = new Schema(
   {
-    // restaurantId: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "Restaurant",
-    //   required: true,
-    // },
     restaurantId: { type: String, required: true },
     customerEmail: { type: String, required: true },
     customerName: { type: String, required: true },
