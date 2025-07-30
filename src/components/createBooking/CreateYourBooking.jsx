@@ -1,4 +1,10 @@
 const CreateYourBooking = ({ data, date }) => {
+  const filteredDates = data.filter((item) => {
+    return item.dateBooked === date;
+  });
+
+  console.log(filteredDates);
+
   return (
     <form>
       <label htmlFor="customer-name">Please enter your name</label>
