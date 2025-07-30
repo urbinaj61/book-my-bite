@@ -4,6 +4,8 @@ const ShowMyBookingsContent = ({ email }) => {
   const normalizedEmail = email?.trim().toLowerCase();
   const swrPath = email ? `/api/bookings/${normalizedEmail}` : null;
 
+  console.log(swrPath);
+
   const { data, error, isLoading } = useSWR(swrPath);
 
   if (!data || data.length === 0) {
