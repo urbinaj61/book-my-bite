@@ -2,7 +2,7 @@ import useSWR from "swr";
 import ShowMyBookingsContent from "@/components/showMyBookings/ShowMyBookingsContent";
 
 const ShowBookingsPage = ({ email }) => {
-  const normalizedEmail = email.trim().toLowerCase();
+  const normalizedEmail = email?.trim().toLowerCase();
   const swrPath = email ? `/api/bookings/${normalizedEmail}` : null;
 
   const { data, error, isLoading } = useSWR(swrPath);
