@@ -1,6 +1,7 @@
 const ShowMyBookingsContent = ({ email, data, error, isLoading }) => {
   if (!email) return <p>Please enter your email to view your bookings.</p>;
   if (isLoading) return <p>Loading bookings for {email}...</p>;
+  console.error(error);
   if (error)
     return <p>Error loading bookings for {email}. Please try again.</p>;
 
