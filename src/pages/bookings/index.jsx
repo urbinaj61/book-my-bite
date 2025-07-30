@@ -7,9 +7,12 @@ import ShowMyBookingsContent from "@/components/showMyBookingsContent/ShowMyBook
 const Bookings = () => {
   const [email, setEmail] = useState("");
 
-  const swrPath = email ? `api/bookings/${email}` : null;
+  const swrPath = email ? `/api/bookings/${email}` : null;
 
   const { data, error, isLoading } = useSWR(swrPath);
+
+  if (error) console.error(error);
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <>
