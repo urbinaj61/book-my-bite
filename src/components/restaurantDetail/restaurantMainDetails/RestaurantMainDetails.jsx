@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const RestaurantMainDetails = ({ restaurantMainDetails }) => {
   const {
     name,
@@ -12,6 +14,9 @@ const RestaurantMainDetails = ({ restaurantMainDetails }) => {
   } = restaurantMainDetails;
   return (
     <div>
+      <Link href={"/bookings"}>
+        <button>Show my Bookings</button>
+      </Link>
       <p>{name}</p>
       <p>{address1}</p>
       <p>{address2}</p>
