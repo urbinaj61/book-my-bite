@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import ShowMyBookingsContent from "@/components/showMyBookings/ShowMyBookingsContent";
 
 const ShowBookingsPage = ({ email }) => {
