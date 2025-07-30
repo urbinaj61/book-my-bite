@@ -6,19 +6,19 @@ const handler = async (req, res) => {
   await dbConnect();
   const { _id } = req.query;
 
-  if (!_id || !mongoose.Types.ObjectId.isValid(_id)) {
-    console.error("Invalid or missing _id in request query:", _id);
-    return res.status(400).json({
-      status: "Bad Request",
-      message: "A valid restaurant ID is required.",
-    });
-  }
+  // if (!_id || !mongoose.Types.ObjectId.isValid(_id)) {
+  //   console.error("Invalid or missing _id in request query:", _id);
+  //   return res.status(400).json({
+  //     status: "Bad Request",
+  //     message: "A valid restaurant ID is required.",
+  //   });
+  // }
 
-  const queryId = new mongoose.Types.ObjectId(_id);
+  // const queryId = new mongoose.Types.ObjectId(_id);
 
   if (req.method === "GET") {
     const booking = await Booking.find({
-      restaurantId: queryId,
+      restaurantId: _id,
     }).populate("restaurantId");
 
     if (!booking) {
