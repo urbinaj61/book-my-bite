@@ -7,7 +7,7 @@ const ShowMyBookingsContent = ({ email }) => {
   const { data, error, isLoading } = useSWR(swrPath);
 
   if (!data || data.length === 0) {
-    return <p>No bookings found for {email} </p>;
+    return <p>No bookings found for {email} entered</p>;
   }
 
   if (isLoading) return <p>Loading bookings for {normalizedEmail}...</p>;
@@ -22,7 +22,9 @@ const ShowMyBookingsContent = ({ email }) => {
       <ul>
         {data.map((booking) => (
           <li key={booking._id}>
-            <strong>Restaurant:</strong> {booking.restaurantId?.customerName}
+            <strong>Restaurant:</strong> {booking.restaurantId?.name}
+            <br />
+            <strong>Booked by:</strong> {booking.customerName}
             <br />
             <strong>Address:</strong> {booking.restaurantId?.address1}
             <br />
