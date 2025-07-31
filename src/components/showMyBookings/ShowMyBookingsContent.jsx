@@ -1,32 +1,10 @@
-import { useState, useEffect } from "react";
-//import useSWR from "swr";
+import useSWR from "swr";
 
 const ShowMyBookingsContent = ({ email }) => {
   const normalizedEmail = email?.trim().toLowerCase();
   const swrPath = email ? `/api/bookings/${normalizedEmail}` : null;
 
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(swrPath);
-        const data = await response.json();
-        setData(data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error);
-        console.error(error.message);
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  //const { data, error, isLoading } = useSWR(swrPath);
+  const { data, error, isLoading } = useSWR(swrPath);
 
   if (!data || data.length === 0) {
     return <p>No bookings found for {email} </p>;
