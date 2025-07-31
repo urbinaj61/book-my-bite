@@ -13,13 +13,22 @@ const CreateYourBooking = ({ data, date }) => {
 
   const timeSlots = openingTimes.map((item) => item.timeSlots);
   const filteredTimeSlots = filteredDates.map((item) => item.timeSlot);
-  console.log("timeSlots", timeSlots, "filteredTimeSlots", filteredTimeSlots);
-
-  const uniqueDates = filteredDates.filter((filtered) =>
-    timeSlots[0].every((slot) => slot.start !== filtered.start)
+  console.log(
+    "timeSlots",
+    timeSlots,
+    "filteredTimeSlots",
+    filteredTimeSlots,
+    "filteredDates",
+    filteredDates,
+    "openingTimes",
+    openingTimes
   );
 
-  console.log("unique", uniqueDates);
+  const result = timeSlots[0].filter(
+    (slot1) => !filteredTimeSlots.find((slot2) => slot2.start === slot1.start)
+  );
+
+  console.log("Result:", result);
 
   return (
     <>
