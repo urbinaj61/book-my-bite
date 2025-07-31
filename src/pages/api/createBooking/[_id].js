@@ -7,6 +7,8 @@ const handler = async (req, res) => {
   await dbConnect();
   const { _id } = req.query;
 
+  console.log(req.body);
+
   if (!_id || !mongoose.Types.ObjectId.isValid(_id)) {
     console.error("Invalid or missing _id in request query:", _id);
     return res.status(400).json({
@@ -28,6 +30,20 @@ const handler = async (req, res) => {
     }
 
     res.status(200).json(booking);
+    return;
+  }
+
+  if (req.method === "POST") {
+    try {
+      const bookingData = req.body;
+      await Booking.create(bookingData);
+      res
+        .status(201)
+        .json({ status: "New booking has been added to database" });
+    } catch (error) {
+      console.error(error.message);
+      res.status(400).json({ error: error.message });
+    }
     return;
   }
 
