@@ -1,12 +1,12 @@
 const RestauranrtMenuLinks = ({ menuLinks }) => {
   const renderedMenuLinks =
     menuLinks.length > 0
-      ? menuLinks.map((menu) => {
+      ? menuLinks.map((menu, i) => {
           return (
-            <>
+            <div key={i}>
               <p>{menu.type}</p>
               <p>{menu.link}</p>
-            </>
+            </div>
           );
         })
       : null;

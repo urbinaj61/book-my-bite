@@ -4,9 +4,16 @@ import DummyImage from "../../dummyImage/DummyImage.jsx";
 const RestaurantImages = ({ images }) => {
   const renderedImages =
     images.length > 0 ? (
-      images.map((image) => {
+      images.map((image, i) => {
         return (
-          <Image src={image.imageUrl} width={200} height={200} alt={"image"} />
+          <Image
+            key={i}
+            src={image.imageUrl}
+            width={200}
+            height={200}
+            alt={"image"}
+            priority
+          />
         );
       })
     ) : (

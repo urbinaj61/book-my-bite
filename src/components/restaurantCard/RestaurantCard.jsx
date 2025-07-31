@@ -13,6 +13,7 @@ const RestaurantCard = ({ restaurant }) => {
             width={200}
             height={200}
             alt={`${restaurant.name}`}
+            priority
           />
         ) : (
           <DummyImage />

@@ -1,34 +1,55 @@
-import getDayOfWeek from "../../../utilities/getDayOfWeek";
+import { useState } from "react";
 
+import getDayOfWeek from "../../../utilities/getDayOfWeek";
+import TimeSlotSelection from "./timeSlotSelection/TimeSlotSelection";
+import TableSelection from "./tableSelection/TableSelection";
+
+//Get day from date entered
 const CreateYourBooking = ({ data, date }) => {
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+  const [selectedTable, setSelectedTable] = useState("");
+
   const day = getDayOfWeek(date);
 
+  //Get all bookings for this restaurant and date entered
   const filteredDates = data.filter((item) => {
     return item.dateBooked === date;
   });
 
+  //Get all table information for this restaurant
+  const tables = filteredDates[0].restaurantId.tableTypes.map((table) => table);
+
+  //Get tables already booked for this restaurant on the date entered
+  const filteredTables = filteredDates.map((item) => item.tableBooked);
+
+  //Determine available tables
+  const availableTables = tables.filter(
+    (table1) => !filteredTables.find((table2) => table2 === table1.name)
+  );
+
+  //Get opening times for this restaurant
   const openingTimes = filteredDates[0].restaurantId.openingTimes.filter(
     (item) => item.day === day
   );
 
-  const timeSlots = openingTimes.map((item) => item.timeSlots);
-  const filteredTimeSlots = filteredDates.map((item) => item.timeSlot);
-  console.log(
-    "timeSlots",
-    timeSlots,
-    "filteredTimeSlots",
-    filteredTimeSlots,
-    "filteredDates",
-    filteredDates,
-    "openingTimes",
-    openingTimes
-  );
+  //Get all timeslots for this restaurant and date entered
+  const timeSlots = openingTimes[0].timeSlots.map((item) => item);
 
-  const result = timeSlots[0].filter(
+  //Get timeSlots already booked for this restaurant and date entered
+  const filteredTimeSlots = filteredDates.map((item) => item.timeSlot);
+
+  //Determine available timeslots
+  const availableTimeSlots = timeSlots.filter(
     (slot1) => !filteredTimeSlots.find((slot2) => slot2.start === slot1.start)
   );
 
-  console.log("Result:", result);
+  const handleTableSelect = (event) => {
+    setSelectedTable(event.target.value);
+  };
+
+  const handleTimeSlotSelect = (event) => {
+    setSelectedTimeSlot(event.target.value);
+  };
 
   return (
     <>
@@ -42,10 +63,16 @@ const CreateYourBooking = ({ data, date }) => {
         <input type="text" id="customer-name" aria-label="customer-name" />
         <label htmlFor="customer-email">Please enter your email</label>
         <input type="text" id="customer-email" aria-label="customer-email" />
-        <label htmlFor="table-selected">Please select your table</label>
-        <select name="" id="table-selected"></select>
-        <label htmlFor="timeslot-selected">Please select your timeslot</label>
-        <select name="" id="timeslot-selected"></select>
+        <TableSelection
+          onTableSelect={handleTableSelect}
+          availableTables={availableTables}
+          selectedTable={selectedTable}
+        />
+        <TimeSlotSelection
+          onTimeSlotSelect={handleTimeSlotSelect}
+          availableTimeSlots={availableTimeSlots}
+          selectedTimeSlot={selectedTimeSlot}
+        />
         <button type="submit">Book your bite</button>
       </form>
     </>
