@@ -9,6 +9,8 @@ const BookingSchema = new Schema(
     },
     customerEmail: { type: String, required: true },
     customerName: { type: String, required: true },
+    restaurantName: { type: String, required: true },
+    restaurantAddress1: { type: String, required: true },
     dateBooked: { type: String, default: "" },
     tableBooked: { type: String, required: true },
     seatsBooked: { type: String, required: true },

@@ -73,6 +73,8 @@ const CreateYourBooking = ({ restaurantData, date }) => {
     formData.append("restaurantId", _id);
     formData.append("dateBooked", date);
     formData.append("seatsBooked", seatsBooked);
+    formData.append("restaurantName", restaurantData.name);
+    formData.append("restaurantAddress1", restaurantData.address1);
     const bookingData = Object.fromEntries(formData);
     bookingData.tableBooked = `Table ${tableBooked}`;
     bookingData.timeSlot = formatTimeSlot(selectedTimeSlot);
