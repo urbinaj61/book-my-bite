@@ -4,7 +4,19 @@ const ShowMyBookingsContent = ({ email }) => {
   const normalizedEmail = email?.trim().toLowerCase();
   const swrPath = email ? `/api/bookings/${normalizedEmail}` : null;
 
-  const { data, error, isLoading } = useSWR(swrPath);
+  const { data, error, isLoading, mutate } = useSWR(swrPath);
+
+  const handleDelete = async (id) => {
+    const response = await fetch(`/api/bookings/${normalizedEmail}?id=${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      mutate();
+    } else {
+      console.error("Failed to delete booking");
+    }
+  };
 
   if (!data || data.length === 0) {
     return <p>No bookings found for {email} entered</p>;
@@ -36,6 +48,8 @@ const ShowMyBookingsContent = ({ email }) => {
             <strong>Table:</strong> {booking.tableBooked}
             <br />
             <strong>Seats:</strong> {booking.seatsBooked}
+            <br />
+            <button onClick={() => handleDelete(booking._id)}>Cancel</button>
             <hr />
           </li>
         ))}
