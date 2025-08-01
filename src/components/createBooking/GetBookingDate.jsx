@@ -7,11 +7,11 @@ const GetBookingDate = ({ data }) => {
   return (
     <>
       <h2>Book your bite</h2>
-      <h3>{data[0].restaurantId.name}</h3>
-      <h4>{data[0].restaurantId.address1}</h4>
+      <h3>{data.name}</h3>
+      <h4>{data.address1}</h4>
       <label htmlFor="booked date">Please select a date</label>
-      <input type="date" onChange={(e) => setDate(e.target.value)} />{" "}
-      {date && <CreateYourBooking data={data} date={date} />}
+      <input type="date" onChange={(e) => setDate(e.target.value)} />
+      {date && <CreateYourBooking restaurantData={data} date={date} />}
     </>
   );
 };
