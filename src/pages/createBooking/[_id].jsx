@@ -6,7 +6,7 @@ const CreateBookingPage = () => {
   const router = useRouter();
   const { _id } = router.query;
 
-  const { data, error, isLoading } = useSWR(`/api/createBooking/${_id}`);
+  const { data, error, isLoading } = useSWR(`/api/restaurants/${_id}`);
 
   if (error) console.error(error);
   if (!data) return;

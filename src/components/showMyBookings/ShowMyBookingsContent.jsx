@@ -22,11 +22,11 @@ const ShowMyBookingsContent = ({ email }) => {
       <ul>
         {data.map((booking) => (
           <li key={booking._id}>
-            <strong>Restaurant:</strong> {booking.restaurantId?.name}
+            {/* <strong>Restaurant:</strong> {booking.restaurantId?.name} */}
             <br />
             <strong>Booked by:</strong> {booking.customerName}
             <br />
-            <strong>Address:</strong> {booking.restaurantId?.address1}
+            {/* <strong>Address:</strong> {booking.restaurantId?.address1} */}
             <br />
             <strong>Date:</strong> {booking.dateBooked}
             <br />

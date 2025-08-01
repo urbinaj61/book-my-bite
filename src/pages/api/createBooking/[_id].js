@@ -1,13 +1,10 @@
 import mongoose from "mongoose";
 import dbConnect from "../../../../db/connect";
 import Booking from "../../../../db/schemas/bookings";
-import Restaurant from "../../../../db/schemas/restaurants";
 
 const handler = async (req, res) => {
   await dbConnect();
-  const { _id } = req.query;
-
-  console.log(req.body);
+  const { _id, date } = req.query;
 
   if (!_id || !mongoose.Types.ObjectId.isValid(_id)) {
     console.error("Invalid or missing _id in request query:", _id);
@@ -22,7 +19,8 @@ const handler = async (req, res) => {
   if (req.method === "GET") {
     const booking = await Booking.find({
       restaurantId: queryId,
-    }).populate({ path: "restaurantId", model: Restaurant });
+      dateBooked: date,
+    });
 
     if (!booking) {
       res.status(404).json({ status: "Not Found" });
