@@ -22,8 +22,6 @@ const CreateYourBooking = ({ restaurantData, date }) => {
     `/api/createBooking/${_id}?date=${date}`
   );
 
-  //The SWR fetch brings back all bookings, if any for this restaurant and date entered
-
   if (error) console.error(error);
   if (isLoading) return <p>Loading...</p>;
 
@@ -85,8 +83,15 @@ const CreateYourBooking = ({ restaurantData, date }) => {
       body: JSON.stringify(bookingData),
     });
 
-    if (response.ok) mutate();
-    if (response.ok) router.push(`/bookings/${bookingData.customerEmail}`);
+    if (response.ok) {
+      const result = await response.json(); //A new booking id is returned to us. If we need it.
+
+      console.log({ result });
+      mutate();
+      router.push(
+        `/bookings/${bookingData.customerEmail}?${result.bookingId._id}`
+      );
+    }
     return;
   };
 

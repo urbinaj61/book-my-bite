@@ -34,10 +34,10 @@ const handler = async (req, res) => {
   if (req.method === "POST") {
     try {
       const bookingData = req.body;
-      await Booking.create(bookingData);
+      const bookingId = await Booking.create(bookingData);
       res
         .status(201)
-        .json({ status: "New booking has been added to database" });
+        .json({ status: "New booking has been added to database", bookingId });
     } catch (error) {
       console.error(error.message);
       res.status(400).json({ error: error.message });
