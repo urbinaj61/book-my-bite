@@ -49,7 +49,9 @@ const ShowMyBookingsContent = ({ email }) => {
             <br />
             <strong>Seats:</strong> {booking.seatsBooked}
             <br />
-            <button onClick={() => handleDelete(booking._id)}>Cancel</button>
+            <button onClick={() => handleDelete(booking._id)}>
+              Cancel Booking
+            </button>
             <hr />
           </li>
         ))}

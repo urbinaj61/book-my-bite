@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 import getDayOfWeek from "../../../utilities/getDayOfWeek";
 import getAvailableTimeSlots from "../../../utilities/getAvailableTimeSlots";
 import formatTimeSlot from "../../../utilities/formatTimeSlot";
-import TableSelection from "./tableSelection/TableSelection";
-import TimeSlotSelection from "./timeSlotSelection/TimeSlotSelection";
+import BookingForm from "./BookingForm";
 
 const CreateYourBooking = ({ restaurantData, date }) => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
@@ -86,7 +85,6 @@ const CreateYourBooking = ({ restaurantData, date }) => {
     if (response.ok) {
       const result = await response.json(); //A new booking id is returned to us. If we need it.
 
-      console.log({ result });
       mutate();
       router.push(
         `/bookings/${bookingData.customerEmail}?${result.bookingId._id}`
@@ -102,7 +100,16 @@ const CreateYourBooking = ({ restaurantData, date }) => {
       ) : (
         <p>This restaurant is closed on this day</p>
       )}
-      <form onSubmit={handleFormSubmit}>
+      <BookingForm
+        selectedTable={selectedTable}
+        selectedTimeSlot={selectedTimeSlot}
+        handleTableSelect={handleTableSelect}
+        handleTimeSlotSelect={handleTimeSlotSelect}
+        handleFormSubmit={handleFormSubmit}
+        tables={tables}
+        availableTimeSlots={availableTimeSlots}
+      />
+      {/* <form onSubmit={handleFormSubmit}>
         <label htmlFor="customer-name">Please enter your name</label>
         <input
           type="text"
@@ -130,7 +137,7 @@ const CreateYourBooking = ({ restaurantData, date }) => {
           />
         )}
         <button type="submit">Book your bite</button>
-      </form>
+      </form> */}
     </>
   );
 };
