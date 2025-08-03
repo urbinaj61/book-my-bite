@@ -13,6 +13,7 @@ const handler = async (req, res) => {
       return;
     }
 
+    console.log(data);
     res.status(200).json(booking);
     return;
   }
