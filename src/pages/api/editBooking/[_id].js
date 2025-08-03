@@ -6,14 +6,13 @@ const handler = async (req, res) => {
   const { _id } = req.query;
 
   if (req.method === "GET") {
-    const booking = await Booking.findById(_id).populate("restaurantId");
+    const booking = await Booking.findById(_id);
 
     if (!booking) {
       res.status(404).json({ status: "Not Found" });
       return;
     }
 
-    console.log(data);
     res.status(200).json(booking);
     return;
   }
