@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import Link from "next/link";
 
 const ShowMyBookingsContent = ({ email }) => {
   const normalizedEmail = email?.trim().toLowerCase();
@@ -49,6 +50,9 @@ const ShowMyBookingsContent = ({ email }) => {
             <br />
             <strong>Seats:</strong> {booking.seatsBooked}
             <br />
+            <Link href={`/editBooking/${booking._id}`}>
+              <button>Change Booking</button>
+            </Link>
             <button onClick={() => handleDelete(booking._id)}>
               Cancel Booking
             </button>
