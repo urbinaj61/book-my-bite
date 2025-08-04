@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import getDayOfWeek from "../../../utilities/getDayOfWeek";
+import { getDayOfWeek } from "../../../utilities/getDayOfWeek";
 import getAvailableTimeSlots from "../../../utilities/getAvailableTimeSlots";
 import formatTimeSlot from "../../../utilities/formatTimeSlot";
 import BookingForm from "./BookingForm";
@@ -109,35 +109,6 @@ const CreateYourBooking = ({ restaurantData, date }) => {
         tables={tables}
         availableTimeSlots={availableTimeSlots}
       />
-      {/* <form onSubmit={handleFormSubmit}>
-        <label htmlFor="customer-name">Please enter your name</label>
-        <input
-          type="text"
-          id="customer-name"
-          aria-label="customer-name"
-          name="customerName"
-        />
-        <label htmlFor="customer-email">Please enter your email</label>
-        <input
-          type="text"
-          id="customer-email"
-          aria-label="customer-email"
-          name="customerEmail"
-        />
-        <TableSelection
-          onTableSelect={handleTableSelect}
-          tables={tables}
-          selectedTable={selectedTable}
-        />
-        {selectedTable && (
-          <TimeSlotSelection
-            onTimeSlotSelect={handleTimeSlotSelect}
-            availableTimeSlots={availableTimeSlots}
-            selectedTimeSlot={selectedTimeSlot}
-          />
-        )}
-        <button type="submit">Book your bite</button>
-      </form> */}
     </>
   );
 };

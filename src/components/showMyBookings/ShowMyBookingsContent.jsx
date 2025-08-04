@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import Link from "next/link";
+import { changeDateFormat1 } from "../../../utilities/getDayOfWeek";
 
 const ShowMyBookingsContent = ({ email }) => {
   const normalizedEmail = email?.trim().toLowerCase();
@@ -41,7 +42,7 @@ const ShowMyBookingsContent = ({ email }) => {
             <br />
             <strong>Booked by:</strong> {booking.customerName}
             <br />
-            <strong>Date:</strong> {booking.dateBooked}
+            <strong>Date:</strong> {changeDateFormat1(booking.dateBooked)}
             <br />
             <strong>Time:</strong> {booking.timeSlot?.start} -{" "}
             {booking.timeSlot?.end}

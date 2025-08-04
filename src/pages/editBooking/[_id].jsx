@@ -1,47 +1,47 @@
-import { useState, useEffect } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import EditBooking from "@/components/editBooking/EditBooking";
 
 const editBookingPage = () => {
-  const [restaurantData, setRestaurantData] = useState(null);
-
   const router = useRouter();
   const { _id } = router.query;
 
+  // First SWR fetch for the main booking data
   const { data, error, isLoading } = useSWR(
     _id ? `/api/editBooking/${_id}` : null
   );
 
-  useEffect(() => {
-    if (!data?.restaurantId) return;
+  // Dependent SWR fetches that rely on the first one
+  const { data: restaurantData, error: restaurantError } = useSWR(
+    data?.restaurantId ? `/api/restaurants/${data.restaurantId}` : null
+  );
 
-    const fetchData = async () => {
-      try {
-        console.log(data.restaurantId);
-        const response = await fetch(`/api/restaurants/${data.restaurantId}`);
-        const restaurant = await response.json();
-        setRestaurantData(restaurant);
-      } catch (error) {
-        console.error("Fetch error:", error.message);
-      }
-    };
+  const { data: allBookedData, error: bookedDataError } = useSWR(
+    data?.restaurantId && data?.dateBooked
+      ? `/api/createBooking/${data.restaurantId}?date=${data.dateBooked}`
+      : null
+  );
 
-    fetchData();
-  }, [data?.restaurantId]);
+  // Handle loading and error states for all fetches
+  if (isLoading || (!data && !error)) {
+    return <p>Loading...</p>;
+  }
 
-  if (error) console.error(error);
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return null;
-
-  console.log({ data });
-  console.log({ restaurantData });
+  if (error || restaurantError || bookedDataError) {
+    console.error(error || restaurantError || bookedDataError);
+    return <p>Error loading data.</p>;
+  }
 
   return (
-    <>
-      <div>
-        <h2>Edit a booking page</h2>
-      </div>
-    </>
+    <div>
+      {restaurantData && (
+        <EditBooking
+          bookingData={data}
+          restaurantData={restaurantData}
+          allBookedData={allBookedData}
+        />
+      )}
+    </div>
   );
 };
 
