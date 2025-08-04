@@ -1,11 +1,11 @@
 const getAvailableTimeSlots = (data, timeSlots, tableBooked) => {
   const newTableBooked = `Table ${tableBooked}`;
 
-  const tableBookings = data.filter(
+  const tableBookings = data?.filter(
     booked => booked.tableBooked === newTableBooked
   );
 
-  if (tableBookings.length > 0) {
+  if (tableBookings?.length > 0) {
     let availableTimeSlots = [...timeSlots];
 
     tableBookings.forEach(booking => {
@@ -14,6 +14,7 @@ const getAvailableTimeSlots = (data, timeSlots, tableBooked) => {
         slot => slot.start !== bookedTimeSlot.start
       );
     });
+
     return availableTimeSlots;
   }
 
