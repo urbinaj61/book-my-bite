@@ -27,7 +27,6 @@ const handler = async (req, res) => {
     );
 
     if (updatedBooking) {
-      console.log(updatedBooking);
       return res.status(200).json({
         status: "Booking updated successfully",
         data: updatedBooking,

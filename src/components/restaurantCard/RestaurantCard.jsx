@@ -5,7 +5,7 @@ import DummyImage from "../dummyImage/DummyImage";
 const RestaurantCard = ({ restaurant }) => {
   return (
     <div key={restaurant._id}>
-      <Link href={`/${restaurant._id}`}>
+      <Link href={`/restaurants/${restaurant._id}`}>
         <p>{restaurant.name}</p>
         {restaurant.images.length > 0 ? (
           <Image

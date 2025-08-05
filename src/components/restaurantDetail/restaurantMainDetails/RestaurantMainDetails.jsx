@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const RestaurantMainDetails = ({ restaurantMainDetails }) => {
   const {
     name,

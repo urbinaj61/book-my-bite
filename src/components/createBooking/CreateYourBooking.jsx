@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { getDayOfWeek } from "../../../utilities/getDayOfWeek";
 import getAvailableTimeSlots from "../../../utilities/getAvailableTimeSlots";
-import { formatTimeSlot } from "../../../utilities/formatTimeSlot";
+import formatTimeSlot from "../../../utilities/formatTimeSlot";
 import BookingForm from "./BookingForm";
 
 const CreateYourBooking = ({ restaurantData, date }) => {
