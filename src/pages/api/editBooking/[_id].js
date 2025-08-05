@@ -17,6 +17,26 @@ const handler = async (req, res) => {
     return;
   }
 
+  if (req.method === "PUT") {
+    const updatedBookingData = req.body;
+
+    const updatedBooking = await Booking.findByIdAndUpdate(
+      _id,
+      updatedBookingData,
+      { new: true }
+    );
+
+    if (updatedBooking) {
+      console.log(updatedBooking);
+      return res.status(200).json({
+        status: "Booking updated successfully",
+        data: updatedBooking,
+      });
+    } else {
+      return res.status(404).json({ status: "Booking not found" });
+    }
+  }
+
   res.status(405).json({ status: "Method not allowed" });
 };
 
