@@ -35,7 +35,6 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
 
   //Get all timeslots for this restaurant and date entered.
   const filteredDayTimeSlots = openingTimes.filter((item) => item.day === day);
-  console.log({ filteredDayTimeSlots });
 
   //Determine all timeslots for this date/day boooked
   let calculatedTimeSlots = filteredDayTimeSlots[0].timeSlots;
@@ -85,10 +84,11 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
     formData.append("seatsBooked", bookedSeats);
     const updatedBookingData = Object.fromEntries(formData);
 
-    console.log({ selectedTimeSlot });
-    updatedBookingData.timeSlot = formatTimeSlot(selectedTimeSlot);
-
-    console.log({ updatedBookingData });
+    //We need to format the selected timeSlot(string) into an object for the DB
+    console.log(typeof selectedTimeSlot);
+    typeof selectedTimeSlot === "string"
+      ? (updatedBookingData.timeSlot = formatTimeSlot(selectedTimeSlot))
+      : (updatedBookingData.timeSlot = selectedTimeSlot);
 
     const response = await fetch(`/api/editBooking/${_id}`, {
       method: "PUT",
@@ -173,13 +173,13 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
   //Only the name has changed. No extra calcs needed.......
   const handleBookedNameChange = (e) => {
     setBookedName(e.target.value);
-    setSelectedTimeSlot(convertObjectToString(timeSlot));
+    //setSelectedTimeSlot(convertObjectToString(timeSlot));
   };
 
   //Only the email has changed. No extra calcs needed.......
   const handleBookedEmailChange = (e) => {
     setBookedEmail(e.target.value);
-    setSelectedTimeSlot(convertObjectToString(timeSlot));
+    //setSelectedTimeSlot(convertObjectToString(timeSlot));
   };
 
   return (

@@ -1,7 +1,7 @@
 import Head from "next/head";
-import useSWR from "swr";
+import Link from "next/link";
 import { Arimo } from "next/font/google";
-import RestaurantList from "@/components/restaurantList/RestaurantList";
+import Image from "next/image";
 
 const arimo = Arimo({
   variable: "--font-arimo",
@@ -9,12 +9,6 @@ const arimo = Arimo({
 });
 
 const Home = () => {
-  const { data, error, isLoading } = useSWR(`api/restaurants`);
-
-  if (error) console.error(error);
-  if (!data) return;
-  if (isLoading) return <p>Loading...</p>;
-
   return (
     <>
       <Head>
@@ -25,8 +19,15 @@ const Home = () => {
       </Head>
       <div className={`${arimo.variable}`}>
         <main>
-          <h1>Home page</h1>
-          <RestaurantList data={data} />
+          <Image
+            src={"/landing.jpg"}
+            width="3440"
+            height="1440"
+            alt="landing page image"
+          ></Image>
+          <Link href={"/restaurants"}>
+            <button>Book My Bite </button>
+          </Link>
         </main>
       </div>
     </>

@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
 import RestaurantMainDetails from "./restaurantMainDetails/RestaurantMainDetails";
 import RestaurantImages from "./restaurantImages/RestaurantImages";
@@ -20,7 +19,6 @@ const RestaurantDetail = ({ restaurant }) => {
     menuLinks,
     openingTimes,
   } = restaurant;
-  const router = useRouter();
 
   const restaurantMainDetails = {
     name,
@@ -46,7 +44,9 @@ const RestaurantDetail = ({ restaurant }) => {
         <RestaurantOpeningTimes openingTimes={openingTimes} />
       </div>
 
-      <button onClick={() => router.back()}>Return</button>
+      <Link href={"/restaurants"}>
+        <button>Return</button>
+      </Link>
     </>
   );
 };
