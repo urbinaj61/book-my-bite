@@ -10,7 +10,7 @@ const handler = async (req, res) => {
   if (req.method === "GET") {
     const booking = await Booking.find({
       customerEmail: normalizedEmail,
-    });
+    }).sort({ dateBooked: -1, "timeSlot.start": 1 });
 
     if (!booking) {
       res.status(404).json({ status: "Not Found" });
