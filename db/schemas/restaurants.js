@@ -65,7 +65,7 @@ const RestaurantSchema = new Schema(
     description: { type: String, required: true },
     cuisine: { type: String, required: true },
     type: { type: String, required: true },
-    Images: [ImageSchema],
+    images: [ImageSchema],
     tableTypes: [TableTypeSchema],
     menuLinks: [MenuLinkSchema],
     openingTimes: [OpeningTimeSchema],
