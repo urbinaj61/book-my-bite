@@ -7,6 +7,7 @@ const ShowMyBookings = ({ setEmail }) => {
 
   return (
     <form onSubmit={handleEmailSubmit}>
+      <label htmlFor="show_my_bookings">Please enter your email</label>
       <input
         type="email"
         id="show_my_bookings"

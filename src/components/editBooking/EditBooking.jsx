@@ -85,7 +85,6 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
     const updatedBookingData = Object.fromEntries(formData);
 
     //We need to format the selected timeSlot(string) into an object for the DB
-    console.log(typeof selectedTimeSlot);
     typeof selectedTimeSlot === "string"
       ? (updatedBookingData.timeSlot = formatTimeSlot(selectedTimeSlot))
       : (updatedBookingData.timeSlot = selectedTimeSlot);

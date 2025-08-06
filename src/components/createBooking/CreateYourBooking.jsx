@@ -45,8 +45,6 @@ const CreateYourBooking = ({ restaurantData, date }) => {
     tableBooked
   );
 
-  console.log({ tableBooked });
-
   const handleTableSelect = (event) => {
     setSelectedTable(event.target.value);
 
