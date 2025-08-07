@@ -11,17 +11,17 @@ const RestaurantMainDetails = ({ restaurantMainDetails }) => {
     cuisine,
   } = restaurantMainDetails;
   return (
-    <div>
-      <p>{name}</p>
-      <p>{address1}</p>
-      <p>{address2}</p>
-      <p>{postcode}</p>
-      <p>{city}</p>
-      <p>{email}</p>
-      <p>{phone}</p>
-      <p>{type}</p>
-      <p>{cuisine}</p>
-    </div>
+    <section className="main-restaurant-details">
+      <p className="main-restaurant-details_name">{name}</p>
+      <p className="main-restaurant-details_address">{address1}</p>
+      <p className="main-restaurant-details_address">{address2}</p>
+      <p className="main-restaurant-details_address">{postcode}</p>
+      <p className="main-restaurant-details_address">{city}</p>
+      <p className="main-restaurant-details_email">{email}</p>
+      <p className="main-restaurant-details_phone">{phone}</p>
+      <p className="main-restaurant-details_type">{type}</p>
+      <p className="main-restaurant-details_cuisine">{cuisine}</p>
+    </section>
   );
 };
 

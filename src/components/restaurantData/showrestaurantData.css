@@ -1,0 +1,23 @@
+.show-restaurant-details-main-page,
+.create-restaurant-data {
+  position: relative; /* This is crucial for positioning the child elements */
+  width: 100%;
+  height: 100vh; /* Or another height value that fits your design */
+  overflow: hidden; /* Hides any part of the image that overflows the container */
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire container without distortion */
+  z-index: -1; /* Puts the image behind all other content */
+}
+
+.content-overlay {
+  position: relative; /* Keeps the content above the background image */
+  z-index: 1; /* Ensures the content is always on top */
+  /* Add styling for your content here, like padding, alignment, etc. */
+}

@@ -21,16 +21,6 @@ const handler = async (req, res) => {
     return;
   }
 
-  // if (req.method === "DELETE") {
-  //   const deletedBooking = await Booking.findByIdAndDelete(id);
-
-  //   if (!deletedBooking) {
-  //     return res.status(404).json({ status: "Booking not found" });
-  //   }
-
-  //   return res.status(200).json({ status: "Booking deleted successfully" });
-  // }
-
   res.status(405).json({ status: "Method not allowed" });
 };
 
