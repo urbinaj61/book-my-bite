@@ -1,10 +1,33 @@
+import useSWR from "swr";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import RestaurantMainDetails from "../restaurantDetail/restaurantMainDetails/RestaurantMainDetails";
 import RestaurantImages from "../restaurantDetail/restaurantImages/RestaurantImages";
-import RestauranrtMenuLinks from "../restaurantDetail/restaurantMenuLinks/RestaurantMenuLinks";
+import RestaurantMenuLinks from "../restaurantDetail/restaurantMenuLinks/RestaurantMenuLinks";
 import RestaurantOpeningTimes from "../restaurantDetail/restaurantOpeningTimes/RestaurantOpeningTimes";
 
 const ShowRestaurantData = ({ data }) => {
+  const router = useRouter();
+
+  if (!data || data.length === 0) {
+    return (
+      <>
+        <section className="create-restaurantData">
+          {/* <img
+            src="/showDetails.jpg"
+            alt="background-Image"
+            className="background-image"
+          /> */}
+          <aside className="content-overlay">
+            <button>Create restaurant data</button>
+          </aside>
+        </section>
+      </>
+    );
+  }
+
   const {
+    _id,
     name,
     address1,
     address2,
@@ -19,6 +42,8 @@ const ShowRestaurantData = ({ data }) => {
     openingTimes,
   } = data[0];
 
+  //const { mutate } = useSWR(`/api/restaurantData/deleteRestaurantData/${_id}`);
+
   const restaurantMainDetails = {
     name,
     address1,
@@ -31,29 +56,49 @@ const ShowRestaurantData = ({ data }) => {
     cuisine,
   };
 
-  if (data) {
-    return (
-      <>
+  const handleDelete = async (_id) => {
+    const response = await fetch(
+      `/api/restaurantData/deleteRestaurantData/${_id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (response.ok) {
+      //mutate();
+      router.push("/");
+    } else {
+      console.error("Failed to delete restaurant data");
+    }
+  };
+
+  return (
+    <section className="show-restaurant-details-main-page">
+      {/* <img
+        src="/showDetails.jpg"
+        alt="background-Image"
+        className="background-image"
+      /> */}
+      <aside>
         <RestaurantMainDetails restaurantMainDetails={restaurantMainDetails} />
-        <RestaurantImages images={images} />
-        <RestauranrtMenuLinks menuLinks={menuLinks} />
-        <RestaurantOpeningTimes openingTimes={openingTimes} />
+        {/* <RestaurantImages images={images} />
+          <RestaurantMenuLinks menuLinks={menuLinks} />
+          <RestaurantOpeningTimes openingTimes={openingTimes} /> */}
         <section>
-          <button>Delete restaurant data</button>
+          <button onClick={() => handleDelete(_id)}>
+            Delete Restaurant Data
+          </button>
           <button>Edit restaurant data</button>
-          <button>Show restaurant bookings</button>
+          <Link
+            className="button show-bookings-button"
+            href={`/showRestaurantBookings/${_id}`}
+          >
+            <button>Show Bookings</button>
+          </Link>
         </section>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <section>
-          <button>Create restaurant data</button>
-        </section>
-      </>
-    );
-  }
+      </aside>
+    </section>
+  );
 };
 
 export default ShowRestaurantData;
