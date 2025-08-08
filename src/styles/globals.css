@@ -1,6 +1,7 @@
 @import "../components/restaurantDetail/restaurantMainDetails/restaurantMainDetails.css";
 @import "../components/restaurantDetail/restaurantImages/restaurantImages.css";
 @import "../components/restaurantData/showrestaurantData.css";
+@import "../components/restaurantData/createRestaurantData/createRestaurantData.css";
 
 :root {
   --background: #ffffff;

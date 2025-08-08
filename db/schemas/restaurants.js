@@ -40,15 +40,14 @@ const TableTypeSchema = new Schema(
 
 const MenuLinkSchema = new Schema(
   {
-    name: { type: String, required: true },
-    link: { type: String, required: true },
+    url: { type: String, required: true },
   },
   { _id: false }
 );
 
 const ImageSchema = new Schema(
   {
-    imageUrl: { type: String },
+    url: { type: String },
   },
   { _id: false }
 );

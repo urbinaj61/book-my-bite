@@ -19,7 +19,9 @@ const ShowRestaurantData = ({ data }) => {
             className="background-image"
           /> */}
           <aside className="content-overlay">
-            <button>Create restaurant data</button>
+            <Link href={`/createRestaurantData`}>
+              <button>Create restaurant data</button>
+            </Link>
           </aside>
         </section>
       </>

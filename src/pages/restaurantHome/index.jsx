@@ -11,7 +11,7 @@ const RestaurantHome = () => {
   return (
     <>
       <div>
-        <h1>Restaurant Login</h1>
+        <h1>Restaurant Data</h1>
         <GetRestaurantEmail setEmail={setEmail} />
         {email && router.push(`/showRestaurantData/${email}`)}
       </div>
