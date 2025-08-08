@@ -29,7 +29,14 @@ const ShowRestaurantBookingsContent = () => {
   };
 
   if (!data || data.length === 0) {
-    return <p>No bookings found for {_id} entered</p>;
+    return (
+      <>
+        <h2>No bookings found</h2>
+        <Link href={`/`}>
+          <button>Return</button>
+        </Link>
+      </>
+    );
   }
 
   if (isLoading) return <p>Loading bookings</p>;

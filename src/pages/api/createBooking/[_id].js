@@ -37,7 +37,10 @@ const handler = async (req, res) => {
       const bookingId = await Booking.create(bookingData);
       res
         .status(201)
-        .json({ status: "New booking has been added to database", bookingId });
+        .json({
+          status: "New booking has been added to the database",
+          bookingId,
+        });
     } catch (error) {
       console.error(error.message);
       res.status(400).json({ error: error.message });

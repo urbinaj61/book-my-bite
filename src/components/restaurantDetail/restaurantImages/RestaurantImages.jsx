@@ -9,7 +9,7 @@ const RestaurantImages = ({ images }) => {
           <Image
             className="main-restaurant-details_image"
             key={i}
-            src={image.imageUrl}
+            src={image.url}
             width={200}
             height={200}
             alt={"image"}

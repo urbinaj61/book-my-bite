@@ -9,7 +9,7 @@ const RestaurantCard = ({ restaurant }) => {
         <p>{restaurant.name}</p>
         {restaurant.images.length > 0 ? (
           <Image
-            src={restaurant.images[0].imageUrl}
+            src={restaurant.images[0].url}
             width={200}
             height={200}
             alt={`${restaurant.name}`}
