@@ -13,6 +13,7 @@ import CreateTimeSlots from "./createTimeSlots/CreateTimeSlots";
 const CreateRestaurantData = () => {
   //Loads of state unfortunately
   const [fileLoading, setFileLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
   const [fileUrls, setFileUrls] = useState([]);
   const [tableTypes, setTableTypes] = useState([]);
@@ -120,22 +121,15 @@ const CreateRestaurantData = () => {
         }
 
         const fileData = await response.json();
-        return fileData.url;
+
+        return { url: fileData.url, assetId: fileData.asset_id };
       });
 
       if (fileLoading) return <p>Loading....</p>;
 
       const newFileUrls = await Promise.all(uploadPromises);
 
-      //Convert newFileUrls items to objects inside the array.
-      const convertedNewFileUrls = newFileUrls.map((file) => {
-        return { url: file };
-      });
-      console.log(convertedNewFileUrls);
-
-      type === "image"
-        ? setImageUrls(convertedNewFileUrls)
-        : setFileUrls(convertedNewFileUrls);
+      type === "image" ? setImageUrls(newFileUrls) : setFileUrls(newFileUrls);
     } catch (err) {
       console.error(err);
       type === "image" ? setImageUrls([]) : setFileUrls([]);
@@ -188,6 +182,7 @@ const CreateRestaurantData = () => {
   //We need all opening times for all days of the week. Only Hours between 00 and 24, and minutes either 00 or 30
   //are permitted. As well as "closed".
   const handleOpeningTimesCreation = () => {
+    setErrorMessage(null);
     let allValid = true;
     const updatedOpeningTimes = openingTimes.map((opening) => {
       const openInput = openingTimesRefs.current[`${opening.day}-open`];
@@ -223,10 +218,13 @@ const CreateRestaurantData = () => {
   };
 
   //===================================Handle opening times====End=========================
+
+  //===================================Handle timeSlot intervals===========================
   //Here we let the user assign a table time slot interval. From this and the opening times we can
   //create all timeslots for that day. Avoids for the user having to input all this data.
   const handleTimeSlotCreation = () => {
-    if (openingTimes.length > 0) {
+    if (openingTimes[0].open !== undefined && openingTimes[0].open !== null) {
+      setErrorMessage(null);
       const updateedOpeningTimes = openingTimes.map((time) => {
         const timeSlots = generateTimeSlots(
           time.open,
@@ -238,16 +236,21 @@ const CreateRestaurantData = () => {
       setOpeningTimes(updateedOpeningTimes);
       setIsAccordionOpenTimeSlots(false);
       setShowSubmitButton(true);
+    } else {
+      setErrorMessage("Please enter opening times");
     }
   };
+  //===================================Handle timeSlot intervals===End======================
 
   //These toggles control the flow when opening times and timeslots are entered
-  const toggleAccordionOpeningTimes = () => {
-    setIsAccordionOpenOpeningTimes(true);
+  const toggleAccordionOpeningTimes = (e) => {
+    e.preventDefault();
+    setIsAccordionOpenOpeningTimes(!isAccordionOpenOpeningTimes);
   };
 
-  const toggleAccordionTimeSlots = () => {
-    setIsAccordionOpenTimeSlots(true);
+  const toggleAccordionTimeSlots = (e) => {
+    e.preventDefault();
+    setIsAccordionOpenTimeSlots(!isAccordionOpenTimeSlots);
   };
 
   return (
@@ -283,13 +286,16 @@ const CreateRestaurantData = () => {
           openingTimesRefs={openingTimesRefs}
           handleOpeningTimesCreation={handleOpeningTimesCreation}
         />
-
-        <CreateTimeSlots
-          isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
-          toggleAccordionTimeSlots={toggleAccordionTimeSlots}
-          timeSlotRef={timeSlotRef}
-          handleTimeSlotCreation={handleTimeSlotCreation}
-        />
+        {errorMessage ? (
+          <p>{errorMessage}</p>
+        ) : (
+          <CreateTimeSlots
+            isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
+            toggleAccordionTimeSlots={toggleAccordionTimeSlots}
+            timeSlotRef={timeSlotRef}
+            handleTimeSlotCreation={handleTimeSlotCreation}
+          />
+        )}
 
         {showSubmitButton && (
           <button type="submit" className="restaurant-data-submit-button">

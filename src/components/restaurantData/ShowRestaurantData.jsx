@@ -44,7 +44,7 @@ const ShowRestaurantData = ({ data }) => {
     openingTimes,
   } = data[0];
 
-  //const { mutate } = useSWR(`/api/restaurantData/deleteRestaurantData/${_id}`);
+  const { mutate } = useSWR(`/api/restaurantData/deleteRestaurantData/${_id}`);
 
   const restaurantMainDetails = {
     name,
@@ -67,7 +67,7 @@ const ShowRestaurantData = ({ data }) => {
     );
 
     if (response.ok) {
-      //mutate();
+      mutate();
       router.push("/");
     } else {
       console.error("Failed to delete restaurant data");
@@ -90,7 +90,9 @@ const ShowRestaurantData = ({ data }) => {
           <button onClick={() => handleDelete(_id)}>
             Delete Restaurant Data
           </button>
-          <button>Edit restaurant data</button>
+          <Link href={`/editRestaurantData/${_id}`}>
+            <button>Edit restaurant data</button>
+          </Link>
           <Link
             className="button show-bookings-button"
             href={`/showRestaurantBookings/${_id}`}
