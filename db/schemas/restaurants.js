@@ -41,6 +41,7 @@ const TableTypeSchema = new Schema(
 const MenuLinkSchema = new Schema(
   {
     url: { type: String, required: true },
+    assetId: { type: String, required: true },
   },
   { _id: false }
 );
@@ -48,6 +49,7 @@ const MenuLinkSchema = new Schema(
 const ImageSchema = new Schema(
   {
     url: { type: String },
+    assetId: { type: String, required: true },
   },
   { _id: false }
 );
@@ -68,6 +70,7 @@ const RestaurantSchema = new Schema(
     tableTypes: [TableTypeSchema],
     menuLinks: [MenuLinkSchema],
     openingTimes: [OpeningTimeSchema],
+    timeSlotInterval: { type: String, required: true },
   },
   { timestamps: true }
 );

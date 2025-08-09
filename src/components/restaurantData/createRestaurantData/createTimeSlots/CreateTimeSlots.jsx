@@ -16,6 +16,7 @@ const CreateTimeSlots = ({
         <label htmlFor="">TimeSlots</label>
         <input
           type="text"
+          name="timeSlotInterval"
           id="restaurant-timeslots"
           ref={timeSlotRef}
           placeholder="Please enter table seating interval)"
