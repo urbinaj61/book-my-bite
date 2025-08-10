@@ -5,9 +5,9 @@ const CreateTimeSlots = ({
   handleTimeSlotCreation,
 }) => {
   return (
-    <details classname="restaurant-accordion" open={isAccordionOpenTimeSlots}>
+    <details className="restaurant-accordion" open={isAccordionOpenTimeSlots}>
       <summary
-        classname="restaurant-accordion-header"
+        className="restaurant-accordion-header"
         onClick={toggleAccordionTimeSlots}
       >
         Add timeSlots

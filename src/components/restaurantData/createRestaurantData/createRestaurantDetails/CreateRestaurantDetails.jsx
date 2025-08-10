@@ -1,7 +1,7 @@
 const CreateRestaurantDetails = () => {
   return (
-    <details classname="restaurant-accordion">
-      <summary classname="restaurant-accordion-header">
+    <details className="restaurant-accordion">
+      <summary className="restaurant-accordion-header">
         Fill in Restaurant Details
       </summary>
       <section className="restaurant-data-details">

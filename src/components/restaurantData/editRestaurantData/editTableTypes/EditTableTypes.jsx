@@ -1,6 +1,9 @@
-const CreateTableTypes = ({
+import { Fragment } from "react";
+
+const EditTableTypes = ({
   handleTableCreation,
-  tableTypes,
+  handleSeatChange,
+  editTableTypes,
   seatsRefs,
   inputRef,
   handleSeatsInsert,
@@ -8,10 +11,10 @@ const CreateTableTypes = ({
 }) => {
   return (
     <details className="restaurant-accordion" open={isAccordionOpenTableTypes}>
-      <summary className="restaurant-accordion-header">Add tables</summary>
+      <summary className="restaurant-accordion-header">Edit tables</summary>
       <section className="restaurant-tables-container">
         <label htmlFor="restaurant-tables" className="restaurant-tables">
-          Add Tables
+          Edit Tables
         </label>
         <input
           type="text"
@@ -25,12 +28,12 @@ const CreateTableTypes = ({
           Enter
         </button>
       </section>
-      {tableTypes.length > 0 && (
+      {editTableTypes.length > 0 && (
         <aside className="restaurant-seats-inputs-container">
           <label htmlFor="restaurant-seats">Please enter seats</label>
-          {tableTypes.map((table) => {
+          {editTableTypes.map((table, i) => {
             return (
-              <>
+              <Fragment key={i}>
                 <label className="restaurant-seat-label">{table.name}</label>
 
                 <input
@@ -40,9 +43,10 @@ const CreateTableTypes = ({
                   id="restaurant-seats"
                   aria-label="restaurant seats"
                   ref={(elem) => (seatsRefs.current[table.name] = elem)}
-                  defaultValue={table.seats}
+                  onChange={(e) => handleSeatChange(e, table.name)}
+                  value={table.seats || ""}
                 />
-              </>
+              </Fragment>
             );
           })}
           <button type="button" onClick={handleSeatsInsert}>
@@ -54,4 +58,4 @@ const CreateTableTypes = ({
   );
 };
 
-export default CreateTableTypes;
+export default EditTableTypes;

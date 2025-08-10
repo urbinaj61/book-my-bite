@@ -13,8 +13,8 @@ const EditRestaurantDetails = ({ restaurantDetails, onDetailsChange }) => {
   } = restaurantDetails;
 
   return (
-    <details classname="restaurant-accordion">
-      <summary classname="restaurant-accordion-header">
+    <details className="restaurant-accordion">
+      <summary className="restaurant-accordion-header">
         Restaurant Details
       </summary>
       <section className="restaurant-data-details">

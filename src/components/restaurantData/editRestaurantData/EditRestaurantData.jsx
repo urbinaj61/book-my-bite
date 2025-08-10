@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import EditRestaurantDetails from "./editRestaurantDetails/EditRestaurantDetails";
 import EditRestaurantImages from "./editRestaurantImages/EditRestaurantImages";
+import EditRestaurantMenus from "./editRestaurantMenus/EditRestaurantMenus";
+import EditTableTypes from "./editTableTypes/EditTableTypes";
 
 const EditRestaurantData = ({ restaurantData }) => {
   const {
@@ -37,14 +39,23 @@ const EditRestaurantData = ({ restaurantData }) => {
   const [formData, setFormData] = useState(restaurantDetails);
   const [fileLoading, setFileLoading] = useState(false);
   const [imageUrls, setImageUrls] = useState(images);
-  const [fileUrls, setFileUrls] = useState([]);
+  const [fileUrls, setFileUrls] = useState(menuLinks);
+  const [editTableTypes, setEditTableTypes] = useState(tableTypes);
+  const [isAccordionOpenTableTypes, setIsAccordionOpenTableTypes] =
+    useState(false);
+
+  const inputRef = useRef(null);
+  const seatsRefs = useRef({});
 
   const handleSubmit = () => {};
 
+  //=======================================Handle Details change======================================================
   const handleDetailsChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  //=======================================Handle Details change======End================================================
 
   //===================================Handles multiple Image and pdf uploads to Cloudinary===========================
   const handleFileUpload = async (e, type) => {
@@ -86,13 +97,10 @@ const EditRestaurantData = ({ restaurantData }) => {
 
       const newFileUrls = await Promise.all(uploadPromises);
 
-      //type === "image" ? setImageUrls([]) : setFileUrls([]);
       const addedNewFileUrls =
         type === "image"
           ? [...images, ...newFileUrls]
           : [...menuLinks, ...newFileUrls];
-
-      console.log(addedNewFileUrls);
 
       type === "image"
         ? setImageUrls(addedNewFileUrls)
@@ -106,6 +114,65 @@ const EditRestaurantData = ({ restaurantData }) => {
   };
 
   //===================================Handle File uploads==End============================
+
+  //===================================Handles Table creation==============================
+  //This function accepts a numeric input. The user tells us how many tables they will have in their
+  //restaurant. We build from this and display numbered tables so the user can allocate seating.
+
+  const handleTableCreation = () => {
+    const tableCount = inputRef.current.value;
+    setIsAccordionOpenTableTypes(true);
+
+    //Create an array of objects containing [{name: "Table 1" seats: whatever was there before}
+    const tableArray = [];
+    for (let i = 1; i <= tableCount; i++) {
+      const tableName = `Table ${i}`;
+
+      const existingTable = editTableTypes.find(
+        (table) => table.name === tableName
+      );
+
+      const seats = existingTable ? existingTable.seats : null;
+
+      const obj = { name: tableName, seats: seats };
+      tableArray.push(obj);
+    }
+
+    setEditTableTypes(tableArray);
+  };
+
+  //===================================Handles Table creation====End==========================
+
+  //===================================Handle Seats creation==================================
+  //Seats are entered per table created
+  const handleSeatsInsert = () => {
+    const updatedTables = editTableTypes.map((table) => {
+      const inputElement = seatsRefs.current[table.name];
+
+      if (inputElement) {
+        return { ...table, seats: inputElement.value };
+      }
+      return table;
+    });
+
+    setEditTableTypes(updatedTables);
+    setIsAccordionOpenTableTypes(false);
+  };
+
+  //===================================Handle Seats=====End==================================
+
+  //===================================Handle Seats change===================================
+  const handleSeatChange = (e, tableName) => {
+    const { value } = e.target; // Create a new array with the updated seat value
+    const updatedTables = editTableTypes.map((table) => {
+      if (table.name === tableName) {
+        return { ...table, seats: value };
+      }
+      return table;
+    });
+    setEditTableTypes(updatedTables);
+  };
+  //===================================Handle Seats change End===============================
 
   return (
     <section>
@@ -123,22 +190,25 @@ const EditRestaurantData = ({ restaurantData }) => {
           fileLoading={fileLoading}
         />
 
-        {/* <CreateRestaurantMenus
-          handleFileUpload={handleFileUpload}
+        <EditRestaurantMenus
+          setFileUrls={setFileUrls}
+          _id={_id}
           fileUrls={fileUrls}
+          onFileUpload={handleFileUpload}
           fileLoading={fileLoading}
         />
 
-         <CreateTableTypes
+        <EditTableTypes
           handleTableCreation={handleTableCreation}
-          tableTypes={tableTypes}
+          handleSeatChange={handleSeatChange}
+          editTableTypes={editTableTypes}
           seatsRefs={seatsRefs}
           inputRef={inputRef}
           handleSeatsInsert={handleSeatsInsert}
           isAccordionOpenTableTypes={isAccordionOpenTableTypes}
         />
 
-        <CreateOpeningTimes
+        {/* <CreateOpeningTimes
           isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
           toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
           openingTimes={openingTimes}

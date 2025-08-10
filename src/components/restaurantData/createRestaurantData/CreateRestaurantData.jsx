@@ -148,7 +148,7 @@ const CreateRestaurantData = () => {
     const tableCount = inputRef.current.value;
     setIsAccordionOpenTableTypes(true);
 
-    //Create an array of objects containing [{name: "Table 1" seats: "to be entered"} {name: "Table 2" seats: "to be entered"}]
+    //Create an array of objects containing [{name: "Table 1" seats: "to be entered"}]
     const tableArray = [];
     for (let i = 1; i <= tableCount; i++) {
       const obj = { name: `Table ${i}`, seats: null };
@@ -259,14 +259,17 @@ const CreateRestaurantData = () => {
 
       <form onSubmit={handleSubmit}>
         <CreateRestaurantDetails />
+
         <CreateRestaurantImages
           handleFileUpload={handleFileUpload}
           imageUrls={imageUrls}
+          setImageUrls={setImageUrls}
           fileLoading={fileLoading}
         />
         <CreateRestaurantMenus
           handleFileUpload={handleFileUpload}
           fileUrls={fileUrls}
+          setFileUrls={setFileUrls}
           fileLoading={fileLoading}
         />
 

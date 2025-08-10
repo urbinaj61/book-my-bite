@@ -7,11 +7,11 @@ const CreateOpeningTimes = ({
 }) => {
   return (
     <details
-      classname="restaurant-accordion"
+      className="restaurant-accordion"
       open={isAccordionOpenOpeningTimes}
     >
       <summary
-        classname="restaurant-accordion-header"
+        className="restaurant-accordion-header"
         onClick={toggleAccordionOpeningTimes}
       >
         Add opening times
