@@ -54,7 +54,6 @@ const EditRestaurantMenus = ({
         ) : (
           fileUrls.map((file, i) => (
             <Fragment key={i}>
-              {console.log(file)}
               <Link
                 href={file.url}
                 target="_blank"

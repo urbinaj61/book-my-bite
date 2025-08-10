@@ -1,4 +1,4 @@
-const EditRestaurantDetails = ({ restaurantDetails, onDetailsChange }) => {
+const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
   const {
     name,
     address1,
@@ -10,12 +10,12 @@ const EditRestaurantDetails = ({ restaurantDetails, onDetailsChange }) => {
     description,
     cuisine,
     type,
-  } = restaurantDetails;
+  } = formData;
 
   return (
     <details className="restaurant-accordion">
       <summary className="restaurant-accordion-header">
-        Restaurant Details
+        Edit Restaurant Details
       </summary>
       <section className="restaurant-data-details">
         <label htmlFor="restaurant name" className="restaurant-data-label">

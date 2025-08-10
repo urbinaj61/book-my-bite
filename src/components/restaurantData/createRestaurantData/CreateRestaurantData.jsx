@@ -33,6 +33,7 @@ const CreateRestaurantData = () => {
   const [isAccordionOpenTimeSlots, setIsAccordionOpenTimeSlots] =
     useState(false);
   const [showSubmitButton, setShowSubmitButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Input refs to control flow of inputs
   const inputRef = useRef(null);
@@ -49,6 +50,7 @@ const CreateRestaurantData = () => {
   //===================================Handle Submit==Handles POST to backend============================
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData(e.target);
     const restaurantData = Object.fromEntries(formData);
 
@@ -84,6 +86,7 @@ const CreateRestaurantData = () => {
       mutate();
       router.push(`/showRestaurantData/${cleanedData.email}`);
     }
+    setIsLoading(false);
     return;
   };
 
@@ -200,7 +203,7 @@ const CreateRestaurantData = () => {
           };
         } else {
           allValid = false;
-          return opening; // Return original state if invalid
+          return opening;
         }
       }
       return opening;
@@ -225,7 +228,7 @@ const CreateRestaurantData = () => {
   const handleTimeSlotCreation = () => {
     if (openingTimes[0].open !== undefined && openingTimes[0].open !== null) {
       setErrorMessage(null);
-      const updateedOpeningTimes = openingTimes.map((time) => {
+      const updatedOpeningTimes = openingTimes.map((time) => {
         const timeSlots = generateTimeSlots(
           time.open,
           time.close,
@@ -233,7 +236,7 @@ const CreateRestaurantData = () => {
         );
         return { ...time, timeSlots };
       });
-      setOpeningTimes(updateedOpeningTimes);
+      setOpeningTimes(updatedOpeningTimes);
       setIsAccordionOpenTimeSlots(false);
       setShowSubmitButton(true);
     } else {
@@ -302,7 +305,7 @@ const CreateRestaurantData = () => {
 
         {showSubmitButton && (
           <button type="submit" className="restaurant-data-submit-button">
-            Create your data
+            {isLoading ? "Creating..." : "Create your data"}
           </button>
         )}
       </form>

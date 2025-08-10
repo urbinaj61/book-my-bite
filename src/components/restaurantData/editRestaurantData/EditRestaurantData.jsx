@@ -1,8 +1,14 @@
 import { useState, useRef } from "react";
+import useSWR from "swr";
+import { useRouter } from "next/router";
+import generateTimeSlots from "../../../../utilities/generateTimeSlots";
+import isValidTime from "../../../../utilities/isValidTime";
 import EditRestaurantDetails from "./editRestaurantDetails/EditRestaurantDetails";
 import EditRestaurantImages from "./editRestaurantImages/EditRestaurantImages";
 import EditRestaurantMenus from "./editRestaurantMenus/EditRestaurantMenus";
 import EditTableTypes from "./editTableTypes/EditTableTypes";
+import EditOpeningTimes from "./editRestaurantOpeningTimes/EditOpeningTimes";
+import EditTimeSlots from "./editRestaurantTimeSlots/EditTimeSlots";
 
 const EditRestaurantData = ({ restaurantData }) => {
   const {
@@ -21,6 +27,7 @@ const EditRestaurantData = ({ restaurantData }) => {
     tableTypes,
     menuLinks,
     openingTimes,
+    timeSlotInterval,
   } = restaurantData;
 
   const restaurantDetails = {
@@ -38,16 +45,74 @@ const EditRestaurantData = ({ restaurantData }) => {
 
   const [formData, setFormData] = useState(restaurantDetails);
   const [fileLoading, setFileLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [imageUrls, setImageUrls] = useState(images);
   const [fileUrls, setFileUrls] = useState(menuLinks);
   const [editTableTypes, setEditTableTypes] = useState(tableTypes);
   const [isAccordionOpenTableTypes, setIsAccordionOpenTableTypes] =
     useState(false);
+  const [isAccordionOpenOpeningTimes, setIsAccordionOpenOpeningTimes] =
+    useState(false);
+  const [isAccordionOpenTimeSlots, setIsAccordionOpenTimeSlots] =
+    useState(false);
+  const [editOpeningTimes, setEditOpeningTimes] = useState(openingTimes);
+  const [isLoading, setIsLoading] = useState(false);
 
   const inputRef = useRef(null);
   const seatsRefs = useRef({});
+  const openingTimesRefs = useRef({});
+  const timeSlotRef = useRef(null);
 
-  const handleSubmit = () => {};
+  const { mutate } = useSWR(`/api/restaurantData/updateRestaurantData/${_id}`);
+  const router = useRouter();
+
+  //===================================Handle Submit==Handles POST to backend============================
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const formData = new FormData(e.target);
+    const restaurantData = Object.fromEntries(formData);
+
+    //We need to clean this up because of the refs we've used.
+    //Once clean we will insert the real data ready for our POST.
+    const cleanedData = {};
+
+    for (const key in restaurantData) {
+      if (
+        !key.startsWith("Table") &&
+        key !== "image" &&
+        key !== "menu" &&
+        key !== "tablesTypes"
+      ) {
+        cleanedData[key] = restaurantData[key];
+      }
+    }
+
+    cleanedData.images = imageUrls;
+    cleanedData.menuLinks = fileUrls;
+    cleanedData.tableTypes = editTableTypes;
+    cleanedData.openingTimes = editOpeningTimes;
+
+    const response = await fetch(
+      `/api/restaurantData/updateRestaurantData/${_id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cleanedData),
+      }
+    );
+
+    if (response.ok) {
+      const result = await response.json(); //A new restaurant id is returned to us. If we need it.
+
+      mutate();
+      router.push(`/showRestaurantData/${cleanedData.email}`);
+    }
+    setIsLoading(false);
+    return;
+  };
+
+  //===================================Handle Submit==End============================
 
   //=======================================Handle Details change======================================================
   const handleDetailsChange = (e) => {
@@ -174,12 +239,87 @@ const EditRestaurantData = ({ restaurantData }) => {
   };
   //===================================Handle Seats change End===============================
 
+  //===================================Handle opening times creation=========================
+  //We need all opening times for all days of the week. Only Hours between 00 and 24, and minutes either 00 or 30
+  //are permitted. As well as "closed".
+  const handleOpeningTimesEdit = () => {
+    setErrorMessage(null);
+    let allValid = true;
+    const updatedOpeningTimes = editOpeningTimes.map((opening) => {
+      const openInput = openingTimesRefs.current[`${opening.day}-open`];
+      const closeInput = openingTimesRefs.current[`${opening.day}-close`];
+
+      if (openInput && closeInput) {
+        const openValue = openInput.value;
+        const closeValue = closeInput.value;
+
+        if (isValidTime(openValue) && isValidTime(closeValue)) {
+          return {
+            ...opening,
+            open: openValue,
+            close: closeValue,
+          };
+        } else {
+          allValid = false;
+          return opening;
+        }
+      }
+      return opening;
+    });
+
+    if (allValid) {
+      setEditOpeningTimes(updatedOpeningTimes);
+      setIsAccordionOpenOpeningTimes(false);
+    } else {
+      alert(
+        `Invalid time format. Please use HH:mm or 'closed'.
+         Valid times are HH=00 to 24, mm= 00 or 30`
+      );
+    }
+  };
+
+  //===================================Handle opening times====End=========================
+
+  //===================================Handle timeSlot intervals===========================
+  //Here we let the user assign a table time slot interval. From this and the opening times we can
+  //create all timeslots for that day. Avoids for the user having to input all this data.
+  const handleTimeSlotEdit = () => {
+    if (
+      editOpeningTimes[0].open !== undefined &&
+      editOpeningTimes[0].open !== null
+    ) {
+      setErrorMessage(null);
+      const updatedOpeningTimes = editOpeningTimes.map((time) => {
+        const timeSlots = generateTimeSlots(
+          time.open,
+          time.close,
+          timeSlotRef.current.value
+        );
+        return { ...time, timeSlots };
+      });
+      setEditOpeningTimes(updatedOpeningTimes);
+      setIsAccordionOpenTimeSlots(false);
+    }
+  };
+  //===================================Handle timeSlot intervals===End======================
+
+  //These toggles control the flow when opening times and timeslots are entered
+  const toggleAccordionOpeningTimes = (e) => {
+    e.preventDefault();
+    setIsAccordionOpenOpeningTimes(!isAccordionOpenOpeningTimes);
+  };
+
+  const toggleAccordionTimeSlots = (e) => {
+    e.preventDefault();
+    setIsAccordionOpenTimeSlots(!isAccordionOpenTimeSlots);
+  };
+
   return (
     <section>
       <h2>Edit RestaurantData</h2>
       <form onSubmit={handleSubmit}>
         <EditRestaurantDetails
-          restaurantDetails={restaurantDetails}
+          formData={formData}
           onDetailsChange={handleDetailsChange}
         />
         <EditRestaurantImages
@@ -208,26 +348,27 @@ const EditRestaurantData = ({ restaurantData }) => {
           isAccordionOpenTableTypes={isAccordionOpenTableTypes}
         />
 
-        {/* <CreateOpeningTimes
+        <EditOpeningTimes
           isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
           toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
-          openingTimes={openingTimes}
+          editOpeningTimes={editOpeningTimes}
           openingTimesRefs={openingTimesRefs}
-          handleOpeningTimesCreation={handleOpeningTimesCreation}
+          handleOpeningTimesEdit={handleOpeningTimesEdit}
         />
         {errorMessage ? (
           <p>{errorMessage}</p>
         ) : (
-          <CreateTimeSlots
+          <EditTimeSlots
+            timeSlotInterval={timeSlotInterval}
             isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
             toggleAccordionTimeSlots={toggleAccordionTimeSlots}
             timeSlotRef={timeSlotRef}
-            handleTimeSlotCreation={handleTimeSlotCreation}
+            handleTimeSlotCreation={handleTimeSlotEdit}
           />
-        )} */}
+        )}
 
-        <button type="submit" className="restaurant-editData-submit-button">
-          Edit your data
+        <button type="submit" className="restaurant-data-submit-button">
+          {isLoading ? "Updating..." : "Edit your data"}
         </button>
       </form>
     </section>
