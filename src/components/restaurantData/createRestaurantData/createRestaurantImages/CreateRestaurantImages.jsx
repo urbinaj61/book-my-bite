@@ -1,11 +1,23 @@
+import { Fragment } from "react";
+
 const CreateRestaurantImages = ({
   handleFileUpload,
   imageUrls,
   fileLoading,
 }) => {
+  const handleFileDelete = async (e, assetId) => {
+    e.preventDefault();
+
+    const newFileUrls = fileUrls.filter((file) => {
+      return file.assetId !== assetId;
+    });
+
+    setFileUrls(newFileUrls);
+  };
+
   return (
-    <details classname="restaurant-accordion">
-      <summary classname="restaurant-accordion-header">
+    <details className="restaurant-accordion">
+      <summary className="restaurant-accordion-header">
         Upload Restaurant Images
       </summary>
       <section className="restaurant-image-upload-container">
@@ -27,12 +39,16 @@ const CreateRestaurantImages = ({
           <p>Loading....</p>
         ) : (
           imageUrls.map((image, i) => (
-            <img
-              key={i}
-              src={image.url}
-              alt="uploaded restaurant"
-              className="restaurant-uploaded-image"
-            />
+            <Fragment key={i}>
+              <img
+                src={image.url}
+                alt="uploaded restaurant"
+                className="restaurant-uploaded-image"
+              />
+              <button onClick={(e) => handleFileDelete(e, image.assetId)}>
+                Remove File
+              </button>
+            </Fragment>
           ))
         )}
       </aside>

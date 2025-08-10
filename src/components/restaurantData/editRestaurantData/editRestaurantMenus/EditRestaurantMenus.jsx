@@ -1,34 +1,46 @@
-import Link from "next/link";
 import { Fragment } from "react";
+import Link from "next/link";
 
-const CreateRestaurantMenus = ({
-  handleFileUpload,
+const EditRestaurantMenus = ({
+  setFileUrls,
+  _id,
   fileUrls,
-  setImageUrls,
+  onFileUpload,
   fileLoading,
 }) => {
   const handleFileDelete = async (e, assetId) => {
     e.preventDefault();
 
-    const newImageUrls = imageUrls.filter((image) => {
-      return image.assetId !== assetId;
+    const newFileUrls = fileUrls.filter((file) => {
+      return file.assetId !== assetId;
     });
 
-    setImageUrls(newImageUrls);
+    setFileUrls(newFileUrls);
+
+    const response = await fetch(
+      `/api/editRestaurantData/deleteRestaurantMenu/${assetId}?_id=${_id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (!response.ok) {
+      console.error("Failed to delete File");
+    }
   };
 
   return (
     <details className="restaurant-accordion">
       <summary className="restaurant-accordion-header">
-        Upload Restaurant Menus
+        Edit Restaurant Menus
       </summary>
       <section className="restaurant-menu-upload-container">
         <label htmlFor="restaurant-menu" className="restaurant-data-label">
-          Upload a menu pdf
+          Edit a menu pdf
         </label>
         <input
           type="file"
-          onChange={(e) => handleFileUpload(e, "pdf")}
+          onChange={(e) => onFileUpload(e, "pdf")}
           className="restaurant-menu-input"
           name="menu"
           id="restaurant menu"
@@ -36,12 +48,13 @@ const CreateRestaurantMenus = ({
           multiple
         />
       </section>
-      <aside className="restaurant-menu-links-container">
+      <aside>
         {fileLoading && !fileUrls ? (
           <p>Loading....</p>
         ) : (
           fileUrls.map((file, i) => (
             <Fragment key={i}>
+              {console.log(file)}
               <Link
                 href={file.url}
                 target="_blank"
@@ -61,4 +74,4 @@ const CreateRestaurantMenus = ({
   );
 };
 
-export default CreateRestaurantMenus;
+export default EditRestaurantMenus;

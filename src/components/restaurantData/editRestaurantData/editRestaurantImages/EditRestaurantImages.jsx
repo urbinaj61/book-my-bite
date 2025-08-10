@@ -29,13 +29,13 @@ const EditRestaurantImages = ({
   };
 
   return (
-    <details classname="restaurant-accordion">
-      <summary classname="restaurant-accordion-header">
-        Upload Restaurant Images
+    <details className="restaurant-accordion">
+      <summary className="restaurant-accordion-header">
+        Edit Restaurant Images
       </summary>
       <section className="restaurant-image-upload-container">
         <label htmlFor="restaurant-image" className="restaurant-data-label">
-          Upload an Image
+          Edit an Image
         </label>
         <input
           type="file"
