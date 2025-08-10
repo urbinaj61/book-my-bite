@@ -18,8 +18,6 @@ const handler = async (req, res) => {
     }
     return;
   }
-
-  res.status(405).json({ status: "Method not allowed" });
 };
 
 export default handler;

@@ -19,8 +19,6 @@ const handler = async (req, res) => {
       status: "Restaurant and associated bookings deleted successfully",
     });
   }
-
-  res.status(405).json({ status: "Method not allowed" });
 };
 
 export default handler;
