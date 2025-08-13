@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 const CreateTableTypes = ({
   handleTableCreation,
   tableTypes,
@@ -28,21 +30,23 @@ const CreateTableTypes = ({
       {tableTypes.length > 0 && (
         <aside className="restaurant-seats-inputs-container">
           <label htmlFor="restaurant-seats">Please enter seats</label>
-          {tableTypes.map((table) => {
+          {tableTypes.map((table, i) => {
             return (
-              <>
-                <label className="restaurant-seat-label">{table.name}</label>
+              <Fragment key={i}>
+                <label className="restaurant-seat-label">
+                  Table {table.table}
+                </label>
 
                 <input
                   type="text"
                   className="restaurant-seat-input"
-                  name={table.name}
+                  name={table.table}
                   id="restaurant-seats"
                   aria-label="restaurant seats"
-                  ref={(elem) => (seatsRefs.current[table.name] = elem)}
+                  ref={(elem) => (seatsRefs.current[table.table] = elem)}
                   defaultValue={table.seats}
                 />
-              </>
+              </Fragment>
             );
           })}
           <button type="button" onClick={handleSeatsInsert}>

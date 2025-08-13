@@ -11,7 +11,7 @@ const EditTimeSlots = ({
         className="restaurant-accordion-header"
         onClick={toggleAccordionTimeSlots}
       >
-        Edit timeSlots
+        Edit time slot interval
       </summary>
       <section className="restaurant-timeSlots-container">
         <label htmlFor="">TimeSlots</label>

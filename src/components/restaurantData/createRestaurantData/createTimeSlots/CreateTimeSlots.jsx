@@ -10,7 +10,7 @@ const CreateTimeSlots = ({
         className="restaurant-accordion-header"
         onClick={toggleAccordionTimeSlots}
       >
-        Add timeSlots
+        Add time slot interval
       </summary>
       <section className="restaurant-timeSlots-container">
         <label htmlFor="">TimeSlots</label>

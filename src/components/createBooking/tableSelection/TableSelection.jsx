@@ -1,12 +1,15 @@
 const TableSelection = ({ onTableSelect, tables, selectedTable }) => {
   // Find the selected table object
+
+  console.log({ selectedTable });
+
   const selectedTableObject = tables.find(
-    (table) => `${table.name}-${table.seats}` === selectedTable
+    (table) => table.table === selectedTable.table
   );
 
   // Filter out the selected table from the rest
   const otherTables = tables.filter(
-    (table) => `${table.name}-${table.seats}` !== selectedTable
+    (table) => table.table !== selectedTable.table
   );
 
   // Create a new, reordered array with the selected table first
@@ -28,8 +31,8 @@ const TableSelection = ({ onTableSelect, tables, selectedTable }) => {
         </option>
 
         {reorderedTables.map((table, index) => (
-          <option key={index} value={`${table.name}-${table.seats}`}>
-            {`${table.name} - Seating for ${table.seats}`}
+          <option key={index} value={`${table.table}-${table.seats}`}>
+            {`${table.table} - Seating for ${table.seats}`}
           </option>
         ))}
       </select>

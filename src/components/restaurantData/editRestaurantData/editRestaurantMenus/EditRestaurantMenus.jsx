@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 import Link from "next/link";
 
 const EditRestaurantMenus = ({
@@ -8,6 +8,8 @@ const EditRestaurantMenus = ({
   onFileUpload,
   fileLoading,
 }) => {
+  const fileInputRef = useRef(null);
+
   const handleFileDelete = async (e, assetId) => {
     e.preventDefault();
 
@@ -16,6 +18,8 @@ const EditRestaurantMenus = ({
     });
 
     setFileUrls(newFileUrls);
+
+    fileInputRef.current && (fileInputRef.current.value = "");
 
     const response = await fetch(
       `/api/editRestaurantData/deleteRestaurantMenu/${assetId}?_id=${_id}`,
@@ -29,6 +33,11 @@ const EditRestaurantMenus = ({
     }
   };
 
+  const handleFileUploadWithReset = (e, type) => {
+    onFileUpload(e, type);
+    fileInputRef.current && (fileInputRef.current.value = "");
+  };
+
   return (
     <details className="restaurant-accordion">
       <summary className="restaurant-accordion-header">
@@ -40,7 +49,8 @@ const EditRestaurantMenus = ({
         </label>
         <input
           type="file"
-          onChange={(e) => onFileUpload(e, "pdf")}
+          ref={fileInputRef}
+          onChange={(e) => handleFileUploadWithReset(e, "pdf")}
           className="restaurant-menu-input"
           name="menu"
           id="restaurant menu"

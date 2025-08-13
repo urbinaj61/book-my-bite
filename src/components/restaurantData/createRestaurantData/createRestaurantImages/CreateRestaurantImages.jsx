@@ -1,18 +1,28 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 
 const CreateRestaurantImages = ({
   handleFileUpload,
   imageUrls,
+  setImageUrls,
   fileLoading,
 }) => {
+  const fileInputRef = useRef(null);
+
   const handleFileDelete = async (e, assetId) => {
     e.preventDefault();
 
-    const newFileUrls = fileUrls.filter((file) => {
-      return file.assetId !== assetId;
+    const newImageUrls = imageUrls.filter((image) => {
+      return image.assetId !== assetId;
     });
 
-    setFileUrls(newFileUrls);
+    setImageUrls(newImageUrls);
+
+    fileInputRef.current && (fileInputRef.current.value = "");
+  };
+
+  const handleFileUploadWithReset = (e, type) => {
+    handleFileUpload(e, type);
+    fileInputRef.current && (fileInputRef.current.value = "");
   };
 
   return (
@@ -26,7 +36,8 @@ const CreateRestaurantImages = ({
         </label>
         <input
           type="file"
-          onChange={(e) => handleFileUpload(e, "image")}
+          ref={fileInputRef}
+          onChange={(e) => handleFileUploadWithReset(e, "image")}
           className="restaurant-image-input"
           name="image"
           id="restaurant image"

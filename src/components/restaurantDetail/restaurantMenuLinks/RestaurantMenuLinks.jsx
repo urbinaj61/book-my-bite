@@ -1,16 +1,26 @@
+import Link from "next/link";
+
 const RestauranrtMenuLinks = ({ menuLinks }) => {
   const renderedMenuLinks =
     menuLinks.length > 0
       ? menuLinks.map((menu, i) => {
           return (
             <div key={i}>
-              <p>{menu.type}</p>
-              <p>{menu.link}</p>
+              <Link href={menu.url} target="_blank" rel="noopener noreferrer">
+                {menu.url}
+              </Link>
             </div>
           );
         })
       : null;
-  return renderedMenuLinks;
+  return (
+    <details className="restaurant-accordion">
+      <summary className="restaurant-accordion-header">
+        Restaurant Menu Links
+      </summary>
+      <section className="restaurant-data-details">{renderedMenuLinks}</section>
+    </details>
+  );
 };
 
 export default RestauranrtMenuLinks;

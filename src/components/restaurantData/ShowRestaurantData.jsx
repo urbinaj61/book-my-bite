@@ -1,4 +1,3 @@
-import useSWR from "swr";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import RestaurantMainDetails from "../restaurantDetail/restaurantMainDetails/RestaurantMainDetails";
@@ -13,14 +12,15 @@ const ShowRestaurantData = ({ data }) => {
     return (
       <>
         <section className="create-restaurantData">
-          {/* <img
-            src="/showDetails.jpg"
-            alt="background-Image"
-            className="background-image"
-          /> */}
           <aside className="content-overlay">
+            <h3>Your Email has not been registered.</h3>
+            <h4>Please enter your data!</h4>
+
             <Link href={`/createRestaurantData`}>
               <button>Create restaurant data</button>
+            </Link>
+            <Link href={"/restaurantHome"}>
+              <button type="button">Return</button>
             </Link>
           </aside>
         </section>
@@ -33,7 +33,7 @@ const ShowRestaurantData = ({ data }) => {
     name,
     address1,
     address2,
-    postcode,
+    postCode,
     city,
     email,
     phone,
@@ -44,13 +44,11 @@ const ShowRestaurantData = ({ data }) => {
     openingTimes,
   } = data[0];
 
-  const { mutate } = useSWR(`/api/restaurantData/deleteRestaurantData/${_id}`);
-
   const restaurantMainDetails = {
     name,
     address1,
     address2,
-    postcode,
+    postCode,
     city,
     email,
     phone,
@@ -67,7 +65,6 @@ const ShowRestaurantData = ({ data }) => {
     );
 
     if (response.ok) {
-      mutate();
       router.push("/");
     } else {
       console.error("Failed to delete restaurant data");
@@ -76,16 +73,11 @@ const ShowRestaurantData = ({ data }) => {
 
   return (
     <section className="show-restaurant-details-main-page">
-      {/* <img
-        src="/showDetails.jpg"
-        alt="background-Image"
-        className="background-image"
-      /> */}
       <aside>
         <RestaurantMainDetails restaurantMainDetails={restaurantMainDetails} />
-        {/* <RestaurantImages images={images} />
-          <RestaurantMenuLinks menuLinks={menuLinks} />
-          <RestaurantOpeningTimes openingTimes={openingTimes} /> */}
+        <RestaurantImages images={images} />
+        <RestaurantMenuLinks menuLinks={menuLinks} />
+        <RestaurantOpeningTimes openingTimes={openingTimes} />
         <section>
           <button onClick={() => handleDelete(_id)}>
             Delete Restaurant Data
@@ -98,6 +90,9 @@ const ShowRestaurantData = ({ data }) => {
             href={`/showRestaurantBookings/${_id}`}
           >
             <button>Show Bookings</button>
+          </Link>
+          <Link href={"/"}>
+            <button type="button">Return</button>
           </Link>
         </section>
       </aside>

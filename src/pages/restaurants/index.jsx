@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import Link from "next/link";
 import RestaurantList from "@/components/restaurantList/RestaurantList";
 
 const Restaurants = () => {
@@ -11,6 +12,9 @@ const Restaurants = () => {
   return (
     <main>
       <RestaurantList data={data} />
+      <Link href={"/"}>
+        <button type="button">Return</button>
+      </Link>
     </main>
   );
 };

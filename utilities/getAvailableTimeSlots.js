@@ -1,8 +1,6 @@
 const getAvailableTimeSlots = (data, timeSlots, tableBooked) => {
-  const newTableBooked = `Table ${tableBooked}`;
-
   const tableBookings = data?.filter(
-    booked => booked.tableBooked === newTableBooked
+    booked => booked.tableBooked === tableBooked
   );
 
   if (tableBookings?.length > 0) {

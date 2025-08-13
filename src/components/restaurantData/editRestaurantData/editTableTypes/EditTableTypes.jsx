@@ -34,16 +34,18 @@ const EditTableTypes = ({
           {editTableTypes.map((table, i) => {
             return (
               <Fragment key={i}>
-                <label className="restaurant-seat-label">{table.name}</label>
+                <label className="restaurant-seat-label">
+                  Table {table.table}
+                </label>
 
                 <input
                   type="text"
                   className="restaurant-seat-input"
-                  name={table.name}
-                  id="restaurant-seats"
-                  aria-label="restaurant seats"
-                  ref={(elem) => (seatsRefs.current[table.name] = elem)}
-                  onChange={(e) => handleSeatChange(e, table.name)}
+                  name={table.table}
+                  id={`restaurant-seats-${table.table}`}
+                  aria-label={`Seats for table ${table.table} `}
+                  ref={(elem) => (seatsRefs.current[table.table] = elem)}
+                  onChange={(e) => handleSeatChange(e, table.table)}
                   value={table.seats || ""}
                 />
               </Fragment>

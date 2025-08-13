@@ -6,8 +6,6 @@ const RestaurantBookings = () => {
   const router = useRouter();
   const { _id } = router.query;
 
-  console.log({ _id });
-
   const { data, error, isLoading } = useSWR(
     `/api/restaurantData/showRestaurantBookings/${_id}`
   );

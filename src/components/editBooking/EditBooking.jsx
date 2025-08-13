@@ -7,7 +7,6 @@ import TableSelection from "../createBooking/tableSelection/TableSelection";
 import TimeSlotSelectionEdit from "../editBooking/TimeSlotSelectionEdit";
 import getAvailableTimeSlots from "../../../utilities/getAvailableTimeSlots";
 import formatTimeSlot from "../../../utilities/formatTimeSlot";
-import convertObjectToString from "../../../utilities/convertObjectToString";
 
 const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
   //Deconstruct bookingData
@@ -41,7 +40,7 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
 
   //Include seating to display in table select
   const includeSeating = (tableBooked, seatsBooked) => {
-    return `${tableBooked}-${seatsBooked}`;
+    return { table: tableBooked, seats: seatsBooked };
   };
 
   //Create our states
@@ -58,8 +57,8 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
   const [newOpeningTimes, setNewOpeningTimes] = useState(filteredDayTimeSlots);
   const [availableTimeSlots, setAvailableTimeSlots] = useState([]);
   const [tables] = useState(tableTypes);
-  const [bookedTable, setBookedTable] = useState("");
-  const [bookedSeats, setBookedSeats] = useState("");
+  const [bookedTable, setBookedTable] = useState(tableBooked);
+  const [bookedSeats, setBookedSeats] = useState(seatsBooked);
 
   //We need to get the available timeSlots when we first arrive.
   //These are determined by the date already entered. So we will get all the bookings for this restaurant and
@@ -83,6 +82,18 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
     const formData = new FormData(e.target);
     formData.append("seatsBooked", bookedSeats);
     const updatedBookingData = Object.fromEntries(formData);
+
+    if (
+      updatedBookingData.tableBooked &&
+      updatedBookingData.tableBooked.includes("-")
+    ) {
+      const [table, seats] = updatedBookingData.tableBooked
+        .replace("Table ", "")
+        .split("-");
+
+      updatedBookingData.tableBooked = table;
+      updatedBookingData.seatsBooked = seats;
+    }
 
     //We need to format the selected timeSlot(string) into an object for the DB
     typeof selectedTimeSlot === "string"
@@ -151,7 +162,6 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
   //If the table has changed we need to
   const handleTableSelect = (event) => {
     setSelectedTable(event.target.value);
-
     const [table, seats] = event.target.value.replace("Table ", "").split("-");
     setBookedTable(table);
     setBookedSeats(seats);
@@ -172,13 +182,11 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
   //Only the name has changed. No extra calcs needed.......
   const handleBookedNameChange = (e) => {
     setBookedName(e.target.value);
-    //setSelectedTimeSlot(convertObjectToString(timeSlot));
   };
 
   //Only the email has changed. No extra calcs needed.......
   const handleBookedEmailChange = (e) => {
     setBookedEmail(e.target.value);
-    //setSelectedTimeSlot(convertObjectToString(timeSlot));
   };
 
   return (
@@ -234,10 +242,10 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
           />
         )}
         <button type="submit" disabled={newOpeningTimes[0].open === "close"}>
-          Book your bite
+          Change your bite
         </button>
         <Link href={`/bookings/${customerEmail}`}>
-          <button>No Change</button>
+          <button type="button">No Change</button>
         </Link>
       </form>
     </>

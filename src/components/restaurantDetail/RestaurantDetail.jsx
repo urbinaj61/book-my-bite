@@ -15,10 +15,13 @@ const RestaurantDetail = ({ restaurant }) => {
     phone,
     type,
     cuisine,
+    description,
     images,
     menuLinks,
     openingTimes,
   } = restaurant;
+
+  console.log({ menuLinks });
 
   const restaurantMainDetails = {
     name,
@@ -30,6 +33,7 @@ const RestaurantDetail = ({ restaurant }) => {
     phone,
     type,
     cuisine,
+    description,
   };
 
   return (
@@ -37,13 +41,12 @@ const RestaurantDetail = ({ restaurant }) => {
       <div>
         <RestaurantMainDetails restaurantMainDetails={restaurantMainDetails} />
         <RestaurantImages images={images} />
-        <Link href={`/createBooking/${restaurant._id}`}>
-          <button>Book your table</button>
-        </Link>
         <RestauranrtMenuLinks menuLinks={menuLinks} />
         <RestaurantOpeningTimes openingTimes={openingTimes} />
       </div>
-
+      <Link href={`/createBooking/${restaurant._id}`}>
+        <button>Book your table</button>
+      </Link>
       <Link href={"/restaurants"}>
         <button>Return</button>
       </Link>

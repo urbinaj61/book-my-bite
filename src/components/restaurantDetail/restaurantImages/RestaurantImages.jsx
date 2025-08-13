@@ -21,7 +21,14 @@ const RestaurantImages = ({ images }) => {
       <DummyImage />
     );
 
-  return renderedImages;
+  return (
+    <details className="restaurant-accordion">
+      <summary className="restaurant-accordion-header">
+        Restaurant Images
+      </summary>
+      <section className="restaurant-data-details">{renderedImages}</section>
+    </details>
+  );
 };
 
 export default RestaurantImages;

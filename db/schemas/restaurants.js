@@ -32,7 +32,7 @@ const OpeningTimeSchema = new Schema(
 
 const TableTypeSchema = new Schema(
   {
-    name: { type: String, required: true },
+    table: { type: String, required: true },
     seats: { type: Number, required: true },
   },
   { _id: false }
