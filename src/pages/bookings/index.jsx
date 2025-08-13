@@ -7,16 +7,16 @@ const Bookings = () => {
   const [email, setEmail] = useState("");
 
   return (
-    <>
-      <div>
-        <h1>Bookings page</h1>
-        <ShowMyBookings setEmail={setEmail} />
-        {email && <ShowMyBookingsContent email={email} />}
-      </div>
-      <Link href={"/"}>
-        <button>Return</button>
-      </Link>
-    </>
+    <section className="general-page-container allPages">
+      <h2 className="general-page-heading">Bookings page</h2>
+      <ShowMyBookings setEmail={setEmail} />
+      {email && <ShowMyBookingsContent email={email} />}
+      <Link href={"/"} className="general-link">
+        <button type="button" className="return-button">
+          Return
+        </button>
+      </Link>{" "}
+    </section>
   );
 };
 

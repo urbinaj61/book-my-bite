@@ -1,0 +1,19 @@
+.show-my-bookings-get-email {
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.enter-email-form-button {
+  width: var(--button-width);
+  height: var(--button-height);
+  border: none;
+  outline: none;
+  margin: 5px 5px;
+  padding: 5px;
+  background-color: var(--button-bg-colour);
+  color: var(--button-colour);
+  font-size: 1rem;
+  cursor: pointer;
+}

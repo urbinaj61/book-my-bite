@@ -2,16 +2,22 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <header>
+    <header className="header">
       <nav className="navigation">
-        <Link className="button show-bookings-button" href={"/bookings"}>
-          <button>Show my Bookings</button>
+        <Link className="button, home-link" href={"/"}>
+          <button type="button" className="navigation-button">
+            Home
+          </button>
         </Link>
-        <Link className="button, home-button" href={"/"}>
-          <button>Home</button>
+        <Link className="navigation-link" href={"/bookings"}>
+          <button type="button" className="navigation-button">
+            Show my Bookings
+          </button>
         </Link>
-        <Link className="button, login-button" href={"/restaurantHome"}>
-          <button>Restaurant Data</button>
+        <Link className="navigation-link" href={"/restaurantHome"}>
+          <button type="button" className="navigation-button">
+            Restaurant Data
+          </button>
         </Link>
       </nav>
     </header>
