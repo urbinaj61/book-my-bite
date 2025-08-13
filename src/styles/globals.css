@@ -1,43 +1,47 @@
+@import "../components/header/header.css";
+@import "../components/showMyBookings/showMyBookings.css";
+@import "../components/showMyBookings/showMyBookingsContent.css";
 @import "../components/restaurantDetail/restaurantMainDetails/restaurantMainDetails.css";
 @import "../components/restaurantDetail/restaurantImages/restaurantImages.css";
 @import "../components/restaurantData/showrestaurantData.css";
 @import "../components/restaurantData/createRestaurantData/createRestaurantData.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+  --hero-button-bg-colour: #303080;
+  --hero-button-colour: whitesmoke;
+  --hero-button-width: 150px;
+  --hero-button-height: 100px;
+  --button-bg-colour: #535252;
+  --button-colour: var(--hero-button-colour);
+  --button-width: 150px;
+  --button-height: 40px;
+}
+
+.allPages {
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    #000000,
+    #151515,
+    #222222,
+    #303030,
+    #3f3e3e,
+    #4b4041,
+    #564346,
+    #60454d,
+    #643b52,
+    #61325d,
+    #532e6d,
+    #303080
+  );
 }
 
 .backgroundImage {
@@ -46,44 +50,83 @@ a {
   width: 100vw;
   height: 100vh;
   background-size: cover;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  overflow: hidden;
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-evenly;
+.landing-page-hero-link-container {
   position: absolute;
-  top: 20px;
-  left: 550px;
-  z-index: 99;
-  width: 30%;
-  height: 40px;
-  border: 2px solid red;
+  top: 180px;
+  right: 10px;
 }
 
-.button {
-  width: 100px;
-  height: 40px;
+.landing-page-hero-link {
+  width: var(--hero-button-width);
+  height: var(--hero-button-height);
   border: none;
   outline: none;
-  /* background-color: rgba(190, 186, 186, 0.4); */
-  border-radius: 20%;
-  color: whitesmoke;
-  font-size: 1rem;
+}
+
+.landing-page-hero-button {
+  width: var(--hero-button-width);
+  height: var(--hero-button-height);
+  border: none;
+  outline: none;
+  padding: 5px;
+  background-color: var(--hero-button-bg-colour);
+  color: var(--hero-button-colour);
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
-.hero-button {
-  width: 300px;
-  height: 200px;
+.general-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  width: 100vw;
+  height: 100vh;
+}
 
+.general-page-heading {
+  margin-top: 5px;
+  color: var(--button-colour);
+}
+
+.general-label {
+  width: 200px;
+  margin: 5px 5px 0 5px;
+  color: var(--button-colour);
+  padding: 5px;
+}
+
+.general-input {
+  width: var(--button-width);
+  height: var(--button-height);
+  margin: 0 5px 10px;
+  padding: 5px;
+}
+
+.general-link {
+  width: 170px;
+  height: 50px;
+  border: none;
   outline: none;
-  background-color: black;
-  border-radius: 20%;
-  color: whitesmoke;
-  font-size: 2.5rem;
+}
+
+.return-button {
+  width: var(--button-width);
+  height: var(--button-height);
+  border: none;
+  outline: none;
+  margin: 5px 5px;
+  padding: 5px;
+  background-color: var(--button-bg-colour);
+  color: var(--button-colour);
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -92,6 +135,7 @@ a {
   align-items: center;
   position: absolute;
   bottom: 0;
+  left: 5px;
   width: 100%;
   height: 40px;
 }
@@ -105,12 +149,6 @@ a {
 }
 
 .footer-text {
-  color: white;
+  color: var(--button-colour);
   font-size: 1rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }

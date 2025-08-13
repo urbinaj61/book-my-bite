@@ -6,15 +6,20 @@ const ShowMyBookings = ({ setEmail }) => {
   };
 
   return (
-    <form onSubmit={handleEmailSubmit}>
-      <label htmlFor="show_my_bookings">Please enter your email</label>
+    <form onSubmit={handleEmailSubmit} className="show-my-bookings-get-email">
+      <label htmlFor="show_my_bookings" className="general-label">
+        Please enter your email
+      </label>
       <input
+        className="general-input"
         type="email"
         id="show_my_bookings"
         aria-label="enter email"
         name="email"
       />
-      <button type="submit">Enter</button>
+      <button type="submit" className="enter-email-form-button">
+        Enter
+      </button>
     </form>
   );
 };

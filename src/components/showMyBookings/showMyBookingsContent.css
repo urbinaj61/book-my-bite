@@ -1,0 +1,63 @@
+.bookings-content-heading {
+  margin: 15px 5px;
+  color: var(--button-colour);
+}
+
+.bookings-content-container {
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 5px;
+}
+
+.booking-card {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+  background-color: #020239;
+}
+
+.restaurant-info,
+.table-booking-info,
+.table-info {
+  margin: 10px 5px;
+  padding: 5px;
+  border: solid #969393 1px;
+}
+
+.booking-info-label {
+  width: 130px;
+  margin: 5px 5px 0;
+  font-size: 0.7rem;
+  color: var(--button-colour);
+}
+
+.booking-info {
+  margin: 0 5px 1px;
+  color: #a4a47a;
+}
+
+.buttons-container {
+  margin: 15px 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-link {
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+}
+
+.booking-button {
+  font-size: 1rem;
+  margin-top: 10px;
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: var(--button-bg-colour);
+  color: var(--button-colour);
+}
