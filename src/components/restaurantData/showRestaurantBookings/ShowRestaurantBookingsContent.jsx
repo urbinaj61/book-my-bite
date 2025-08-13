@@ -33,7 +33,7 @@ const ShowRestaurantBookingsContent = () => {
       <>
         <h2>No bookings found</h2>
         <Link href={`/`}>
-          <button>Return</button>
+          <button type="button">Return</button>
         </Link>
       </>
     );
@@ -66,7 +66,6 @@ const ShowRestaurantBookingsContent = () => {
             <button onClick={() => handleDelete(booking._id)}>
               Cancel Booking
             </button>
-            <hr />
           </li>
         ))}
       </ul>

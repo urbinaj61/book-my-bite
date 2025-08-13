@@ -48,10 +48,10 @@ const CreateYourBooking = ({ restaurantData, date }) => {
   const handleTableSelect = (event) => {
     setSelectedTable(event.target.value);
 
-    if (event.target.value.includes("Table ")) {
-      const [table, seats] = event.target.value
-        .replace("Table ", "")
-        .split("-");
+    console.log(event.target.value);
+
+    if (event.target.value.includes("-")) {
+      const [table, seats] = event.target.value.split("-");
       setTableBooked(table);
       setSeatsBooked(seats);
     } else {
@@ -73,7 +73,7 @@ const CreateYourBooking = ({ restaurantData, date }) => {
     formData.append("restaurantName", restaurantData.name);
     formData.append("restaurantAddress1", restaurantData.address1);
     const bookingData = Object.fromEntries(formData);
-    bookingData.tableBooked = `Table ${tableBooked}`;
+    bookingData.tableBooked = `${tableBooked}`;
     bookingData.timeSlot = formatTimeSlot(selectedTimeSlot);
 
     const response = await fetch(`/api/createBooking/${_id}?${date}`, {

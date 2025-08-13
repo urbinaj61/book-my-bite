@@ -94,8 +94,6 @@ const CreateRestaurantData = () => {
 
   //===================================Handles multiple Image and pdf uploads to Cloudinary===========================
   const handleFileUpload = async (e, type) => {
-    type === "image" ? setImageUrls([]) : setFileUrls([]);
-
     const files = e.target.files;
 
     if (!files || files.length === 0) {
@@ -132,7 +130,9 @@ const CreateRestaurantData = () => {
 
       const newFileUrls = await Promise.all(uploadPromises);
 
-      type === "image" ? setImageUrls(newFileUrls) : setFileUrls(newFileUrls);
+      type === "image"
+        ? setImageUrls((prevImageUrls) => [...prevImageUrls, ...newFileUrls])
+        : setFileUrls((prevFileUrls) => [...prevFileUrls, ...newFileUrls]);
     } catch (err) {
       console.error(err);
       type === "image" ? setImageUrls([]) : setFileUrls([]);
@@ -154,7 +154,7 @@ const CreateRestaurantData = () => {
     //Create an array of objects containing [{name: "Table 1" seats: "to be entered"}]
     const tableArray = [];
     for (let i = 1; i <= tableCount; i++) {
-      const obj = { name: `Table ${i}`, seats: null };
+      const obj = { table: `${i}`, seats: null };
       tableArray.push(obj);
     }
 
@@ -167,7 +167,7 @@ const CreateRestaurantData = () => {
   //Seats are entered per table created
   const handleSeatsInsert = () => {
     const updatedTables = tableTypes.map((table) => {
-      const inputElement = seatsRefs.current[table.name];
+      const inputElement = seatsRefs.current[table.table];
 
       if (inputElement) {
         return { ...table, seats: inputElement.value };

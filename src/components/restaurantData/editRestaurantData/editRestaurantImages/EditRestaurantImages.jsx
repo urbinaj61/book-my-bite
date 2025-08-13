@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useRef } from "react";
 
 const EditRestaurantImages = ({
   setImageUrls,
@@ -7,7 +7,9 @@ const EditRestaurantImages = ({
   onFileUpload,
   fileLoading,
 }) => {
-  const handleImageDelete = async (e, assetId) => {
+  const fileInputRef = useRef(null);
+
+  const handleFileDelete = async (e, assetId) => {
     e.preventDefault();
 
     const newImageUrls = imageUrls.filter((image) => {
@@ -15,6 +17,8 @@ const EditRestaurantImages = ({
     });
 
     setImageUrls(newImageUrls);
+
+    fileInputRef.current && (fileInputRef.current.value = "");
 
     const response = await fetch(
       `/api/editRestaurantData/deleteRestaurantImage/${assetId}?_id=${_id}`,
@@ -28,6 +32,11 @@ const EditRestaurantImages = ({
     }
   };
 
+  const handleFileUploadWithReset = (e, type) => {
+    onFileUpload(e, type);
+    fileInputRef.current && (fileInputRef.current.value = "");
+  };
+
   return (
     <details className="restaurant-accordion">
       <summary className="restaurant-accordion-header">
@@ -39,7 +48,8 @@ const EditRestaurantImages = ({
         </label>
         <input
           type="file"
-          onChange={(e) => onFileUpload(e, "image")}
+          ref={fileInputRef}
+          onChange={(e) => handleFileUploadWithReset(e, "image")}
           className="restaurant-image-input"
           name="image"
           id="restaurant image"
@@ -58,7 +68,7 @@ const EditRestaurantImages = ({
                 alt="uploaded restaurant"
                 className="restaurant-uploaded-image"
               />
-              <button onClick={(e) => handleImageDelete(e, image.assetId)}>
+              <button onClick={(e) => handleFileDelete(e, image.assetId)}>
                 Remove Image
               </button>
             </Fragment>

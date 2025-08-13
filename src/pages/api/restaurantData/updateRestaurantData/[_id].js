@@ -23,6 +23,7 @@ const handler = async (req, res) => {
       return res.status(404).json({ status: "Restaurant not found" });
     }
   }
+  return res.status(405).json({ status: "Method not allowed" });
 };
 
 export default handler;

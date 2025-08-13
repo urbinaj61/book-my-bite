@@ -11,7 +11,17 @@ const RestaurantOpeningTimes = ({ openingTimes }) => {
           );
         })
       : null;
-  return renderedOpeningTimes;
+  return (
+    <details className="restaurant-accordion">
+      <summary className="restaurant-accordion-header">
+        Restaurant Opening Times
+      </summary>
+      <section className="restaurant-data-details">
+        {renderedOpeningTimes}
+      </section>
+      ;
+    </details>
+  );
 };
 
 export default RestaurantOpeningTimes;

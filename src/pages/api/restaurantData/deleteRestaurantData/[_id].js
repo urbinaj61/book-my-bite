@@ -7,18 +7,25 @@ const handler = async (req, res) => {
   const { _id } = req.query;
 
   if (req.method === "DELETE") {
-    const deletedRestaurant = await Restaurant.findByIdAndDelete(_id);
+    try {
+      const deletedRestaurant = await Restaurant.findByIdAndDelete(_id);
 
-    if (!deletedRestaurant) {
-      return res.status(404).json({ status: "Restaurant not found" });
+      if (!deletedRestaurant) {
+        return res.status(404).json({ status: "Restaurant not found" });
+      }
+
+      await Booking.deleteMany({ restaurantId: deletedRestaurant._id });
+
+      return res.status(200).json({
+        status: "Restaurant and associated bookings deleted successfully",
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ status: "Error deleting restaurant" });
     }
-
-    await Booking.deleteMany({ restaurantId: deletedRestaurant._id });
-
-    return res.status(200).json({
-      status: "Restaurant and associated bookings deleted successfully",
-    });
   }
+
+  return res.status(405).json({ status: "Method not allowed" });
 };
 
 export default handler;

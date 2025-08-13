@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import generateTimeSlots from "../../../../utilities/generateTimeSlots";
 import isValidTime from "../../../../utilities/isValidTime";
 import EditRestaurantDetails from "./editRestaurantDetails/EditRestaurantDetails";
@@ -180,39 +181,38 @@ const EditRestaurantData = ({ restaurantData }) => {
 
   //===================================Handle File uploads==End============================
 
-  //===================================Handles Table creation==============================
-  //This function accepts a numeric input. The user tells us how many tables they will have in their
+  //===================================Handles Table edit==============================
+  //This function accepts a numeric input. The user can change how many tables they will have in their
   //restaurant. We build from this and display numbered tables so the user can allocate seating.
 
   const handleTableCreation = () => {
     const tableCount = inputRef.current.value;
+
     setIsAccordionOpenTableTypes(true);
 
-    //Create an array of objects containing [{name: "Table 1" seats: whatever was there before}
+    //Create an array of objects containing [{table: "1" seats: whatever was there before}
     const tableArray = [];
     for (let i = 1; i <= tableCount; i++) {
-      const tableName = `Table ${i}`;
-
       const existingTable = editTableTypes.find(
-        (table) => table.name === tableName
+        (table) => table.table === String(i)
       );
 
       const seats = existingTable ? existingTable.seats : null;
 
-      const obj = { name: tableName, seats: seats };
+      const obj = { table: String(i), seats: seats };
       tableArray.push(obj);
     }
 
     setEditTableTypes(tableArray);
   };
 
-  //===================================Handles Table creation====End==========================
+  //===================================Handles Table edit====End==========================
 
-  //===================================Handle Seats creation==================================
+  //===================================Handle Seats edit==================================
   //Seats are entered per table created
   const handleSeatsInsert = () => {
     const updatedTables = editTableTypes.map((table) => {
-      const inputElement = seatsRefs.current[table.name];
+      const inputElement = seatsRefs.current[table.table];
 
       if (inputElement) {
         return { ...table, seats: inputElement.value };
@@ -228,10 +228,10 @@ const EditRestaurantData = ({ restaurantData }) => {
 
   //===================================Handle Seats change===================================
   const handleSeatChange = (e, tableName) => {
-    const { value } = e.target; // Create a new array with the updated seat value
+    const { value } = e.target;
     const updatedTables = editTableTypes.map((table) => {
-      if (table.name === tableName) {
-        return { ...table, seats: value };
+      if (table.table === tableName) {
+        return { ...table, seats: String(value) };
       }
       return table;
     });
@@ -370,6 +370,9 @@ const EditRestaurantData = ({ restaurantData }) => {
         <button type="submit" className="restaurant-data-submit-button">
           {isLoading ? "Updating..." : "Edit your data"}
         </button>
+        <Link href={`/showRestaurantData/${email}`}>
+          <button type="button">Cancel Edit</button>
+        </Link>
       </form>
     </section>
   );
