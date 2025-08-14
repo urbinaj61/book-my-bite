@@ -5,19 +5,13 @@ const Header = () => {
     <header className="header">
       <nav className="navigation">
         <Link className="button, home-link" href={"/"}>
-          <button type="button" className="navigation-button">
-            Home
-          </button>
+          Home
         </Link>
         <Link className="navigation-link" href={"/bookings"}>
-          <button type="button" className="navigation-button">
-            Show my Bookings
-          </button>
+          Show my Bookings
         </Link>
         <Link className="navigation-link" href={"/restaurantHome"}>
-          <button type="button" className="navigation-button">
-            Restaurant Data
-          </button>
+          Restaurant Data
         </Link>
       </nav>
     </header>

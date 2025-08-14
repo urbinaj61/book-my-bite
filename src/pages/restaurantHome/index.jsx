@@ -9,16 +9,11 @@ const RestaurantHome = () => {
   const router = useRouter();
 
   return (
-    <>
-      <div>
-        <h1>Restaurant Data</h1>
-        <GetRestaurantEmail setEmail={setEmail} />
-        {email && router.push(`/showRestaurantData/${email}`)}
-      </div>
-      <Link href={"/"}>
-        <button>Return</button>
-      </Link>
-    </>
+    <section className="bookings-page-container">
+      <h2 className="bookings-page-heading">Restaurant Data</h2>
+      <GetRestaurantEmail setEmail={setEmail} />
+      {email && router.push(`/showRestaurantData/${email}`)}
+    </section>
   );
 };
 

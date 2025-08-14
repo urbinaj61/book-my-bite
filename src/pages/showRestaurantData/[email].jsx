@@ -18,7 +18,7 @@ const showRestaurantData = () => {
     console.error(error);
     return <p>Error loading data.</p>;
   }
-  return <div>{<ShowRestaurantData data={data} />}</div>;
+  return <ShowRestaurantData data={data} />;
 };
 
 export default showRestaurantData;

@@ -1,33 +1,28 @@
 .header {
-  width: 200px;
-  height: auto;
-  position: absolute;
-  z-index: 9;
-  top: 20px;
-  right: -40px;
+  background-color: rgba(9, 9, 9, 0.8);
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
 }
 
 .navigation {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.navigation-link {
-  width: var(--button-width);
-  height: var(--button-height);
-  border: none;
-  outline: none;
+.navigation-link,
+.home-link {
+  text-decoration: none;
+  color: var(--text-colour-light);
+  font-weight: bold;
 }
 
-.navigation-button {
-  width: var(--button-width);
-  height: var(--button-height);
-  border: none;
-  outline: none;
-  padding: 5px;
-  background-color: var(--button-bg-colour);
-  color: var(--button-colour);
-  font-size: 1rem;
-  cursor: pointer;
+.navigation-link:hover {
+  color: var(--secondary-colour);
 }
