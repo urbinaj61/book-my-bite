@@ -6,16 +6,26 @@ const GetRestaurantEmail = ({ setEmail }) => {
   };
 
   return (
-    <form onSubmit={handleEmailSubmit}>
-      <label htmlFor="get-restaurant-email">Please enter your email</label>
-      <input
-        type="email"
-        id="get-restaurant-email"
-        aria-label="enter email"
-        name="email"
-      />
-      <button type="submit">Enter</button>
-    </form>
+    <aside className="show-my-restaurant-container">
+      <form
+        onSubmit={handleEmailSubmit}
+        className="show-my-restaurant-get-email-form"
+      >
+        <label htmlFor="get-restaurant-email" className="booking-info-label">
+          Please enter your email
+        </label>
+        <input
+          type="email"
+          id="get-restaurant-email"
+          aria-label="enter email"
+          name="email"
+          className="edit-input"
+        />
+        <button type="submit" className="enter-email-form-button">
+          Enter
+        </button>
+      </form>
+    </aside>
   );
 };
 

@@ -7,15 +7,10 @@ const Bookings = () => {
   const { email } = router.query;
 
   return (
-    <>
-      <div>
-        <h1>Bookings page</h1>
-        {email && <ShowMyBookingsContent email={email} />}
-      </div>
-      <Link href={"/"}>
-        <button>Return</button>
-      </Link>
-    </>
+    <section className="bookings-page-container">
+      <h2 className="bookings-page-heading">Bookings page</h2>
+      {email && <ShowMyBookingsContent email={email} />}
+    </section>
   );
 };
 

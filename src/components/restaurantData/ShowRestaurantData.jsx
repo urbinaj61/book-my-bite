@@ -10,21 +10,27 @@ const ShowRestaurantData = ({ data }) => {
 
   if (!data || data.length === 0) {
     return (
-      <>
+      <section className="bookings-page-container">
+        <h2 className="bookings-page-heading">Restaurant Data</h2>
         <section className="create-restaurantData">
-          <aside className="content-overlay">
-            <h3>Your Email has not been registered.</h3>
-            <h4>Please enter your data!</h4>
-
-            <Link href={`/createRestaurantData`}>
-              <button>Create restaurant data</button>
-            </Link>
-            <Link href={"/restaurantHome"}>
-              <button type="button">Return</button>
-            </Link>
+          <aside className="restaurant-info">
+            <h3 className="booking-info">
+              Your Email has not been registered.
+            </h3>
+            <h4 className="booking-info-label">Please enter your data!</h4>
+            <aside className="buttons-container">
+              <Link
+                href={`/createRestaurantData`}
+                className="booking-change-link"
+              >
+                <button className="booking-change-button">
+                  Create restaurant data
+                </button>
+              </Link>
+            </aside>
           </aside>
         </section>
-      </>
+      </section>
     );
   }
 
@@ -72,30 +78,42 @@ const ShowRestaurantData = ({ data }) => {
   };
 
   return (
-    <section className="show-restaurant-details-main-page">
-      <aside>
-        <RestaurantMainDetails restaurantMainDetails={restaurantMainDetails} />
-        <RestaurantImages images={images} />
-        <RestaurantMenuLinks menuLinks={menuLinks} />
-        <RestaurantOpeningTimes openingTimes={openingTimes} />
-        <section>
-          <button onClick={() => handleDelete(_id)}>
-            Delete Restaurant Data
-          </button>
-          <Link href={`/editRestaurantData/${_id}`}>
-            <button>Edit restaurant data</button>
-          </Link>
-          <Link
-            className="button show-bookings-button"
-            href={`/showRestaurantBookings/${_id}`}
-          >
-            <button>Show Bookings</button>
-          </Link>
-          <Link href={"/"}>
-            <button type="button">Return</button>
-          </Link>
-        </section>
-      </aside>
+    <section className="main-restaurant-content-wrapper">
+      <section className="restaurant-content-container">
+        <h2 className="restaurant-content-heading">Restaurant Data</h2>
+        <aside className="restaurant-card">
+          <RestaurantMainDetails
+            restaurantMainDetails={restaurantMainDetails}
+          />
+          <RestaurantImages images={images} />
+          <RestaurantMenuLinks menuLinks={menuLinks} />
+          <RestaurantOpeningTimes openingTimes={openingTimes} />
+          <aside className="buttons-container">
+            <button
+              onClick={() => handleDelete(_id)}
+              className="booking-cancel-button"
+            >
+              Delete Restaurant Data
+            </button>
+            <Link
+              href={`/editRestaurantData/${_id}`}
+              className="booking-change-link"
+            >
+              <button type="button" className="booking-change-button">
+                Edit restaurant data
+              </button>
+            </Link>
+            <Link
+              className="booking-change-link"
+              href={`/showRestaurantBookings/${_id}`}
+            >
+              <button type="button" className="booking-change-button">
+                Show Bookings
+              </button>
+            </Link>
+          </aside>
+        </aside>
+      </section>
     </section>
   );
 };

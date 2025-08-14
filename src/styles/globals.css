@@ -1,6 +1,8 @@
 @import "../components/header/header.css";
+@import "../components/footer/footer.css";
 @import "../components/showMyBookings/showMyBookings.css";
 @import "../components/showMyBookings/showMyBookingsContent.css";
+@import "../components/editBooking/editBooking.css";
 @import "../components/restaurantDetail/restaurantMainDetails/restaurantMainDetails.css";
 @import "../components/restaurantDetail/restaurantImages/restaurantImages.css";
 @import "../components/restaurantData/showrestaurantData.css";
@@ -10,145 +12,97 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  overflow: hidden;
 }
 
 :root {
-  --hero-button-bg-colour: #303080;
-  --hero-button-colour: whitesmoke;
-  --hero-button-width: 150px;
-  --hero-button-height: 100px;
-  --button-bg-colour: #535252;
-  --button-colour: var(--hero-button-colour);
-  --button-width: 150px;
-  --button-height: 40px;
+  --primary-colour: #090909;
+  --secondary-colour: #e8e8e8;
+  --text-colour-light: #a5a5a5;
+  --border-colour: #707070;
+  --accent-colour: #393939;
+  --hover-colour: #a5a5a5;
 }
 
-.allPages {
-  width: 100vw;
-  height: 100vh;
-  background-image: linear-gradient(
-    to right bottom,
-    #000000,
-    #151515,
-    #222222,
-    #303030,
-    #3f3e3e,
-    #4b4041,
-    #564346,
-    #60454d,
-    #643b52,
-    #61325d,
-    #532e6d,
-    #303080
-  );
+html,
+body,
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-arimo);
+  background-color: var(--primary-colour);
+  color: var(--secondary-colour);
 }
 
 .backgroundImage {
-  position: relative;
-  background-image: url("/landing.jpg");
-  width: 100vw;
-  height: 100vh;
+  background-image: url("/landing.jpg"); /* Replace with your image path */
   background-size: cover;
-  /* display: flex;
+  background-position: center;
+  display: flex;
   justify-content: center;
-  align-items: center; */
-  overflow: hidden;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
 }
 
 .landing-page-hero-link-container {
-  position: absolute;
-  top: 180px;
-  right: 10px;
+  background-color: rgba(9, 9, 9, 0.7);
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 .landing-page-hero-link {
-  width: var(--hero-button-width);
-  height: var(--hero-button-height);
-  border: none;
-  outline: none;
+  text-decoration: none;
 }
 
 .landing-page-hero-button {
-  width: var(--hero-button-width);
-  height: var(--hero-button-height);
+  background-color: var(--secondary-colour);
+  color: var(--primary-colour);
   border: none;
-  outline: none;
-  padding: 5px;
-  background-color: var(--hero-button-bg-colour);
-  color: var(--hero-button-colour);
+  padding: 1.5rem 3rem;
   font-size: 1.5rem;
+  font-weight: bold;
   cursor: pointer;
+  transition: transform 0.3s ease, background-colour 0.3s ease;
+  border-radius: 8px;
+  font-family: inherit;
 }
 
-.general-page-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 20px;
-  width: 100vw;
+.landing-page-hero-button:hover {
+  background-color: var(--hover-colour);
+  transform: scale(1.05);
+}
+
+.bookings-page-container {
+  background-color: var(--primary-colour);
+  display: grid;
+  place-content: center;
+  width: 100%;
   height: 100vh;
 }
 
-.general-page-heading {
-  margin-top: 5px;
-  color: var(--button-colour);
+.bookings-page-heading {
+  margin: 0 0 5px 2px;
+  color: var(--secondary-colour);
 }
 
-.general-label {
-  width: 200px;
-  margin: 5px 5px 0 5px;
-  color: var(--button-colour);
-  padding: 5px;
-}
-
-.general-input {
-  width: var(--button-width);
-  height: var(--button-height);
-  margin: 0 5px 10px;
-  padding: 5px;
-}
-
-.general-link {
-  width: 170px;
-  height: 50px;
-  border: none;
-  outline: none;
+.return-link {
+  text-decoration: none;
+  display: block;
+  width: 100%;
 }
 
 .return-button {
-  width: var(--button-width);
-  height: var(--button-height);
-  border: none;
-  outline: none;
-  margin: 5px 5px;
-  padding: 5px;
-  background-color: var(--button-bg-colour);
-  color: var(--button-colour);
-  font-size: 1rem;
-  cursor: pointer;
+  background-color: transparent;
+  color: var(--secondary-colour);
+  border: 2px solid var(--border-colour);
 }
 
-.footer {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  left: 5px;
-  width: 100%;
-  height: 40px;
-}
-
-.copyright {
-  padding-left: 10px;
-}
-
-.name-text {
-  padding-left: 20px;
-}
-
-.footer-text {
-  color: var(--button-colour);
-  font-size: 1rem;
+.return-button:hover {
+  background-color: var(--primary-colour);
+  border-color: var(--secondary-colour);
 }

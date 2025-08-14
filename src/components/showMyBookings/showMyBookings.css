@@ -1,19 +1,84 @@
-.show-my-bookings-get-email {
-  width: 300px;
-  height: auto;
+.show-my-bookings-container {
+  display: flex;
+  justify-content: center;
+  height: 350px;
+  padding: 1rem;
+
+  background-color: var(--accent-colour);
+  color: var(--secondary-colour);
+}
+
+.show-my-bookings-get-email-form {
+  background-color: var(--accent-colour);
+  padding: 2rem;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.show-my-bookings-label {
+  font-size: 1.25rem;
+  text-align: center;
+  color: var(--secondary-colour);
+}
+
+.show-my-bookings-input {
+  padding: 0.75rem;
+  border: 2px solid var(--border-colour);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--primary-colour);
+  color: var(--secondary-colour);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.show-my-bookings-input:focus {
+  outline: none;
+  border-color: var(--secondary-colour);
+}
+
+.enter-email-form-button,
+.return-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
 .enter-email-form-button {
-  width: var(--button-width);
-  height: var(--button-height);
-  border: none;
-  outline: none;
-  margin: 5px 5px;
-  padding: 5px;
-  background-color: var(--button-bg-colour);
-  color: var(--button-colour);
-  font-size: 1rem;
-  cursor: pointer;
+  background-color: var(--secondary-colour);
+  color: var(--primary-colour);
 }
+
+.enter-email-form-button:hover {
+  background-color: var(--hover-colour);
+  transform: scale(1.02);
+}
+
+/* @media (max-width: 480px) {
+  .show-my-bookings-get-email-form {
+    padding: 1.5rem;
+  }
+
+  .show-my-bookings-label {
+    font-size: 1rem;
+  }
+
+  .general-input,
+  .enter-email-form-button,
+  .return-button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+} */

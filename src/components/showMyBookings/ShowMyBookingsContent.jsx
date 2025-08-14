@@ -20,21 +20,31 @@ const ShowMyBookingsContent = ({ email }) => {
     }
   };
 
-  if (!data || data.length === 0) {
-    return <p>No bookings found for {email} entered</p>;
-  }
-
-  if (isLoading) return <p>Loading bookings for {normalizedEmail}...</p>;
+  if (isLoading)
+    return (
+      <p className="bookings-content-heading">
+        Loading bookings for {normalizedEmail}...
+      </p>
+    );
   if (error)
     return (
-      <p>Error loading bookings for {normalizedEmail}. Please try again.</p>
+      <p className="bookings-content-heading">
+        Error loading bookings for {normalizedEmail}. Please try again.
+      </p>
     );
 
+  if (!data || data.length === 0) {
+    return (
+      <p className="bookings-content-heading">
+        No bookings found for {email} entered
+      </p>
+    );
+  }
+
   return (
-    <>
-      {" "}
-      <h2 className="bookings-content-heading">Your Reservations:</h2>
+    <section className="main-content-wrapper">
       <section className="bookings-content-container">
+        <h2 className="bookings-content-heading">Your Reservations</h2>
         {data.map((booking) => (
           <aside key={booking._id} className="booking-card">
             <aside className="restaurant-info">
@@ -63,16 +73,16 @@ const ShowMyBookingsContent = ({ email }) => {
             <aside className="buttons-container">
               <Link
                 href={`/editBooking/${booking._id}`}
-                className="booking-link"
+                className="booking-change-link"
               >
-                <button type="button" className="booking-button">
+                <button type="button" className="booking-change-button">
                   Change Booking
                 </button>
               </Link>
               <button
                 type="button"
                 onClick={() => handleDelete(booking._id)}
-                className="booking-button"
+                className="booking-cancel-button"
               >
                 Cancel Booking
               </button>
@@ -80,7 +90,7 @@ const ShowMyBookingsContent = ({ email }) => {
           </aside>
         ))}
       </section>
-    </>
+    </section>
   );
 };
 

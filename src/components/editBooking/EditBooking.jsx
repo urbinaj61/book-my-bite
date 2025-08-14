@@ -190,65 +190,91 @@ const EditBooking = ({ bookingData, restaurantData, allBookedData }) => {
   };
 
   return (
-    <>
-      <h2>Edit a booking page</h2>
-      <p>{restaurantName}</p>
-      <p>{restaurantAddress1}</p>
-      {newOpeningTimes[0].open !== "closed" ? (
-        <p>{`Opening Times: Open from ${newOpeningTimes[0].open} till ${newOpeningTimes[0].close}`}</p>
-      ) : (
-        <p>This restaurant is closed on this day. Please select another day</p>
-      )}
-      <form onSubmit={handleFormSubmit}>
-        <label htmlFor="booked-date">Booked Date</label>
-        <input
-          type="date"
-          id="booked-date"
-          aria-label="booked-date"
-          name="dateBooked"
-          onChange={handleBookedDateChange}
-          value={bookedDate}
-        />
-        <label htmlFor="booked-customer-name">Booked name</label>
-        <input
-          type="text"
-          id="booked-customer-name"
-          aria-label="booked-customer-name"
-          name="customerName"
-          onChange={handleBookedNameChange}
-          value={bookedName}
-        />
-        <label htmlFor="booked-customer-email">Booked email</label>
-        <input
-          type="text"
-          id="booked-customer-email"
-          aria-label="booked-customer-email"
-          name="customerEmail"
-          onChange={handleBookedEmailChange}
-          value={bookedEmail}
-        />
-        {newOpeningTimes[0].open !== "closed" && (
-          <TableSelection
-            onTableSelect={handleTableSelect}
-            tables={tables}
-            selectedTable={selectedTable}
-          />
+    <section className="main-edit-content-wrapper">
+      <section className="edit-bookings-content-container">
+        <h2 className="edit-bookings-content-heading">Edit a booking</h2>
+        <aside className="restaurant-info">
+          <p>{restaurantName}</p>
+          <p>{restaurantAddress1}</p>
+        </aside>
+        {newOpeningTimes[0].open !== "closed" ? (
+          <p className="booking-info-label">{`Opening Times: Open from ${newOpeningTimes[0].open} till ${newOpeningTimes[0].close}`}</p>
+        ) : (
+          <p className="booking-info-label">
+            This restaurant is closed on this day. Please select another day
+          </p>
         )}
-        {availableTimeSlots.length > 0 && (
-          <TimeSlotSelectionEdit
-            onTimeSlotSelect={handleTimeSlotSelect}
-            availableTimeSlots={availableTimeSlots}
-            selectedTimeSlot={selectedTimeSlot}
+        <form onSubmit={handleFormSubmit} className="edit-form-container">
+          <label htmlFor="booked-date" className="booking-info-label">
+            Booked Date
+          </label>
+          <input
+            type="date"
+            id="booked-date"
+            aria-label="booked-date"
+            className="edit-input"
+            name="dateBooked"
+            onChange={handleBookedDateChange}
+            value={bookedDate}
           />
-        )}
-        <button type="submit" disabled={newOpeningTimes[0].open === "close"}>
-          Change your bite
-        </button>
-        <Link href={`/bookings/${customerEmail}`}>
-          <button type="button">No Change</button>
-        </Link>
-      </form>
-    </>
+          <label htmlFor="booked-customer-name" className="booking-info-label">
+            Booked name
+          </label>
+          <input
+            type="text"
+            id="booked-customer-name"
+            aria-label="booked-customer-name"
+            className="edit-input"
+            name="customerName"
+            onChange={handleBookedNameChange}
+            value={bookedName}
+          />
+          <label htmlFor="booked-customer-email" className="booking-info-label">
+            Booked email
+          </label>
+          <input
+            type="text"
+            id="booked-customer-email"
+            aria-label="booked-customer-email"
+            className="edit-input"
+            name="customerEmail"
+            onChange={handleBookedEmailChange}
+            value={bookedEmail}
+          />
+          {newOpeningTimes[0].open !== "closed" && (
+            <TableSelection
+              onTableSelect={handleTableSelect}
+              tables={tables}
+              selectedTable={selectedTable}
+            />
+          )}
+          {availableTimeSlots.length > 0 && (
+            <TimeSlotSelectionEdit
+              onTimeSlotSelect={handleTimeSlotSelect}
+              availableTimeSlots={availableTimeSlots}
+              selectedTimeSlot={selectedTimeSlot}
+            />
+          )}
+          <aside className="buttons-container">
+            <button
+              type="submit"
+              disabled={newOpeningTimes[0].open === "close"}
+              className="booking-change-button"
+            >
+              Change your bite
+            </button>
+            <Link
+              href={`/bookings/${customerEmail}`}
+              className="booking-cancel-link"
+            >
+              <button type="button" className="booking-cancel-button">
+                No Change
+              </button>
+            </Link>
+          </aside>
+        </form>
+      </section>
+    </section>
   );
 };
 
