@@ -19,7 +19,11 @@ const editRestaurantDataPage = () => {
     return <p>Error loading data.</p>;
   }
 
-  return <div>{data && <EditRestaurantData restaurantData={data} />}</div>;
+  return (
+    <section className="bookings-page-container">
+      {data && <EditRestaurantData restaurantData={data} />}
+    </section>
+  );
 };
 
 export default editRestaurantDataPage;

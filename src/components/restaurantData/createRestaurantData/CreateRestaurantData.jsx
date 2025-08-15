@@ -122,8 +122,13 @@ const CreateRestaurantData = () => {
         }
 
         const fileData = await response.json();
+        console.log({ fileData });
 
-        return { url: fileData.url, assetId: fileData.asset_id };
+        return {
+          url: fileData.url,
+          assetId: fileData.asset_id,
+          original_filename: fileData.original_filename,
+        };
       });
 
       if (fileLoading) return <p>Loading....</p>;
@@ -257,59 +262,62 @@ const CreateRestaurantData = () => {
   };
 
   return (
-    <section>
-      <h1>Create restaurant data</h1>
+    <>
+      <br />
+      <section>
+        <h1>Create restaurant data</h1>
 
-      <form onSubmit={handleSubmit}>
-        <CreateRestaurantDetails />
+        <form onSubmit={handleSubmit}>
+          <CreateRestaurantDetails />
 
-        <CreateRestaurantImages
-          handleFileUpload={handleFileUpload}
-          imageUrls={imageUrls}
-          setImageUrls={setImageUrls}
-          fileLoading={fileLoading}
-        />
-        <CreateRestaurantMenus
-          handleFileUpload={handleFileUpload}
-          fileUrls={fileUrls}
-          setFileUrls={setFileUrls}
-          fileLoading={fileLoading}
-        />
-
-        <CreateTableTypes
-          handleTableCreation={handleTableCreation}
-          tableTypes={tableTypes}
-          seatsRefs={seatsRefs}
-          inputRef={inputRef}
-          handleSeatsInsert={handleSeatsInsert}
-          isAccordionOpenTableTypes={isAccordionOpenTableTypes}
-        />
-
-        <CreateOpeningTimes
-          isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
-          toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
-          openingTimes={openingTimes}
-          openingTimesRefs={openingTimesRefs}
-          handleOpeningTimesCreation={handleOpeningTimesCreation}
-        />
-        {errorMessage ? (
-          <p>{errorMessage}</p>
-        ) : (
-          <CreateTimeSlots
-            isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
-            toggleAccordionTimeSlots={toggleAccordionTimeSlots}
-            timeSlotRef={timeSlotRef}
-            handleTimeSlotCreation={handleTimeSlotCreation}
+          <CreateRestaurantImages
+            handleFileUpload={handleFileUpload}
+            imageUrls={imageUrls}
+            setImageUrls={setImageUrls}
+            fileLoading={fileLoading}
           />
-        )}
+          <CreateRestaurantMenus
+            handleFileUpload={handleFileUpload}
+            fileUrls={fileUrls}
+            setFileUrls={setFileUrls}
+            fileLoading={fileLoading}
+          />
 
-        {showSubmitButton && (
-          <button type="submit" className="restaurant-data-submit-button">
-            {isLoading ? "Creating..." : "Create your data"}
-          </button>
-        )}
-      </form>
-    </section>
+          <CreateTableTypes
+            handleTableCreation={handleTableCreation}
+            tableTypes={tableTypes}
+            seatsRefs={seatsRefs}
+            inputRef={inputRef}
+            handleSeatsInsert={handleSeatsInsert}
+            isAccordionOpenTableTypes={isAccordionOpenTableTypes}
+          />
+
+          <CreateOpeningTimes
+            isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
+            toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
+            openingTimes={openingTimes}
+            openingTimesRefs={openingTimesRefs}
+            handleOpeningTimesCreation={handleOpeningTimesCreation}
+          />
+          {errorMessage ? (
+            <p>{errorMessage}</p>
+          ) : (
+            <CreateTimeSlots
+              isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
+              toggleAccordionTimeSlots={toggleAccordionTimeSlots}
+              timeSlotRef={timeSlotRef}
+              handleTimeSlotCreation={handleTimeSlotCreation}
+            />
+          )}
+
+          {showSubmitButton && (
+            <button type="submit" className="restaurant-data-submit-button">
+              {isLoading ? "Creating..." : "Create your data"}
+            </button>
+          )}
+        </form>
+      </section>
+    </>
   );
 };
 

@@ -10,25 +10,27 @@ const ShowRestaurantData = ({ data }) => {
 
   if (!data || data.length === 0) {
     return (
-      <section className="bookings-page-container">
-        <h2 className="bookings-page-heading">Restaurant Data</h2>
-        <section className="create-restaurantData">
-          <aside className="restaurant-info">
-            <h3 className="booking-info">
-              Your Email has not been registered.
-            </h3>
-            <h4 className="booking-info-label">Please enter your data!</h4>
-            <aside className="buttons-container">
-              <Link
-                href={`/createRestaurantData`}
-                className="booking-change-link"
-              >
-                <button className="booking-change-button">
-                  Create restaurant data
-                </button>
-              </Link>
+      <section className="main-restaurant-content-wrapper">
+        <section className="restaurant-content-container">
+          <h2 className="restaurant-content-heading">Restaurant Data</h2>
+          <section className="restaurant-content-card">
+            <aside className="restaurant-info">
+              <h3 className="restaurant-info-label">
+                Your Email has not been registered.
+              </h3>
+              <h4 className="restaurant-info-h4">Please enter your data!</h4>
+              <aside className="restaurant-buttons-container">
+                <Link
+                  href={`/createRestaurantData`}
+                  className="restaurant-create-link"
+                >
+                  <button className="restaurant-create-button">
+                    Create restaurant data
+                  </button>
+                </Link>
+              </aside>
             </aside>
-          </aside>
+          </section>
         </section>
       </section>
     );
@@ -81,14 +83,17 @@ const ShowRestaurantData = ({ data }) => {
     <section className="main-restaurant-content-wrapper">
       <section className="restaurant-content-container">
         <h2 className="restaurant-content-heading">Restaurant Data</h2>
-        <aside className="restaurant-card">
-          <RestaurantMainDetails
-            restaurantMainDetails={restaurantMainDetails}
-          />
-          <RestaurantImages images={images} />
-          <RestaurantMenuLinks menuLinks={menuLinks} />
-          <RestaurantOpeningTimes openingTimes={openingTimes} />
-          <aside className="buttons-container">
+        <aside className="restaurant-content-card">
+          <aside className="restaurant-accordion-content">
+            <RestaurantMainDetails
+              restaurantMainDetails={restaurantMainDetails}
+            />
+            <RestaurantImages images={images} />
+            <RestaurantMenuLinks menuLinks={menuLinks} />
+            <RestaurantOpeningTimes openingTimes={openingTimes} />
+          </aside>
+
+          <aside className="restaurant-buttons-container">
             <button
               onClick={() => handleDelete(_id)}
               className="booking-cancel-button"
@@ -104,10 +109,10 @@ const ShowRestaurantData = ({ data }) => {
               </button>
             </Link>
             <Link
-              className="booking-change-link"
+              className="restaurant-show-bookings-link"
               href={`/showRestaurantBookings/${_id}`}
             >
-              <button type="button" className="booking-change-button">
+              <button type="button" className="restaurant-show-bookings-button">
                 Show Bookings
               </button>
             </Link>

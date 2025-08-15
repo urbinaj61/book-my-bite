@@ -2,6 +2,7 @@
 @import "../components/footer/footer.css";
 @import "../components/showMyBookings/showMyBookings.css";
 @import "../components/showMyBookings/showMyBookingsContent.css";
+@import "../components/restaurantData/editRestaurantData/editRestaurantData.css";
 @import "../components/editBooking/editBooking.css";
 @import "../components/restaurantDetail/restaurantMainDetails/restaurantMainDetails.css";
 @import "../components/restaurantDetail/restaurantImages/restaurantImages.css";

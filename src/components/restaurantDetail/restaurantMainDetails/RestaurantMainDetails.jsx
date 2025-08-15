@@ -16,24 +16,24 @@ const RestaurantMainDetails = ({ restaurantMainDetails }) => {
       <summary className="restaurant-accordion-header">
         Restaurant Details
       </summary>
-      <section className="restaurant-data-details">
-        <label>Restaurant name</label>
-        <p className="main-restaurant-details_name">{name}</p>
-        <label>Restaurant address</label>
-        <p className="main-restaurant-details_address">{address1}</p>
-        <p className="main-restaurant-details_address">{address2}</p>
-        <p className="main-restaurant-details_address">{postCode}</p>
-        <p className="main-restaurant-details_address">{city}</p>
-        <label>Restaurant email</label>
-        <p className="main-restaurant-details_email">{email}</p>
-        <label>Restaurant phone</label>
-        <p className="main-restaurant-details_phone">{phone}</p>
-        <label>Restaurant type</label>
-        <p className="main-restaurant-details_type">{type}</p>
-        <label>Restaurant cuisine</label>
-        <p className="main-restaurant-details_cuisine">{cuisine}</p>
-        <label>Restaurant description</label>
-        <p className="main-restaurant-description">{description}</p>
+      <section className="restaurant-accordion-data-container">
+        <label className="restaurant-info-label">Restaurant name</label>
+        <p className="main-restaurant-details">{name}</p>
+        <label className="restaurant-info-label">Restaurant address</label>
+        <p className="main-restaurant-details">{address1}</p>
+        <p className="main-restaurant-details">{address2}</p>
+        <p className="main-restaurant-details">{postCode}</p>
+        <p className="main-restaurant-details">{city}</p>
+        <label className="restaurant-info-label">Restaurant email</label>
+        <p className="main-restaurant-details">{email}</p>
+        <label className="restaurant-info-label">Restaurant phone</label>
+        <p className="main-restaurant-details">{phone}</p>
+        <label className="restaurant-info-label">Restaurant type</label>
+        <p className="main-restaurant-details">{type}</p>
+        <label className="restaurant-info-label">Restaurant cuisine</label>
+        <p className="main-restaurant-details">{cuisine}</p>
+        <label className="restaurant-info-label">Restaurant description</label>
+        <p className="main-restaurant-details">{description}</p>
       </section>
     </details>
   );

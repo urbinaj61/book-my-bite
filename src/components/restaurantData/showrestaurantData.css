@@ -39,30 +39,53 @@
   background-color: var(--accent-colour);
   color: var(--secondary-colour);
   padding-bottom: 4rem;
-  width: 400px;
 }
 
 .restaurant-content-heading {
   font-size: 2rem;
   text-align: center;
   color: var(--secondary-colour);
-  margin: 1rem 0 1rem 0;
+  margin: 2rem 0 1rem 0;
 }
 
-.booking-card {
-  background-color: var(--border-colour);
+.restaurant-content-card {
+  background-color: var(--accent-colour);
   color: var(--secondary-colour);
   padding: 1.5rem;
   border-radius: 10px;
-  max-width: 600px;
-  width: 100%;
+  max-width: 400px;
+  width: 90%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
 }
 
-.restaurant-info,
+.restaurant-accordion-content {
+  padding: 10px;
+  padding-left: 20px;
+  background-color: var(--border-colour);
+}
+
+.restaurant-accordion-header {
+  color: var(--secondary-colour);
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.restaurant-accordion-data-container {
+  padding-top: 10px;
+}
+
+.restaurant-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 5px;
+  background-color: var(--accent-colour);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .table-booking-info,
 .table-info {
   display: flex;
@@ -73,10 +96,16 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.booking-info-label {
+.restaurant-info-label {
   font-size: 0.9rem;
+  color: var(--text-colour-light);
+  text-align: center;
+}
+
+.restaurant-info-h4 {
   color: var(--secondary-colour);
   margin-top: 0.5rem;
+  text-align: center;
 }
 
 .booking-info {
@@ -85,16 +114,20 @@
   margin: 0;
 }
 
-.buttons-container {
+.restaurant-buttons-container {
   grid-column: 1 / -1;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
-.booking-change-button,
-.booking-cancel-button {
+.restaurant-create-link {
+  text-decoration: none;
+  display: contents;
+}
+
+.restaurant-create-button {
   flex-grow: 1;
   padding: 0.75rem;
   font-size: 1rem;
@@ -107,45 +140,54 @@
   white-space: nowrap;
 }
 
-.booking-change-button {
-  background-color: var(--secondary-colour);
-  color: var(--primary-colour);
-}
-
-.booking-cancel-button {
-  background-color: transparent;
-  color: var(--secondary-colour);
-  border: 2px solid var(--border-colour);
-}
-
-.booking-change-button:hover,
-.booking-cancel-button:hover {
+.restaurant-create-button:hover {
   background-color: var(--hover-colour);
   transform: scale(1.02);
 }
 
-.booking-change-link,
-.booking-cancel-link {
+.restaurant-show-bookings-link {
   text-decoration: none;
   display: contents;
 }
 
+.restaurant-show-bookings-button {
+  flex-grow: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.restaurant-show-bookings--button:hover {
+  background-color: var(--hover-colour);
+  transform: scale(1.02);
+}
+
+.opening-times-container {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.opening-times-day {
+  font-size: 1.2rem;
+  width: 100%;
+  color: var(--text-colour-light);
+  font-weight: bold;
+}
+
+.opening-times-range {
+  font-size: 0.9rem;
+  color: var(--secondary-colour);
+}
+
 @media (max-width: 600px) {
-  .buttons-container {
+  .restaurant-buttons-container {
     flex-direction: column;
     gap: 0.5rem;
   }
-}
-
-.bookings-page-container {
-  background-color: var(--primary-colour);
-  display: grid;
-  place-content: center;
-  width: 100%;
-  height: 100vh;
-}
-
-.bookings-page-heading {
-  margin: 0 0 5px 2px;
-  color: var(--secondary-colour);
 }

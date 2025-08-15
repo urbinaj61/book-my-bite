@@ -65,6 +65,11 @@
   background-color: var(--hover-colour);
 }
 
+.table-select,
+.timeSlot-select {
+  height: 30px;
+}
+
 @media (max-width: 600px) {
   .buttons-container {
     flex-direction: column;

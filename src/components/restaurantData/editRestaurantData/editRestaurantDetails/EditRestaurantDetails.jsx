@@ -13,11 +13,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
   } = formData;
 
   return (
-    <details className="restaurant-accordion">
+    <details className="restaurant-accordion-content">
       <summary className="restaurant-accordion-header">
         Edit Restaurant Details
       </summary>
-      <section className="restaurant-data-details">
+      <section className="restaurant-accordion-data-container">
         <label htmlFor="restaurant name" className="restaurant-data-label">
           Restaurant name
         </label>

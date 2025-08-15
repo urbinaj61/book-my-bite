@@ -1,6 +1,14 @@
-.main-restaurant-details_image {
-  width: 200px;
-  height: 200px;
+.restaurant-details_image {
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   margin: 5px;
+}
+
+.restaurant-link {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  color: var(--secondary-colour);
+  margin-top: 0.5rem;
 }

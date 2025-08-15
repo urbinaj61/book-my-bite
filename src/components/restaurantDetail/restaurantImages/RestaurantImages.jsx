@@ -7,7 +7,7 @@ const RestaurantImages = ({ images }) => {
       images.map((image, i) => {
         return (
           <Image
-            className="main-restaurant-details_image"
+            className="restaurant-details_image"
             key={i}
             src={image.url}
             width={200}
@@ -26,7 +26,11 @@ const RestaurantImages = ({ images }) => {
       <summary className="restaurant-accordion-header">
         Restaurant Images
       </summary>
-      <section className="restaurant-data-details">{renderedImages}</section>
+      <section className="restaurant-content-card">
+        <section className="restaurant-data-container">
+          {renderedImages}
+        </section>
+      </section>
     </details>
   );
 };

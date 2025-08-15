@@ -156,7 +156,11 @@ const EditRestaurantData = ({ restaurantData }) => {
 
         const fileData = await response.json();
 
-        return { url: fileData.url, assetId: fileData.asset_id };
+        return {
+          url: fileData.url,
+          assetId: fileData.asset_id,
+          original_filename: fileData.original_filename,
+        };
       });
 
       if (fileLoading) return <p>Loading....</p>;
@@ -315,65 +319,70 @@ const EditRestaurantData = ({ restaurantData }) => {
   };
 
   return (
-    <section>
-      <h2>Edit RestaurantData</h2>
-      <form onSubmit={handleSubmit}>
-        <EditRestaurantDetails
-          formData={formData}
-          onDetailsChange={handleDetailsChange}
-        />
-        <EditRestaurantImages
-          setImageUrls={setImageUrls}
-          _id={_id}
-          imageUrls={imageUrls}
-          onFileUpload={handleFileUpload}
-          fileLoading={fileLoading}
-        />
+    <section className=".main-restaurant-content-wrapper">
+      <section className="restaurant-content-container">
+        <h2 className="restaurant-content-heading">Edit RestaurantData</h2>
+        <aside className="restaurant-content-card">
+          <form onSubmit={handleSubmit}>
+            <aside className="restaurant-accordion-content">
+              <EditRestaurantDetails
+                formData={formData}
+                onDetailsChange={handleDetailsChange}
+              />
+              <EditRestaurantImages
+                setImageUrls={setImageUrls}
+                _id={_id}
+                imageUrls={imageUrls}
+                onFileUpload={handleFileUpload}
+                fileLoading={fileLoading}
+              />
 
-        <EditRestaurantMenus
-          setFileUrls={setFileUrls}
-          _id={_id}
-          fileUrls={fileUrls}
-          onFileUpload={handleFileUpload}
-          fileLoading={fileLoading}
-        />
+              <EditRestaurantMenus
+                setFileUrls={setFileUrls}
+                _id={_id}
+                fileUrls={fileUrls}
+                onFileUpload={handleFileUpload}
+                fileLoading={fileLoading}
+              />
 
-        <EditTableTypes
-          handleTableCreation={handleTableCreation}
-          handleSeatChange={handleSeatChange}
-          editTableTypes={editTableTypes}
-          seatsRefs={seatsRefs}
-          inputRef={inputRef}
-          handleSeatsInsert={handleSeatsInsert}
-          isAccordionOpenTableTypes={isAccordionOpenTableTypes}
-        />
+              <EditTableTypes
+                handleTableCreation={handleTableCreation}
+                handleSeatChange={handleSeatChange}
+                editTableTypes={editTableTypes}
+                seatsRefs={seatsRefs}
+                inputRef={inputRef}
+                handleSeatsInsert={handleSeatsInsert}
+                isAccordionOpenTableTypes={isAccordionOpenTableTypes}
+              />
 
-        <EditOpeningTimes
-          isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
-          toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
-          editOpeningTimes={editOpeningTimes}
-          openingTimesRefs={openingTimesRefs}
-          handleOpeningTimesEdit={handleOpeningTimesEdit}
-        />
-        {errorMessage ? (
-          <p>{errorMessage}</p>
-        ) : (
-          <EditTimeSlots
-            timeSlotInterval={timeSlotInterval}
-            isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
-            toggleAccordionTimeSlots={toggleAccordionTimeSlots}
-            timeSlotRef={timeSlotRef}
-            handleTimeSlotCreation={handleTimeSlotEdit}
-          />
-        )}
-
-        <button type="submit" className="restaurant-data-submit-button">
-          {isLoading ? "Updating..." : "Edit your data"}
-        </button>
-        <Link href={`/showRestaurantData/${email}`}>
-          <button type="button">Cancel Edit</button>
-        </Link>
-      </form>
+              <EditOpeningTimes
+                isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
+                toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
+                editOpeningTimes={editOpeningTimes}
+                openingTimesRefs={openingTimesRefs}
+                handleOpeningTimesEdit={handleOpeningTimesEdit}
+              />
+              {errorMessage ? (
+                <p>{errorMessage}</p>
+              ) : (
+                <EditTimeSlots
+                  timeSlotInterval={timeSlotInterval}
+                  isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
+                  toggleAccordionTimeSlots={toggleAccordionTimeSlots}
+                  timeSlotRef={timeSlotRef}
+                  handleTimeSlotCreation={handleTimeSlotEdit}
+                />
+              )}
+            </aside>
+            <button type="submit" className="restaurant-data-submit-button">
+              {isLoading ? "Updating..." : "Edit your data"}
+            </button>
+            <Link href={`/showRestaurantData/${email}`}>
+              <button type="button">Cancel Edit</button>
+            </Link>
+          </form>
+        </aside>
+      </section>
     </section>
   );
 };

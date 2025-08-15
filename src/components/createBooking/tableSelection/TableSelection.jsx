@@ -1,8 +1,5 @@
 const TableSelection = ({ onTableSelect, tables, selectedTable }) => {
   // Find the selected table object
-
-  console.log({ selectedTable });
-
   const selectedTableObject = tables.find(
     (table) => table.table === selectedTable.table
   );
@@ -25,6 +22,7 @@ const TableSelection = ({ onTableSelect, tables, selectedTable }) => {
         name="tableBooked"
         value={selectedTable}
         onChange={(e) => onTableSelect(e)}
+        className="table-select"
       >
         <option value="" disabled>
           Please select a table
