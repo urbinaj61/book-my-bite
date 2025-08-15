@@ -65,20 +65,3 @@
   background-color: var(--hover-colour);
   transform: scale(1.02);
 }
-
-/* @media (max-width: 480px) {
-  .show-my-bookings-get-email-form {
-    padding: 1.5rem;
-  }
-
-  .show-my-bookings-label {
-    font-size: 1rem;
-  }
-
-  .general-input,
-  .enter-email-form-button,
-  .return-button {
-    font-size: 0.9rem;
-    padding: 0.6rem;
-  }
-} */

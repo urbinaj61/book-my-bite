@@ -1,0 +1,15 @@
+.restaurant-accordion-content {
+  padding: 10px;
+  padding-left: 20px;
+  background-color: var(--border-colour);
+}
+
+.restaurant-accordion-header {
+  color: var(--secondary-colour);
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.restaurant-accordion-data-container {
+  padding-top: 10px;
+}

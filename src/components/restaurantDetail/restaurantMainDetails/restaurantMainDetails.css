@@ -1,34 +1,16 @@
-.main-restaurant-details {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: auto;
-  border: 2px solid darkblue;
-  margin: 5px;
-  padding: 5px;
+.restaurant-accordion-data-container {
+  background-color: var(--accent-colour);
+  color: var(--secondary-colour);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.main-restaurant-details_name {
+.main-restaurant-details {
   font-size: 1rem;
   font-weight: bold;
-  color: darkblue;
-}
-
-.main-restaurant-details_address {
-  font-size: 0.8rem;
-  color: darkblue;
-}
-
-.main-restaurant-details_email,
-.main-restaurant-details_phone {
-  font-size: 0.8rem;
-  color: darkblue;
-  font-style: italic;
-}
-
-.main-restaurant-details_type,
-.main-restaurant-details_cuisine {
-  font-size: 0.8rem;
-  color: darkblue;
-  font-weight: bold;
+  color: var(--secondary-colour-light);
+  margin: 0.5rem 0;
 }

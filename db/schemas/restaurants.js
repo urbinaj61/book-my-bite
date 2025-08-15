@@ -42,6 +42,7 @@ const MenuLinkSchema = new Schema(
   {
     url: { type: String, required: true },
     assetId: { type: String, required: true },
+    original_filename: { type: String, required: true },
   },
   { _id: false }
 );
@@ -50,6 +51,7 @@ const ImageSchema = new Schema(
   {
     url: { type: String },
     assetId: { type: String, required: true },
+    original_filename: { type: String, required: true },
   },
   { _id: false }
 );

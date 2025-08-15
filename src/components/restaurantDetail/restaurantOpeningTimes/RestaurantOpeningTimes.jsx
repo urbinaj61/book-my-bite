@@ -3,11 +3,11 @@ const RestaurantOpeningTimes = ({ openingTimes }) => {
     openingTimes.length > 0
       ? openingTimes.map((time, i) => {
           return (
-            <div key={i}>
-              <p>{time.day}</p>
-              <p>{time.open}</p>
-              <p>{time.close}</p>
-            </div>
+            <aside key={i} className="opening-times-container">
+              <p className="opening-times-day">{time.day}</p>
+              <p className="opening-times-range">{time.open}</p>
+              <p className="opening-times-range">{time.close}</p>
+            </aside>
           );
         })
       : null;
@@ -16,10 +16,11 @@ const RestaurantOpeningTimes = ({ openingTimes }) => {
       <summary className="restaurant-accordion-header">
         Restaurant Opening Times
       </summary>
-      <section className="restaurant-data-details">
-        {renderedOpeningTimes}
+      <section className="restaurant-content-card">
+        <section className="restaurant-data-container">
+          {renderedOpeningTimes}
+        </section>
       </section>
-      ;
     </details>
   );
 };

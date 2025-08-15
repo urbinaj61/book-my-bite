@@ -18,7 +18,11 @@ const showRestaurantData = () => {
     console.error(error);
     return <p>Error loading data.</p>;
   }
-  return <ShowRestaurantData data={data} />;
+  return (
+    <section className="bookings-page-container">
+      <ShowRestaurantData data={data} />
+    </section>
+  );
 };
 
 export default showRestaurantData;

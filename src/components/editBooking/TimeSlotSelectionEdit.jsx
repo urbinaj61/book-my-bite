@@ -16,6 +16,7 @@ const TimeSlotSelectionEdit = ({
         name="timeSlot"
         value={selectedTimeSlot}
         onChange={(e) => onTimeSlotSelect(e)}
+        className="timeSlot-select"
       >
         <option value="" disabled>
           Please select a timeslot

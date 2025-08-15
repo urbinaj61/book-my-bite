@@ -5,8 +5,6 @@ const handler = async (req, res) => {
   await dbConnect();
   const { _id } = req.query;
 
-  console.log(_id);
-
   if (req.method === "GET") {
     const booking = await Booking.find({
       restaurantId: _id,

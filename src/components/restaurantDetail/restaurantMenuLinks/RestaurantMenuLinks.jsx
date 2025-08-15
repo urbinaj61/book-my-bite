@@ -6,8 +6,13 @@ const RestauranrtMenuLinks = ({ menuLinks }) => {
       ? menuLinks.map((menu, i) => {
           return (
             <div key={i}>
-              <Link href={menu.url} target="_blank" rel="noopener noreferrer">
-                {menu.url}
+              <Link
+                href={menu.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="restaurant-link"
+              >
+                {menu.original_filename}
               </Link>
             </div>
           );
@@ -18,7 +23,11 @@ const RestauranrtMenuLinks = ({ menuLinks }) => {
       <summary className="restaurant-accordion-header">
         Restaurant Menu Links
       </summary>
-      <section className="restaurant-data-details">{renderedMenuLinks}</section>
+      <section className="restaurant-content-card">
+        <section className="restaurant-data-container">
+          {renderedMenuLinks}
+        </section>
+      </section>
     </details>
   );
 };
