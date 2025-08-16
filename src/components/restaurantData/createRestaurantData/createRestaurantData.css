@@ -38,8 +38,8 @@
 
 .restaurant-uploaded-image {
   margin: 10px 3px;
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
 }
 
 .restaurant-image-input {
@@ -53,8 +53,8 @@
 }
 
 .restaurant-menu-links {
-  margin: 5px 0;
-  color: blue;
+  margin: 5px;
+  color: var(--secondary-colour);
 }
 
 .restaurant-seat-input {

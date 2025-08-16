@@ -40,43 +40,51 @@ const EditRestaurantImages = ({
   };
 
   return (
-    <details className="restaurant-accordion">
+    <details>
       <summary className="restaurant-accordion-header">
         Edit Restaurant Images
       </summary>
-      <section className="restaurant-image-upload-container">
-        <label htmlFor="restaurant-image" className="restaurant-data-label">
-          Edit an Image
-        </label>
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={(e) => handleFileUploadWithReset(e, "image")}
-          className="restaurant-image-input"
-          name="image"
-          id="restaurant image"
-          aria-label="restaurant image"
-          multiple
-        />
+      <section className="restaurant-accordion-data-container">
+        <section className="restaurant-image-upload-container">
+          <aside className="file-image-upload">
+            <label htmlFor="restaurant-image" className="restaurant-data-label">
+              Edit an Image
+            </label>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={(e) => handleFileUploadWithReset(e, "image")}
+              className="restaurant-image-input"
+              name="image"
+              id="restaurant image"
+              aria-label="restaurant image"
+              multiple
+            />
+          </aside>
+
+          <aside className="uploaded-images-container">
+            {fileLoading ? (
+              <p>Loading....</p>
+            ) : (
+              imageUrls.map((image, i) => (
+                <aside className="image-wrapper" key={i}>
+                  <img
+                    src={image.url}
+                    alt="uploaded restaurant"
+                    className="restaurant-uploaded-image"
+                  />
+                  <button
+                    className="image-remove-button"
+                    onClick={(e) => handleFileDelete(e, image.assetId)}
+                  >
+                    Remove Image
+                  </button>
+                </aside>
+              ))
+            )}
+          </aside>
+        </section>
       </section>
-      <aside>
-        {fileLoading ? (
-          <p>Loading....</p>
-        ) : (
-          imageUrls.map((image, i) => (
-            <Fragment key={i}>
-              <img
-                src={image.url}
-                alt="uploaded restaurant"
-                className="restaurant-uploaded-image"
-              />
-              <button onClick={(e) => handleFileDelete(e, image.assetId)}>
-                Remove Image
-              </button>
-            </Fragment>
-          ))
-        )}
-      </aside>
     </details>
   );
 };

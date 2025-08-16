@@ -13,16 +13,16 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
   } = formData;
 
   return (
-    <details className="restaurant-accordion-content">
+    <details>
       <summary className="restaurant-accordion-header">
         Edit Restaurant Details
       </summary>
       <section className="restaurant-accordion-data-container">
-        <label htmlFor="restaurant name" className="restaurant-data-label">
+        <label htmlFor="restaurant name" className="restaurant-edit-label">
           Restaurant name
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="name"
           id="restaurant name"
@@ -31,11 +31,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant address1" className="restaurant-data-label">
+        <label htmlFor="restaurant address1" className="restaurant-edit-label">
           Address line one
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="address1"
           id="restaurant address1"
@@ -44,11 +44,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant address2" className="restaurant-data-label">
+        <label htmlFor="restaurant address2" className="restaurant-edit-label">
           Address line two
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="address2"
           id="restaurant address2"
@@ -57,11 +57,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant postcode" className="restaurant-data-label">
+        <label htmlFor="restaurant postcode" className="restaurant-edit-label">
           Postcode
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="postCode"
           id="restaurant postcode"
@@ -70,11 +70,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant city" className="restaurant-data-label">
+        <label htmlFor="restaurant city" className="restaurant-edit-label">
           City
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="city"
           id="restaurant city"
@@ -83,11 +83,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant email" className="restaurant-data-label">
+        <label htmlFor="restaurant email" className="restaurant-edit-label">
           Email
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="email"
           name="email"
           id="restaurant email"
@@ -96,11 +96,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant phone" className="restaurant-data-label">
+        <label htmlFor="restaurant phone" className="restaurant-edit-label">
           Phone number
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="phone"
           id="restaurant phone"
@@ -109,11 +109,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant type" className="restaurant-data-label">
+        <label htmlFor="restaurant type" className="restaurant-edit-label">
           Type of restaurant
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="type"
           id="restaurant type"
@@ -122,11 +122,11 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
           onChange={onDetailsChange}
         />
 
-        <label htmlFor="restaurant cuisine" className="restaurant-data-label">
+        <label htmlFor="restaurant cuisine" className="restaurant-edit-label">
           Cuisine
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="cuisine"
           id="restaurant cuisine"
@@ -137,12 +137,12 @@ const EditRestaurantDetails = ({ formData, onDetailsChange }) => {
 
         <label
           htmlFor="restaurant description"
-          className="restaurant-data-label"
+          className="restaurant-edit-label"
         >
           Description
         </label>
         <input
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="description"
           id="restaurant description"

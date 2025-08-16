@@ -1,15 +1,203 @@
 .restaurant-accordion-content {
-  padding: 10px;
-  padding-left: 20px;
+  padding: 1rem;
+  margin: 0 auto;
   background-color: var(--border-colour);
+  max-width: 100%;
+  width: 300px;
 }
 
 .restaurant-accordion-header {
   color: var(--secondary-colour);
   font-weight: bold;
   padding: 5px 0;
+  cursor: pointer;
+}
+
+.restaurant-content-heading {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--secondary-colour);
+  padding: 0 15px;
+  margin: 2rem 0;
 }
 
 .restaurant-accordion-data-container {
+  margin-left: -5px;
   padding-top: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.restaurant-content-card {
+  background-color: var(--accent-colour);
+  color: var(--secondary-colour);
+  padding: 2.5rem;
+  margin: 2rem auto;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+.restaurant-buttons-container {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.restaurant-edit-link {
+  text-decoration: none;
+  display: contents;
+}
+
+.restaurant-data-edit-button {
+  width: 100%;
+  height: 60px;
+  padding: 0.75rem;
+  margin-top: 0.7rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.restaurant-data-edit-button:hover {
+  background-color: var(--hover-colour);
+}
+
+.restaurant-edit-label {
+  margin: 15px 2px 2px 0;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.edit-restaurant-input {
+  width: 200px;
+  height: 30px;
+  margin: 5px 0 5px 5px;
+}
+
+.edit-restaurant-input-tables {
+  width: 150px;
+  height: 30px;
+  margin: 5px 0 5px 5px;
+}
+
+.edit-restaurant-seat-input {
+  width: 50px;
+  height: 30px;
+  margin: 5px 0 5px 5px;
+}
+
+.restaurant-image-upload-container,
+.restaurant-menu-upload-container,
+.restaurant-seats-inputs-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: auto;
+  margin: 5px 0;
+}
+
+.file-image-upload {
+  width: 60%;
+}
+
+.uploaded-images-container {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 250px;
+  gap: 0 1rem;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 3px;
+  line-height: 0;
+}
+
+.file-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 3px;
+  line-height: 0;
+}
+
+.restaurant-uploaded-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0;
+  display: block;
+}
+
+.image-remove-button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: 100px;
+  height: 20px;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.file-remove-button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: 100px;
+  height: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.image-remove-button:hover {
+  background-color: var(--hover-colour);
+}
+
+.table-enter-button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: 100px;
+  height: 25px;
+  padding: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.table-enter-button:hover {
+  background-color: var(--hover-colour);
+}
+
+.opening-times-day {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.opening-times-inputs {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-left: 10px;
+}
+.restaurant-image-input {
+  margin-top: 10px;
 }

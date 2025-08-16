@@ -12,7 +12,7 @@ const RestaurantMainDetails = ({ restaurantMainDetails }) => {
     description,
   } = restaurantMainDetails;
   return (
-    <details className="restaurant-accordion">
+    <details>
       <summary className="restaurant-accordion-header">
         Restaurant Details
       </summary>

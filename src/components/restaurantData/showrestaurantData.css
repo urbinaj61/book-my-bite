@@ -1,7 +1,7 @@
 .main-restaurant-content-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 1rem;
   padding-bottom: 4rem;
   min-height: 100vh;
@@ -45,7 +45,7 @@
   font-size: 2rem;
   text-align: center;
   color: var(--secondary-colour);
-  margin: 2rem 0 1rem 0;
+  margin: 3rem 0 -3rem 0;
 }
 
 .restaurant-content-card {
