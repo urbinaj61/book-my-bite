@@ -39,7 +39,7 @@ const EditRestaurantMenus = ({
   };
 
   return (
-    <details className="restaurant-accordion">
+    <details>
       <summary className="restaurant-accordion-header">
         Edit Restaurant Menus
       </summary>

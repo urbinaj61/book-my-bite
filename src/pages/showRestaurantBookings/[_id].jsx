@@ -14,7 +14,12 @@ const RestaurantBookings = () => {
   if (isLoading) return <p>Loading...</p>;
   if (!data) return;
 
-  return <ShowRestaurantBookingsContent restaurant={data} />;
+  return (
+    <section className="bookings-page-container">
+      <h2 className="bookings-page-heading">Restaurant Bookings page</h2>
+      <ShowRestaurantBookingsContent restaurant={data} />;
+    </section>
+  );
 };
 
 export default RestaurantBookings;

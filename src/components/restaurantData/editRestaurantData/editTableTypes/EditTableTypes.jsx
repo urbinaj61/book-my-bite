@@ -10,7 +10,7 @@ const EditTableTypes = ({
   isAccordionOpenTableTypes,
 }) => {
   return (
-    <details className="restaurant-accordion" open={isAccordionOpenTableTypes}>
+    <details open={isAccordionOpenTableTypes}>
       <summary className="restaurant-accordion-header">Edit tables</summary>
       <section className="restaurant-accordion-data-container">
         <section className="restaurant-tables-container">

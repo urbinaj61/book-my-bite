@@ -1,7 +1,11 @@
 import CreateRestaurantData from "@/components/restaurantData/createRestaurantData/CreateRestaurantData";
 
 const CreateRestaurantDataPage = () => {
-  return <CreateRestaurantData />;
+  return (
+    <section className="bookings-page-container">
+      <CreateRestaurantData />
+    </section>
+  );
 };
 
 export default CreateRestaurantDataPage;
