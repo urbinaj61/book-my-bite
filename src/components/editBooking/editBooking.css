@@ -34,12 +34,15 @@
 }
 
 .edit-input {
-  width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
+  border: 2px solid var(--border-colour);
   border-radius: 5px;
-  border: 1px solid var(--border-colour);
-  background-color: var(--secondary-colour);
-  color: var(--primary-colour);
+  font-size: 1rem;
+  background-color: var(--primary-colour);
+  color: var(--secondary-colour);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .booking-cancel-link {

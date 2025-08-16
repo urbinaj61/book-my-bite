@@ -319,7 +319,7 @@ const EditRestaurantData = ({ restaurantData }) => {
   };
 
   return (
-    <section className=".main-restaurant-content-wrapper">
+    <section className="main-restaurant-content-wrapper">
       <section className="restaurant-content-container">
         <h2 className="restaurant-content-heading">Edit RestaurantData</h2>
         <aside className="restaurant-content-card">
@@ -374,12 +374,19 @@ const EditRestaurantData = ({ restaurantData }) => {
                 />
               )}
             </aside>
-            <button type="submit" className="restaurant-data-submit-button">
-              {isLoading ? "Updating..." : "Edit your data"}
-            </button>
-            <Link href={`/showRestaurantData/${email}`}>
-              <button type="button">Cancel Edit</button>
-            </Link>
+            <aside className="restaurant-buttons-container">
+              <button type="submit" className="restaurant-data-edit-button">
+                {isLoading ? "Updating..." : "Edit your data"}
+              </button>
+              <Link
+                href={`/showRestaurantData/${email}`}
+                className="restaurant-edit-link"
+              >
+                <button type="button" className="booking-cancel-button">
+                  Cancel Edit
+                </button>
+              </Link>
+            </aside>
           </form>
         </aside>
       </section>

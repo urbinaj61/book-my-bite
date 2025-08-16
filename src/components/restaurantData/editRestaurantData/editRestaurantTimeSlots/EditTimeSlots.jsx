@@ -13,18 +13,25 @@ const EditTimeSlots = ({
       >
         Edit time slot interval
       </summary>
-      <section className="restaurant-timeSlots-container">
-        <label htmlFor="">TimeSlots</label>
-        <input
-          type="text"
-          name="timeSlotInterval"
-          id="restaurant-timeslots"
-          ref={timeSlotRef}
-          defaultValue={timeSlotInterval}
-        />
-        <button type="button" onClick={handleTimeSlotCreation}>
-          Enter
-        </button>
+      <section className="restaurant-accordion-data-container">
+        <section className="restaurant-timeSlots-container">
+          <label htmlFor="">TimeSlots</label>
+          <input
+            className="edit-restaurant-input"
+            type="text"
+            name="timeSlotInterval"
+            id="restaurant-timeslots"
+            ref={timeSlotRef}
+            defaultValue={timeSlotInterval}
+          />
+          <button
+            className="table-enter-button"
+            type="button"
+            onClick={handleTimeSlotCreation}
+          >
+            Enter
+          </button>
+        </section>
       </section>
     </details>
   );
