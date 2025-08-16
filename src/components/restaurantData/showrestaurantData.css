@@ -62,9 +62,10 @@
 }
 
 .restaurant-accordion-content {
-  padding: 10px;
-  padding-left: 20px;
+  padding: 1rem;
+  margin: 0 auto;
   background-color: var(--border-colour);
+  max-width: 100%;
 }
 
 .restaurant-accordion-header {

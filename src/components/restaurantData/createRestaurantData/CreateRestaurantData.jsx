@@ -262,62 +262,69 @@ const CreateRestaurantData = () => {
   };
 
   return (
-    <>
-      <br />
-      <section>
-        <h1>Create restaurant data</h1>
+    <section className="main-restaurant-content-wrapper">
+      <section className="restaurant-content-container">
+        <h2 className="restaurant-content-heading">Create RestaurantData</h2>
+        <aside className="restaurant-content-card">
+          <form onSubmit={handleSubmit}>
+            <aside className="restaurant-accordion-content">
+              <CreateRestaurantDetails />
 
-        <form onSubmit={handleSubmit}>
-          <CreateRestaurantDetails />
+              <CreateRestaurantImages
+                handleFileUpload={handleFileUpload}
+                imageUrls={imageUrls}
+                setImageUrls={setImageUrls}
+                fileLoading={fileLoading}
+              />
+              <CreateRestaurantMenus
+                handleFileUpload={handleFileUpload}
+                fileUrls={fileUrls}
+                setFileUrls={setFileUrls}
+                fileLoading={fileLoading}
+              />
 
-          <CreateRestaurantImages
-            handleFileUpload={handleFileUpload}
-            imageUrls={imageUrls}
-            setImageUrls={setImageUrls}
-            fileLoading={fileLoading}
-          />
-          <CreateRestaurantMenus
-            handleFileUpload={handleFileUpload}
-            fileUrls={fileUrls}
-            setFileUrls={setFileUrls}
-            fileLoading={fileLoading}
-          />
+              <CreateTableTypes
+                handleTableCreation={handleTableCreation}
+                tableTypes={tableTypes}
+                seatsRefs={seatsRefs}
+                inputRef={inputRef}
+                handleSeatsInsert={handleSeatsInsert}
+                isAccordionOpenTableTypes={isAccordionOpenTableTypes}
+              />
 
-          <CreateTableTypes
-            handleTableCreation={handleTableCreation}
-            tableTypes={tableTypes}
-            seatsRefs={seatsRefs}
-            inputRef={inputRef}
-            handleSeatsInsert={handleSeatsInsert}
-            isAccordionOpenTableTypes={isAccordionOpenTableTypes}
-          />
+              <CreateOpeningTimes
+                isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
+                toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
+                openingTimes={openingTimes}
+                openingTimesRefs={openingTimesRefs}
+                handleOpeningTimesCreation={handleOpeningTimesCreation}
+              />
+              {errorMessage ? (
+                <p>{errorMessage}</p>
+              ) : (
+                <CreateTimeSlots
+                  isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
+                  toggleAccordionTimeSlots={toggleAccordionTimeSlots}
+                  timeSlotRef={timeSlotRef}
+                  handleTimeSlotCreation={handleTimeSlotCreation}
+                />
+              )}
 
-          <CreateOpeningTimes
-            isAccordionOpenOpeningTimes={isAccordionOpenOpeningTimes}
-            toggleAccordionOpeningTimes={toggleAccordionOpeningTimes}
-            openingTimes={openingTimes}
-            openingTimesRefs={openingTimesRefs}
-            handleOpeningTimesCreation={handleOpeningTimesCreation}
-          />
-          {errorMessage ? (
-            <p>{errorMessage}</p>
-          ) : (
-            <CreateTimeSlots
-              isAccordionOpenTimeSlots={isAccordionOpenTimeSlots}
-              toggleAccordionTimeSlots={toggleAccordionTimeSlots}
-              timeSlotRef={timeSlotRef}
-              handleTimeSlotCreation={handleTimeSlotCreation}
-            />
-          )}
-
-          {showSubmitButton && (
-            <button type="submit" className="restaurant-data-submit-button">
-              {isLoading ? "Creating..." : "Create your data"}
-            </button>
-          )}
-        </form>
+              {showSubmitButton && (
+                <aside className="restaurant-buttons-container">
+                  <button
+                    type="submit"
+                    className="restaurant-data-submit-button"
+                  >
+                    {isLoading ? "Creating..." : "Create your data"}
+                  </button>
+                </aside>
+              )}
+            </aside>
+          </form>
+        </aside>
       </section>
-    </>
+    </section>
   );
 };
 

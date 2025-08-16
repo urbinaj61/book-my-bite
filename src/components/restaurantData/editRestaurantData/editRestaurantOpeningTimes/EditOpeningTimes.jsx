@@ -6,10 +6,7 @@ const EditOpeningTimes = ({
   handleOpeningTimesEdit,
 }) => {
   return (
-    <details
-      className="restaurant-accordion"
-      open={isAccordionOpenOpeningTimes}
-    >
+    <details open={isAccordionOpenOpeningTimes}>
       <summary
         className="restaurant-accordion-header"
         onClick={toggleAccordionOpeningTimes}

@@ -12,8 +12,6 @@ const EditRestaurantImages = ({
   const handleFileDelete = async (e, assetId) => {
     e.preventDefault();
 
-    console.log({ assetId });
-
     const newImageUrls = imageUrls.filter((image) => {
       return image.assetId !== assetId;
     });

@@ -43,33 +43,48 @@ const ShowRestaurantBookingsContent = () => {
   if (error) return <p>Error loading bookings.</p>;
 
   return (
-    <>
-      <h2>Reservations:</h2>
-      <ul>
+    <section className="main-content-wrapper">
+      <section className="bookings-content-container">
+        <h2 className="bookings-content-heading">Restaurant Reservations</h2>
+
         {data.map((booking) => (
-          <li key={booking._id}>
-            <strong>Restaurant:</strong> {booking.restaurantName}
-            <br />
-            <strong>Address:</strong> {booking.restaurantAddress1}
-            <br />
-            <strong>Booked by:</strong> {booking.customerName}
-            <br />
-            <strong>Date:</strong> {changeDateFormat1(booking.dateBooked)}
-            <br />
-            <strong>Time:</strong> {booking.timeSlot?.start} -{" "}
-            {booking.timeSlot?.end}
-            <br />
-            <strong>Table:</strong> {booking.tableBooked}
-            <br />
-            <strong>Seats:</strong> {booking.seatsBooked}
-            <br />
-            <button onClick={() => handleDelete(booking._id)}>
-              Cancel Booking
-            </button>
-          </li>
+          <aside key={booking._id} className="booking-card">
+            <aside className="restaurant-info">
+              <p className="booking-info">{booking.restaurantName}</p>
+              <p className="booking-info">{booking.restaurantAddress1}</p>
+              <label className="booking-info-label">Booked by</label>
+              <p className="booking-info">{booking.customerName}</p>
+            </aside>
+            <aside className="table-booking-info">
+              <label className="booking-info-label">Date Booked</label>
+              <p className="booking-info">
+                {changeDateFormat1(booking.dateBooked)}
+              </p>
+              <label className="booking-info-label">Booking Time</label>
+              <p className="booking-info">
+                {booking.timeSlot?.start} - {booking.timeSlot?.end}
+              </p>
+            </aside>
+
+            <aside className="table-info">
+              <label className="booking-info-label">Table Booked</label>
+              <p className="booking-info">{booking.tableBooked}</p>
+              <label className="booking-info-label">Table Booked for</label>
+              <p className="booking-info">{booking.seatsBooked}</p>
+            </aside>
+
+            <aside className="buttons-container">
+              <button
+                onClick={() => handleDelete(booking._id)}
+                className="booking-cancel-button"
+              >
+                Cancel Booking
+              </button>
+            </aside>
+          </aside>
         ))}
-      </ul>
-    </>
+      </section>
+    </section>
   );
 };
 

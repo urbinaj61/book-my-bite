@@ -1,28 +1,28 @@
 const CreateRestaurantDetails = () => {
   return (
-    <details className="restaurant-accordion">
+    <details>
       <summary className="restaurant-accordion-header">
         Fill in Restaurant Details
       </summary>
-      <section className="restaurant-data-details">
-        <label htmlFor="restaurant name" className="restaurant-data-label">
+      <section className="restaurant-accordion-data-container">
+        <label htmlFor="restaurant name" className="restaurant-edit-label">
           Please enter the restaurant name
         </label>
         <input
           placeholder="Please enter name"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="name"
           id="restaurant name"
           aria-label="restaurant name"
         />
 
-        <label htmlFor="restaurant address1" className="restaurant-data-label">
+        <label htmlFor="restaurant address1" className="restaurant-edit-label">
           Please enter address line one
         </label>
         <input
           placeholder="Please enter address line one"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="address1"
           id="restaurant address1"
@@ -34,7 +34,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter address line two"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="address2"
           id="restaurant address2"
@@ -46,7 +46,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter the postcode"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="postCode"
           id="restaurant postcode"
@@ -58,7 +58,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter the city"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="city"
           id="restaurant city"
@@ -70,7 +70,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter the email"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="email"
           name="email"
           id="restaurant email"
@@ -82,7 +82,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter the phone number"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="phone"
           id="restaurant phone"
@@ -94,7 +94,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter the type of restaurant"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="type"
           id="restaurant type"
@@ -106,7 +106,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter the cuisine"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="cuisine"
           id="restaurant cuisine"
@@ -121,7 +121,7 @@ const CreateRestaurantDetails = () => {
         </label>
         <input
           placeholder="Please enter a description"
-          className="restaurant-input"
+          className="edit-restaurant-input"
           type="text"
           name="description"
           id="restaurant description"
