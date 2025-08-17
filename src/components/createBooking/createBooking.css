@@ -1,0 +1,98 @@
+.create-booking-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.create-booking-container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  padding: 1rem;
+
+  background-color: var(--accent-colour);
+  color: var(--secondary-colour);
+}
+
+.create-booking-heading {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--secondary-colour);
+  margin: 10rem 0 -35rem 0;
+}
+
+.create-booking-card {
+  background-color: var(--accent-colour);
+  color: var(--secondary-colour);
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 95%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: stretch;
+  align-items: center;
+  grid-gap: 1rem;
+}
+
+.create-date-input,
+.create-booking-input {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  padding: 0.75rem;
+  margin-right: 20px;
+  border: 2px solid var(--border-colour);
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: var(--secondary-colour);
+  color: var(--primary-colour);
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.booking-inputs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+.show-opening-times {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.create-booking-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.create-booking-label {
+  color: var(--text-colour-light);
+}
+
+.create-booking-input {
+  margin-top: -15px;
+  width: 80%;
+}
+
+.create-booking-input-tables {
+  width: 200px;
+  height: 30px;
+  margin-top: -15px;
+}

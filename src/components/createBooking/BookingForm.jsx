@@ -11,20 +11,26 @@ const BookingForm = ({
   availableTimeSlots,
 }) => {
   return (
-    <form onSubmit={handleFormSubmit}>
-      <label htmlFor="customer-name">Please enter your name</label>
+    <form className="create-booking-form" onSubmit={handleFormSubmit}>
+      <label className="create-booking-label" htmlFor="customer-name">
+        Please enter your name
+      </label>
       <input
         type="text"
         id="customer-name"
         aria-label="customer-name"
         name="customerName"
+        className="create-booking-input"
       />
-      <label htmlFor="customer-email">Please enter your email</label>
+      <label className="create-booking-label" htmlFor="customer-email">
+        Please enter your email
+      </label>
       <input
         type="text"
         id="customer-email"
         aria-label="customer-email"
         name="customerEmail"
+        className="create-booking-input"
       />
       <TableSelection
         onTableSelect={handleTableSelect}
@@ -38,7 +44,9 @@ const BookingForm = ({
           selectedTimeSlot={selectedTimeSlot}
         />
       )}
-      <button type="submit">Book your bite</button>
+      <button className="restaurant-create-button" type="submit">
+        Book your bite
+      </button>
     </form>
   );
 };

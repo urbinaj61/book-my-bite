@@ -1,0 +1,80 @@
+.restaurant-content-container-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  gap: 1rem;
+  background-color: var(--accent-colour);
+  color: var(--secondary-colour);
+  padding-bottom: 4rem;
+}
+
+.restaurant-content-card-details {
+  background-color: var(--accent-colour);
+  color: var(--secondary-colour);
+  margin-top: 1rem;
+  margin-bottom: 0;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 650px;
+  width: 96%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+.restaurant-accordion-content-details {
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: var(--border-colour);
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.cards-page-heading-details {
+  margin: 2.5rem 0 -20px 2px;
+  color: var(--secondary-colour);
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-info-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--secondary-colour);
+}
+
+.card-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 5px 0;
+}
+
+.reserve-button {
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  width: 100px;
+  height: 25px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reserve-button:hover {
+  background-color: var(--hover-colour);
+}

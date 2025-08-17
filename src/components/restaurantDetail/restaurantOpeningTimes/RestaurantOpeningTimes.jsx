@@ -16,7 +16,7 @@ const RestaurantOpeningTimes = ({ openingTimes }) => {
       <summary className="restaurant-accordion-header">
         Restaurant Opening Times
       </summary>
-      <section className="restaurant-content-card">
+      <section className="restaurant-content-card-details">
         <section className="restaurant-data-container">
           {renderedOpeningTimes}
         </section>

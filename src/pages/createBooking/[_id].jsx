@@ -13,12 +13,10 @@ const CreateBookingPage = () => {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <>
-      <div>
-        <h2>Create a booking page</h2>
-        <GetBookingDate data={data} />
-      </div>
-    </>
+    <section className="bookings-page-container">
+      <h2 className="create-booking-heading">Book your bite</h2>
+      <GetBookingDate data={data} />
+    </section>
   );
 };
 

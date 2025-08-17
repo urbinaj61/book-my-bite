@@ -13,12 +13,12 @@
   cursor: pointer;
 }
 
-.restaurant-content-heading {
+.edit-restaurant-content-heading {
   font-size: 2rem;
   text-align: center;
   color: var(--secondary-colour);
   padding: 0 15px;
-  margin: 2rem 0;
+  margin: 3rem 0;
 }
 
 .restaurant-accordion-data-container {
@@ -29,16 +29,17 @@
   box-sizing: border-box;
 }
 
-.restaurant-content-card {
+.edit-restaurant-content-card {
   background-color: var(--accent-colour);
   color: var(--secondary-colour);
   padding: 2.5rem;
-  margin: 2rem auto;
+  margin: -2rem auto;
   border-radius: 10px;
   max-width: 400px;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: grid;
+  place-items: center;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
 }

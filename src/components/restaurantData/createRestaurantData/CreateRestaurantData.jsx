@@ -122,7 +122,6 @@ const CreateRestaurantData = () => {
         }
 
         const fileData = await response.json();
-        console.log({ fileData });
 
         return {
           url: fileData.url,

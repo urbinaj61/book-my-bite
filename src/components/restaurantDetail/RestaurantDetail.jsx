@@ -1,7 +1,7 @@
 import Link from "next/link";
 import RestaurantMainDetails from "./restaurantMainDetails/RestaurantMainDetails";
 import RestaurantImages from "./restaurantImages/RestaurantImages";
-import RestauranrtMenuLinks from "./restaurantMenuLinks/RestaurantMenuLinks";
+import RestaurantMenuLinks from "./restaurantMenuLinks/RestaurantMenuLinks";
 import RestaurantOpeningTimes from "./restaurantOpeningTimes/RestaurantOpeningTimes";
 
 const RestaurantDetail = ({ restaurant }) => {
@@ -35,20 +35,33 @@ const RestaurantDetail = ({ restaurant }) => {
   };
 
   return (
-    <>
-      <div>
-        <RestaurantMainDetails restaurantMainDetails={restaurantMainDetails} />
-        {/* <RestaurantImages images={images} />
-        <RestauranrtMenuLinks menuLinks={menuLinks} />
-        <RestaurantOpeningTimes openingTimes={openingTimes} /> */}
-      </div>
-      <Link href={`/createBooking/${restaurant._id}`}>
-        <button>Book your table</button>
-      </Link>
-      <Link href={"/restaurants"}>
-        <button>Return</button>
-      </Link>
-    </>
+    <section className="main-restaurant-content-wrapper">
+      <section className="restaurant-content-container-details">
+        <h2 className="cards-page-heading-details">Restaurant Data</h2>
+        <aside className="restaurant-content-card-details">
+          <aside className="restaurant-accordion-content-details">
+            <RestaurantMainDetails
+              restaurantMainDetails={restaurantMainDetails}
+            />
+            <RestaurantImages images={images} />
+            <RestaurantMenuLinks menuLinks={menuLinks} />
+            <RestaurantOpeningTimes openingTimes={openingTimes} />
+          </aside>
+
+          <aside className="restaurant-buttons-container">
+            <Link
+              className="card-link"
+              href={`/createBooking/${restaurant._id}`}
+            >
+              <button className="reserve-button">Reserve</button>
+            </Link>
+            <Link className="card-link" href={"/restaurants"}>
+              <button className="reserve-button">Return</button>
+            </Link>
+          </aside>
+        </aside>
+      </section>
+    </section>
   );
 };
 

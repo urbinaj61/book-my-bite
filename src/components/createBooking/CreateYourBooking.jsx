@@ -48,8 +48,6 @@ const CreateYourBooking = ({ restaurantData, date }) => {
   const handleTableSelect = (event) => {
     setSelectedTable(event.target.value);
 
-    console.log(event.target.value);
-
     if (event.target.value.includes("-")) {
       const [table, seats] = event.target.value.split("-");
       setTableBooked(table);
@@ -94,11 +92,11 @@ const CreateYourBooking = ({ restaurantData, date }) => {
   };
 
   return (
-    <>
-      {openingTimes[0].open !== "Closed" ? (
-        <p>{`Opening Times: Open from ${openingTimes[0].open} till ${openingTimes[0].close}`}</p>
+    <aside className="booking-inputs-container">
+      {openingTimes[0].open !== "closed" ? (
+        <p className="show-opening-times">{`Open from ${openingTimes[0].open} till ${openingTimes[0].close}`}</p>
       ) : (
-        <p>This restaurant is closed on this day</p>
+        <p className="show-opening-times">This restaurant is closed today</p>
       )}
       <BookingForm
         selectedTable={selectedTable}
@@ -109,7 +107,7 @@ const CreateYourBooking = ({ restaurantData, date }) => {
         tables={tables}
         availableTimeSlots={availableTimeSlots}
       />
-    </>
+    </aside>
   );
 };
 

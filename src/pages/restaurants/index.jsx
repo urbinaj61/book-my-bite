@@ -10,12 +10,9 @@ const Restaurants = () => {
   if (isLoading) return <p>Loading...</p>;
 
   return (
-    <main>
+    <section className="bookings-page-container">
       <RestaurantList data={data} />
-      <Link href={"/"}>
-        <button type="button">Return</button>
-      </Link>
-    </main>
+    </section>
   );
 };
 
