@@ -16,13 +16,15 @@ const TableSelection = ({ onTableSelect, tables, selectedTable }) => {
 
   return (
     <>
-      <label htmlFor="table-select">Please choose a Table:</label>
+      <label className="create-booking-label" htmlFor="table-select">
+        Please choose a Table:
+      </label>
       <select
         id="table-select"
         name="tableBooked"
         value={selectedTable}
         onChange={(e) => onTableSelect(e)}
-        className="table-select"
+        className="create-booking-input-tables"
       >
         <option value="" disabled>
           Please select a table

@@ -12,7 +12,11 @@ const Restaurant = () => {
   if (isLoading) return <p>Loading...</p>;
   if (!data) return;
 
-  return <RestaurantDetail restaurant={data} />;
+  return (
+    <section className="bookings-page-container">
+      <RestaurantDetail restaurant={data} />
+    </section>
+  );
 };
 
 export default Restaurant;

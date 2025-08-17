@@ -5,12 +5,15 @@ const TimeSlotSelection = ({
 }) => {
   return (
     <>
-      <label htmlFor="time-slot-select">Please choose a Time Slot:</label>
+      <label className="create-booking-label" htmlFor="time-slot-select">
+        Please choose a Time Slot:
+      </label>
       <select
         id="time-slot-select"
         name="timeSlot"
         value={selectedTimeSlot}
         onChange={(e) => onTimeSlotSelect(e)}
+        className="create-booking-input-tables"
       >
         <option value="" disabled>
           Please select a timeslot

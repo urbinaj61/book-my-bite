@@ -41,16 +41,17 @@
   padding-bottom: 4rem;
 }
 
-.restaurant-content-heading {
+.show-restaurant-content-heading {
   font-size: 2rem;
   text-align: center;
   color: var(--secondary-colour);
   margin: 3rem 0 -3rem 0;
 }
 
-.restaurant-content-card {
+.show-restaurant-content-card {
   background-color: var(--accent-colour);
   color: var(--secondary-colour);
+  margin-top: 2rem;
   padding: 1.5rem;
   border-radius: 10px;
   max-width: 400px;

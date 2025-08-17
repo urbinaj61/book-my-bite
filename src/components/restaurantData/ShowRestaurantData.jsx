@@ -12,8 +12,8 @@ const ShowRestaurantData = ({ data }) => {
     return (
       <section className="main-restaurant-content-wrapper">
         <section className="restaurant-content-container">
-          <h2 className="restaurant-content-heading">Restaurant Data</h2>
-          <section className="restaurant-content-card">
+          <h2 className="show-restaurant-content-heading">Restaurant Data</h2>
+          <section className="show-restaurant-content-card">
             <aside className="restaurant-info">
               <h3 className="restaurant-info-label">
                 Your Email has not been registered.
@@ -47,6 +47,7 @@ const ShowRestaurantData = ({ data }) => {
     phone,
     type,
     cuisine,
+    description,
     images,
     menuLinks,
     openingTimes,
@@ -62,6 +63,7 @@ const ShowRestaurantData = ({ data }) => {
     phone,
     type,
     cuisine,
+    description,
   };
 
   const handleDelete = async (_id) => {
@@ -82,8 +84,8 @@ const ShowRestaurantData = ({ data }) => {
   return (
     <section className="main-restaurant-content-wrapper">
       <section className="restaurant-content-container">
-        <h2 className="restaurant-content-heading">Restaurant Data</h2>
-        <aside className="restaurant-content-card">
+        <h2 className="show-restaurant-content-heading">Restaurant Data</h2>
+        <aside className="show-restaurant-content-card">
           <aside className="restaurant-accordion-content">
             <RestaurantMainDetails
               restaurantMainDetails={restaurantMainDetails}

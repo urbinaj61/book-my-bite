@@ -4,11 +4,12 @@ import DummyImage from "../dummyImage/DummyImage";
 
 const RestaurantCard = ({ restaurant }) => {
   return (
-    <div key={restaurant._id}>
-      <Link href={`/restaurants/${restaurant._id}`}>
-        <p>{restaurant.name}</p>
+    <aside className="card-container" key={restaurant._id}>
+      <Link className="card-link" href={`/restaurants/${restaurant._id}`}>
+        <label className="card-info-label">{restaurant.name}</label>
         {restaurant.images.length > 0 ? (
           <Image
+            className="card-image"
             src={restaurant.images[0].url}
             width={200}
             height={200}
@@ -19,10 +20,10 @@ const RestaurantCard = ({ restaurant }) => {
           <DummyImage />
         )}
       </Link>
-      <Link href={`/createBooking/${restaurant._id}`}>
-        <button>Book your table</button>
+      <Link className="card-link" href={`/createBooking/${restaurant._id}`}>
+        <button className="reserve-button">Reserve </button>
       </Link>
-    </div>
+    </aside>
   );
 };
 

@@ -8,6 +8,9 @@
 @import "../components/restaurantDetail/restaurantImages/restaurantImages.css";
 @import "../components/restaurantData/showrestaurantData.css";
 @import "../components/restaurantData/createRestaurantData/createRestaurantData.css";
+@import "../components/restaurantCard/restaurantCard.css";
+@import "../components//restaurantDetail/restaurantDetail.css";
+@import "../components/createBooking/createBooking.css";
 
 * {
   box-sizing: border-box;
