@@ -10,6 +10,7 @@ const GetBookingDate = ({ data }) => {
         <aside className="create-booking-card">
           <h3>{data.name}</h3>
           <h4>{data.address1}</h4>
+          <h4>{data.city}</h4>
           <label className="booking-info-label" htmlFor="booked date">
             Please select a date
           </label>

@@ -7,6 +7,8 @@ const RestaurantCard = ({ restaurant }) => {
     <aside className="card-container" key={restaurant._id}>
       <Link className="card-link" href={`/restaurants/${restaurant._id}`}>
         <label className="card-info-label">{restaurant.name}</label>
+        <br />
+        <label className="card-info-label">{restaurant.city}</label>
         {restaurant.images.length > 0 ? (
           <Image
             className="card-image"
