@@ -263,8 +263,10 @@ const CreateRestaurantData = () => {
   return (
     <section className="main-restaurant-content-wrapper">
       <section className="restaurant-content-container">
-        <h2 className="restaurant-content-heading">Create RestaurantData</h2>
-        <aside className="restaurant-content-card">
+        <h2 className="edit-restaurant-content-heading">
+          Create RestaurantData
+        </h2>
+        <aside className="edit-restaurant-content-card">
           <form onSubmit={handleSubmit}>
             <aside className="restaurant-accordion-content">
               <CreateRestaurantDetails />
