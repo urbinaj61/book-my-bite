@@ -17,7 +17,7 @@ const RestaurantBookings = () => {
   return (
     <section className="bookings-page-container">
       <h2 className="bookings-page-heading">Restaurant Bookings page</h2>
-      <ShowRestaurantBookingsContent restaurant={data} />;
+      <ShowRestaurantBookingsContent restaurant={data} />
     </section>
   );
 };
