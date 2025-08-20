@@ -26,6 +26,11 @@ const CreateRestaurantMenus = ({
     fileInputRef.current && (fileInputRef.current.value = "");
   };
 
+  const handleDuplicates = () => {
+    const uniqueFileUrls = [...new Set(fileUrls)];
+    setFileUrls(uniqueFileUrls);
+  };
+
   return (
     <details>
       <summary className="restaurant-accordion-header">
@@ -40,6 +45,7 @@ const CreateRestaurantMenus = ({
             type="file"
             ref={fileInputRef}
             onChange={(e) => handleFileUploadWithReset(e, "pdf")}
+            onClick={handleDuplicates}
             className="restaurant-menu-input"
             name="menu"
             id="restaurant menu"

@@ -25,6 +25,11 @@ const CreateRestaurantImages = ({
     fileInputRef.current && (fileInputRef.current.value = "");
   };
 
+  const handleDuplicates = () => {
+    const uniqueImageUrls = [...new Set(imageUrls)];
+    setImageUrls(uniqueImageUrls);
+  };
+
   return (
     <details>
       <summary className="restaurant-accordion-header">
@@ -40,6 +45,7 @@ const CreateRestaurantImages = ({
               type="file"
               ref={fileInputRef}
               onChange={(e) => handleFileUploadWithReset(e, "image")}
+              onClick={handleDuplicates}
               className="restaurant-image-input"
               name="image"
               id="restaurant image"
